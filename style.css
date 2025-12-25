@@ -1,14 +1,13 @@
-/* --- DoubleU-Tech Specified Color System --- */
+/* --- DoubleU-Tech Color Palette --- */
 :root {
     --primary-dark: #0f2332;   /* Deep Blue/Black */
     --accent: #eb611b;         /* Brand Orange */
-    --grey-light: #f9f9f9;     /* Subtle Gray */
-    --text-main: #333333;      /* Primary Text */
-    --text-secondary: #666666; /* Muted Text */
+    --grey-light: #f9f9f9;     /* Background Gray */
+    --text-main: #333333;      /* Main Text */
+    --text-secondary: #666666; /* Secondary Text */
     --white: #ffffff;
 }
 
-/* --- Global Settings --- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
@@ -17,6 +16,7 @@ body {
     background-color: var(--white);
     line-height: 1.8;
     scroll-behavior: smooth;
+    padding-top: 90px;
 }
 
 h1, h2, h3 { 
@@ -28,7 +28,7 @@ h1, h2, h3 {
 .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
 .narrow { max-width: 800px; margin: 0 auto; }
 
-/* --- Navbar (Fixed) --- */
+/* --- Navbar --- */
 .navbar {
     height: 90px;
     background: var(--white);
@@ -37,7 +37,7 @@ h1, h2, h3 {
     display: flex; align-items: center;
 }
 .nav-inner { display: flex; justify-content: space-between; align-items: center; width: 100%; }
-.logo img { height: 32px; width: auto; }
+.logo img { height: 32px; width: auto; max-width: 200px; object-fit: contain; }
 
 nav ul { list-style: none; display: flex; align-items: center; }
 nav ul li { margin-left: 35px; }
@@ -56,12 +56,11 @@ nav ul li a:hover { color: var(--accent); }
     border: 2px solid var(--accent); 
     color: var(--accent) !important; 
     padding: 10px 22px; 
-    border-radius: 2px;
 }
 .nav-btn:hover { background: var(--accent); color: var(--white) !important; }
 
 /* --- Hero Section --- */
-.hero { padding: 220px 0 130px; background-color: var(--grey-light); }
+.hero { padding: 130px 0 100px; background-color: var(--grey-light); }
 .overline { color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 3px; font-size: 11px; margin-bottom: 15px; display: block; }
 .hero h1 { font-size: 54px; margin-bottom: 30px; max-width: 850px; line-height: 1.15; }
 .hero-subtext { font-size: 19px; color: var(--text-secondary); margin-bottom: 45px; max-width: 600px; font-weight: 300; }
@@ -74,7 +73,7 @@ nav ul li a:hover { color: var(--accent); }
 /* --- Services Grid --- */
 .section { padding: 120px 0; }
 .section-header { margin-bottom: 80px; }
-.section-header h2 { font-size: 40px; margin-top: 10px; }
+.section-header h2 { font-size: 40px; }
 .centered { text-align: center; }
 
 .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
@@ -92,12 +91,13 @@ nav ul li a:hover { color: var(--accent); }
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
 .about-image-placeholder { height: 500px; background: var(--grey-light); border: 1px solid #eee; }
 
-/* --- Team --- */
+/* --- Team Section --- */
 .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 60px; text-align: center; margin-top: 80px; }
 .member-photo { width: 170px; height: 170px; background: var(--grey-light); border-radius: 50%; margin: 0 auto 30px; border: 1px solid #eee; }
-.role { color: var(--accent); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; display: block; margin-top: 8px; }
+.team-member h4 { margin-bottom: 5px; font-size: 18px; }
+.role { color: var(--accent); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; display: block; }
 
-/* --- Custom Professional Form --- */
+/* --- Hidden Custom Form --- */
 .contact { background-color: var(--grey-light); }
 .custom-form-wrapper { margin-top: 60px; }
 .form-row { display: flex; gap: 30px; margin-bottom: 30px; }
@@ -117,7 +117,7 @@ nav ul li a:hover { color: var(--accent); }
 /* --- Responsive --- */
 @media (max-width: 992px) {
     .service-grid, .team-grid, .split { grid-template-columns: 1fr; }
-    .hero h1 { font-size: 38px; }
+    .hero h1 { font-size: 34px; }
     .nav-inner { justify-content: center; }
     nav { display: none; }
 }
