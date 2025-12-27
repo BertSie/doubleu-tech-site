@@ -35,48 +35,35 @@ nav ul li { margin-left: 35px; }
 nav ul li a { text-decoration: none; color: var(--primary-dark); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; }
 .nav-btn { border: 2px solid var(--accent); color: var(--accent) !important; padding: 10px 22px; border-radius: 2px; }
 
-/* --- 橘色標籤標題 --- */
+/* --- 標籤與間距優化 --- */
 .overline { 
     color: var(--accent); font-weight: 700; text-transform: uppercase; 
     letter-spacing: 5px; font-size: 16px; margin-bottom: 25px; display: block; 
 }
 
-/* --- Section Spacing --- */
 .section { padding: 120px 0; }
 .centered { text-align: center; }
-.section-header { margin-bottom: 80px; } /* 增加標題與下方內容的間距 */
-.section-header h2 { font-size: 42px; margin-bottom: 20px; } /* 加大標題與 READY 文字的距離 */
 
-/* --- About Special Card --- */
-.meaning-card {
-    background: #fdf6f2; padding: 40px;
-    border-left: 6px solid var(--accent); margin-top: 40px;
-    box-shadow: 5px 5px 20px rgba(0,0,0,0.02);
+/* 標題與 Ready 段落的空間控制 */
+.section-header { margin-bottom: 70px; } 
+.section-header h2 { font-size: 42px; margin-bottom: 25px; } 
+.ready-text { 
+    font-size: 18px; 
+    color: var(--text-secondary); 
+    white-space: nowrap; /* 強制不換行 */
+    letter-spacing: 0.5px;
 }
-.split { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
 
-/* --- Team Grid & Modals --- */
-.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 60px; margin-top: 60px; }
-.team-member { cursor: pointer; text-align: center; transition: 0.3s; }
-.team-member:hover { transform: translateY(-5px); }
-.member-photo { width: 200px; height: 200px; border-radius: 50%; margin: 0 auto 25px; overflow: hidden; border: 1px solid #eee; }
-.member-photo img { width: 100%; height: 100%; object-fit: cover; }
-.role { color: var(--accent); font-weight: 700; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; }
+/* --- Hero --- */
+.hero { padding: 140px 0 110px; background-color: var(--grey-light); }
+.hero h1 { font-size: 54px; line-height: 1.15; margin-bottom: 30px; }
+.btn { padding: 18px 38px; text-decoration: none; font-weight: 600; display: inline-block; transition: 0.3s; }
+.btn-dark { background: var(--primary-dark); color: var(--white); margin-right: 15px; }
+.btn-outline { border: 1px solid var(--primary-dark); color: var(--primary-dark); }
 
-.modal {
-    display: none !important; position: fixed; z-index: 9999;
-    left: 0; top: 0; width: 100%; height: 100%; 
-    background-color: rgba(15, 35, 50, 0.9); align-items: center; justify-content: center;
-}
-.modal[style*="display: flex"] { display: flex !important; }
-.modal-content { background: var(--white); padding: 50px; width: 90%; max-width: 650px; border-radius: 4px; position: relative; animation: slideIn 0.3s ease-out; }
-@keyframes slideIn { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-.close { position: absolute; right: 25px; top: 20px; font-size: 35px; cursor: pointer; color: #999; }
-.linkedin-link { display: inline-block; padding: 12px 25px; background: #0077b5; color: white; text-decoration: none; font-size: 13px; font-weight: 600; margin-top: 20px; }
-
-/* --- Connect Form (修正 image_667a5c.png 間距) --- */
+/* --- Connect Form 修復 --- */
 .contact { background-color: var(--grey-light); }
-.custom-form-wrapper { margin-top: 60px; } /* 增加 READY 描述與表單頂端的距離 */
+.custom-form-wrapper { margin-top: 50px; }
 .form-row { display: flex; gap: 40px; margin-bottom: 35px; }
 .form-group { flex: 1; display: flex; flex-direction: column; text-align: left; }
 .form-group label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--primary-dark); margin-bottom: 10px; }
@@ -94,7 +81,11 @@ nav ul li a { text-decoration: none; color: var(--primary-dark); font-size: 13px
 
 /* --- Footer --- */
 .footer { padding: 60px 0; background: var(--primary-dark); color: var(--white); text-align: center; }
-.footer-logo img { height: 40px; margin-bottom: 25px; filter: brightness(0) invert(1); }
-.footer p { opacity: 0.5; font-size: 12px; letter-spacing: 1px; }
+.footer img { height: 40px; margin-bottom: 25px; filter: brightness(0) invert(1); }
+.footer p { opacity: 0.5; font-size: 12px; }
 
-@media (max-width: 992px) { .team-grid, .split, .form-row { grid-template-columns: 1fr; flex-direction: column; gap: 30px; } }
+/* 手機版相容性：在小螢幕允許換行 */
+@media (max-width: 992px) { 
+    .ready-text { white-space: normal; } 
+    .form-row { flex-direction: column; gap: 30px; }
+}
