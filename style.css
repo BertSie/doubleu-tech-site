@@ -35,62 +35,59 @@ nav ul li { margin-left: 35px; }
 nav ul li a { text-decoration: none; color: var(--primary-dark); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; }
 .nav-btn { border: 2px solid var(--accent); color: var(--accent) !important; padding: 10px 22px; border-radius: 2px; }
 
-/* --- Overline 橘色標籤 --- */
+/* --- 橘色標籤標題 (修正文字偏小問題) --- */
 .overline { 
     color: var(--accent); font-weight: 700; text-transform: uppercase; 
     letter-spacing: 5px; font-size: 16px; margin-bottom: 25px; display: block; 
 }
 
-/* --- About Page Special Components --- */
-.meaning-card {
-    background: #fdf6f2; padding: 40px;
-    border-left: 6px solid var(--accent); margin-top: 40px;
-    box-shadow: 5px 5px 20px rgba(0,0,0,0.02);
+/* --- Hero Section & Buttons (修復截圖中的碎裂樣式) --- */
+.hero { padding: 140px 0 110px; background-color: var(--grey-light); }
+.hero h1 { font-size: 54px; line-height: 1.15; margin-bottom: 30px; max-width: 900px; }
+.hero-subtext { font-size: 19px; color: var(--text-secondary); margin-bottom: 45px; max-width: 650px; font-weight: 300; }
+
+.btn { 
+    padding: 18px 38px; text-decoration: none; font-weight: 600; 
+    display: inline-block; transition: 0.3s; font-size: 14px; letter-spacing: 1px;
 }
+.btn-dark { background: var(--primary-dark); color: var(--white); margin-right: 15px; }
+.btn-outline { border: 1px solid var(--primary-dark); color: var(--primary-dark); }
+.btn:hover { opacity: 0.9; transform: translateY(-2px); }
+
+/* --- About Special Card --- */
+.meaning-card { background: #fdf6f2; padding: 40px; border-left: 6px solid var(--accent); margin-top: 40px; }
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-.about-image-placeholder { height: 450px; background: var(--grey-light); border: 1px solid #eee; }
+.about-image-placeholder { height: 450px; background: #eee; }
 
 /* --- Team Grid & Modals --- */
 .section { padding: 100px 0; }
 .centered { text-align: center; }
 .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 60px; margin-top: 60px; }
-.team-member { cursor: pointer; transition: 0.3s; text-align: center; }
-.team-member:hover { transform: translateY(-5px); }
+.team-member { cursor: pointer; text-align: center; }
 .member-photo { width: 200px; height: 200px; border-radius: 50%; margin: 0 auto 25px; overflow: hidden; border: 1px solid #eee; }
 .member-photo img { width: 100%; height: 100%; object-fit: cover; }
-.role { color: var(--accent); font-weight: 700; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; }
+.role { color: var(--accent); font-weight: 700; font-size: 13px; text-transform: uppercase; }
 
-.modal {
-    display: none !important; position: fixed; z-index: 9999;
-    left: 0; top: 0; width: 100%; height: 100%; 
-    background-color: rgba(15, 35, 50, 0.9); align-items: center; justify-content: center;
-}
-.modal[style*="display: flex"] { display: flex !important; }
-.modal-content { background: var(--white); padding: 50px; width: 90%; max-width: 650px; border-radius: 4px; position: relative; animation: slideIn 0.3s ease-out; }
-@keyframes slideIn { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-.close { position: absolute; right: 25px; top: 20px; font-size: 35px; cursor: pointer; color: #999; }
-.linkedin-link { display: inline-block; padding: 12px 25px; background: #0077b5; color: white; text-decoration: none; font-size: 13px; font-weight: 600; margin-top: 20px; }
+.modal { display: none !important; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(15,35,50,0.9); align-items: center; justify-content: center; }
+.modal-content { background: #fff; padding: 50px; width: 90%; max-width: 650px; position: relative; }
+.close { position: absolute; right: 25px; top: 20px; font-size: 35px; cursor: pointer; }
 
-/* --- Connect Form (修正跑版與底部大區塊問題) --- */
-.contact { background-color: var(--grey-light); padding: 100px 0; }
-.custom-form-wrapper { margin-top: 50px; }
-.form-row { display: flex; gap: 30px; margin-bottom: 25px; }
+/* --- Connect Form (修復截圖底線不見與跑版) --- */
+.contact { background-color: var(--grey-light); padding: 110px 0; }
+.form-row { display: flex; gap: 30px; margin-bottom: 30px; }
 .form-group { flex: 1; display: flex; flex-direction: column; text-align: left; }
-.form-group label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--primary-dark); margin-bottom: 10px; }
+.form-group label { font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--primary-dark); margin-bottom: 10px; }
 .form-group input, .form-group textarea {
     width: 100%; border: none; border-bottom: 1px solid #ccc; background: transparent;
-    padding: 10px 0; font-family: inherit; font-size: 16px; outline: none; transition: 0.3s;
+    padding: 12px 0; font-family: inherit; font-size: 16px; outline: none;
 }
-.form-group input:focus, .form-group textarea:focus { border-bottom: 1px solid var(--accent); }
-.submit-btn {
-    width: 100%; background: var(--primary-dark); color: var(--white); padding: 20px;
-    border: none; font-size: 14px; font-weight: 700; text-transform: uppercase; cursor: pointer; margin-top: 20px; transition: 0.3s;
-}
+.form-group input:focus { border-bottom: 1px solid var(--accent); }
+.submit-btn { width: 100%; background: var(--primary-dark); color: #fff; padding: 20px; border: none; font-weight: 700; text-transform: uppercase; cursor: pointer; transition: 0.3s; margin-top: 20px; }
 .submit-btn:hover { background: var(--accent); }
 
-/* --- Footer --- */
-.footer { padding: 60px 0; background: var(--primary-dark); color: var(--white); text-align: center; }
-.footer-logo img { height: 40px; margin-bottom: 20px; filter: brightness(0) invert(1); }
+/* --- Footer (修復深藍區塊過大) --- */
+.footer { padding: 60px 0; background: var(--primary-dark); color: #fff; text-align: center; }
+.footer img { height: 40px; margin-bottom: 25px; filter: brightness(0) invert(1); }
 .footer p { opacity: 0.5; font-size: 12px; letter-spacing: 1px; }
 
 @media (max-width: 992px) { .team-grid, .split, .form-row { grid-template-columns: 1fr; flex-direction: column; gap: 30px; } }
