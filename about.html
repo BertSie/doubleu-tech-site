@@ -48,39 +48,87 @@
         <div class="section-header centered">
             <p class="overline">The Core Team</p>
             <h2>The Leadership Behind DoubleU</h2>
-            <p style="max-width: 700px; margin: 0 auto;">The spirit of DoubleU attracted like-minded individuals who share the same commitment to innovation and market transformation.</p>
+            <p>Click on a leader to learn more about their background and expertise.</p>
         </div>
         
         <div class="team-grid">
-            <div class="team-member">
+            <div class="team-member" onclick="openModal('modal-bert')">
                 <div class="member-photo">
-                    <img src="assets/images/Bert_Sie.png" alt="Bert Sie - Founder & Managing Director">
+                    <img src="assets/images/Bert_Sie.png" alt="Bert Sie">
                 </div>
                 <h4>Bert Sie</h4>
                 <p class="role">Managing Director</p>
-                <p style="font-size: 13px; color: var(--text-secondary); padding: 0 20px;">Driven by a desire to shape the world by commercializing innovations.</p>
             </div>
             
-            <div class="team-member">
+            <div class="team-member" onclick="openModal('modal-teresa')">
                 <div class="member-photo">
-                    <img src="assets/images/Teresa.JPG" alt="Teresa Jhan - Principal">
+                    <img src="assets/images/Teresa.JPG" alt="Teresa Jhan">
                 </div>
                 <h4>Teresa Jhan</h4>
                 <p class="role">Principal</p>
-                <p style="font-size: 13px; color: var(--text-secondary); padding: 0 20px;">Fostering collaboration and creativity to address evolving client needs.</p>
             </div>
             
-            <div class="team-member">
+            <div class="team-member" onclick="openModal('modal-fred')">
                 <div class="member-photo">
-                    <img src="assets/images/FRED_3_0.png" alt="Fred Chen - VP Channel & Distribution">
+                    <img src="assets/images/FRED_3_0.png" alt="Fred Chen">
                 </div>
                 <h4>Fred Chen</h4>
                 <p class="role">VP Channel & Distribution</p>
-                <p style="font-size: 13px; color: var(--text-secondary); padding: 0 20px;">Expert in bridging technology and markets for global success.</p>
             </div>
         </div>
     </div>
 </section>
+
+<div id="modal-bert" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modal-bert')">&times;</span>
+        <div class="modal-header">
+            <h3>Bert Sie</h3>
+            <p class="role">Managing Director</p>
+        </div>
+        <div class="modal-body">
+            <p>Bert started the "Double U" concept in early 2022, providing marketing strategies for various companies. He is currently the Head of Sales & Business Development for Beammwave Taiwan. Prior to this role, Bert held various leadership positions at EDOM, a top 7 global IC distributor, where he established the first mass market business group, leading sales and marketing. Previously, he led product management teams for acoustic, networking, PC, and smartphone applications, assisting 5 startups from 0 to 1. He received an MBA degree from National Central University in Taiwan.</p>
+            <a href="https://www.linkedin.com/in/bertsie/" target="_blank" class="linkedin-link">View LinkedIn Profile</a>
+        </div>
+    </div>
+</div>
+
+<div id="modal-teresa" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modal-teresa')">&times;</span>
+        <div class="modal-header">
+            <h3>Teresa Jhan</h3>
+            <p class="role">Principal</p>
+        </div>
+        <div class="modal-body">
+            <p>Teresa, a seasoned 15-year veteran in the IoT industry, possesses a masterful grasp of total solutions, spanning cloud platforms, devices, and key components. Her work extends to international corporations, where she adeptly navigates communication among diverse stakeholders. With a keen eye on technology trends and insightful observations, Teresa’s consultative sales approach ensures tailored product demonstrations. Her solution-oriented mindset makes her an invaluable asset in the tech-savvy team.</p>
+            <a href="#" target="_blank" class="linkedin-link">View LinkedIn Profile</a>
+        </div>
+    </div>
+</div>
+
+<div id="modal-fred" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modal-fred')">&times;</span>
+        <div class="modal-header">
+            <h3>Fred Chen</h3>
+            <p class="role">VP Channel & Distribution</p>
+        </div>
+        <div class="modal-body">
+            <p>Fred Chen, with over two decades of expertise in the IC supply chain. Previously, Fred led Realtek's engagements with the largest PC/NB brand in China. Prior to his tenure at Realtek, he held a pivotal role in channel sales for the Taiwan district at Micron. Fred began his illustrious career at Avent, where he honed his skills in product management. He received a BS degree in Electric Engineering from the National Taipei University of Technology in Taiwan.</p>
+            <a href="#" target="_blank" class="linkedin-link">View LinkedIn Profile</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openModal(id) { document.getElementById(id).style.display = "flex"; }
+    function closeModal(id) { document.getElementById(id).style.display = "none"; }
+    // 點擊視窗外部也可關閉
+    window.onclick = function(event) {
+        if (event.target.className === 'modal') { event.target.style.display = "none"; }
+    }
+</script>
 
 <section id="contact" class="section contact">
     <div class="container narrow">
