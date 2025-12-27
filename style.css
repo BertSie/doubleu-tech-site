@@ -125,9 +125,9 @@ nav ul li a:hover {
     color: var(--accent); 
     font-weight: 700;         /* 確保是粗體 */
     text-transform: uppercase; 
-    letter-spacing: 4px;      /* 增加間距提升高級感 */
-    font-size: 14px;          /* 從 11px 放大至 14px */
-    margin-bottom: 20px;      /* 增加與下方標題的距離 */
+    letter-spacing: 5px;      /* 增加間距提升高級感 */
+    font-size: 16px;          /* 從 11px 放大至 14px */
+    margin-bottom: 22px;      /* 增加與下方標題的距離 */
     display: block; 
 }
 
@@ -365,4 +365,5 @@ nav ul li a:hover {
         display: none; 
     }
 }
+
 
