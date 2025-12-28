@@ -3,14 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DoubleU-Tech Advisory | Home</title>
+    
+    <title>DoubleU-Tech Advisory | Tech Strategy & Supply Chain Experts</title>
+    <meta name="description" content="DoubleU-Tech Advisory bridges the gap between technology innovation and business application. Expert guidance in Semiconductor, IoT, and supply chain strategies in Taiwan and the US.">
+    <meta name="keywords" content="DoubleU-Tech, Tech Advisory, Bert Sie, Teresa Jhan, Semiconductor, IoT, Supply Chain, Taiwan Tech, Business Development">
+    <meta name="author" content="DoubleU-Tech Advisory">
+    
+    <meta property="og:title" content="DoubleU-Tech Advisory">
+    <meta property="og:description" content="Empowering businesses through bridging the technology gap. Led by Bert Sie and Teresa Jhan.">
+    <meta property="og:url" content="https://www.doubleu-tech.com/">
+    <meta property="og:type" content="website">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "DoubleU-Tech Advisory",
+      "url": "https://www.doubleu-tech.com",
+      "logo": "https://www.doubleu-tech.com/assets/images/DoubleU-logotype-24.png",
+      "founder": [
+        {
+          "@type": "Person",
+          "name": "Bert Sie"
+        },
+        {
+          "@type": "Person",
+          "name": "Teresa Jhan"
+        }
+      ],
+      "description": "Advisory firm specializing in bridging technology innovations and business applications."
+    }
+    </script>
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     
     <style>
         /* --- 1. 全局變數與重設 --- */
         :root {
-            --primary-dark: #0f2332;  /* 深藍色 */
-            --accent: #eb611b;        /* 亮橘色 */
+            --primary-dark: #0f2332;
+            --accent: #eb611b;
             --grey-light: #f9f9f9;
             --text-main: #333333;
             --white: #ffffff;
@@ -123,7 +154,7 @@
             color: var(--white);
         }
 
-        /* --- 4. Contact 區塊 (仿照圖片樣式) --- */
+        /* --- 4. Contact 區塊 --- */
         .contact-section {
             padding: 100px 0;
             background-color: var(--white);
@@ -150,7 +181,6 @@
         .form-full-width { grid-column: span 2; }
         .form-group { display: flex; flex-direction: column; }
 
-        /* 標籤：深藍色、粗體 */
         .form-group label {
             font-size: 13px;
             font-weight: 700;
@@ -160,7 +190,6 @@
             margin-bottom: 15px;
         }
 
-        /* 輸入框：只有底線 */
         .form-group input, .form-group textarea {
             width: 100%;
             border: none;
@@ -174,7 +203,6 @@
         }
         .form-group textarea { resize: vertical; height: 120px; }
 
-        /* 聚焦變橘色 */
         .form-group input:focus, .form-group textarea:focus {
             outline: none;
             border-bottom: 2px solid var(--accent);
@@ -194,11 +222,10 @@
             transition: 0.3s;
         }
         .btn-submit-styled:hover { background-color: var(--accent); }
-        
-        /* 隱藏的 iframe 用於處理表單提交 */
-        #hidden_iframe {
-            display: none;
-        }
+        .btn-submit-styled:disabled { background-color: #ccc; cursor: not-allowed; }
+
+        /* 隱藏 iframe */
+        #hidden_iframe { display: none; }
 
         /* --- 5. Footer --- */
         .footer {
@@ -231,7 +258,7 @@
 
 <header class="navbar">
     <div class="container nav-inner">
-        <div class="logo"><a href="index.html"><img src="assets/images/DoubleU-logotype-24.png"></a></div>
+        <div class="logo"><a href="index.html"><img src="assets/images/DoubleU-logotype-24.png" alt="DoubleU Tech Logo"></a></div>
         <div class="menu-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></div>
         <nav id="nav-menu">
             <ul>
@@ -261,20 +288,19 @@
     <div class="container">
         <div class="contact-header">
             <p style="color:var(--accent); font-weight:700; letter-spacing:5px; text-transform:uppercase; margin-bottom: 10px;">Stay in loop</p>
-            
             <h2>Connect</h2>
-            
             <p>Ready to expand? Send us a message and we will contact you shortly.</p>
         </div>
 
         <iframe name="hidden_iframe" id="hidden_iframe"></iframe>
+        
         <form 
             id="contactForm" 
             class="contact-form-styled" 
             action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSffelARBEmcZqGrMwYvy4R2h3z-vUEoq-bb9_Pmozz7n_GLGg/formResponse" 
             method="POST" 
             target="hidden_iframe"
-            onsubmit="handleFormSubmit()"
+            onsubmit="return handleFormSubmit()"
         >
             <div class="form-group">
                 <label for="name">Name</label>
@@ -301,34 +327,32 @@
 
 <footer class="footer">
     <div class="container">
-        <div class="footer-logo"><img src="assets/images/DoubleU-logotype-27.png"></div>
+        <div class="footer-logo"><img src="assets/images/DoubleU-logotype-27.png" alt="DoubleU Footer Logo"></div>
         <p>&copy; 2025 DoubleU-Tech Advisory. All Rights Reserved.</p>
     </div>
 </footer>
 
 <script>
-    // 導覽列切換
     function toggleMenu() {
         document.getElementById('nav-menu').classList.toggle('active');
     }
 
-    // 表單提交後的處理
-    // 雖然無法直接讀取 Google Form 的回應(因跨域)，但只要動作觸發，我們就假設成功並通知使用者
     function handleFormSubmit() {
-        // 使用 setTimeout 稍微延遲顯示成功，讓使用者感覺有在運作
+        // UI 回饋：按鈕變色並顯示發送中
         var btn = document.querySelector('.btn-submit-styled');
         var originalText = btn.innerText;
         btn.innerText = "Sending...";
         btn.disabled = true;
 
+        // 模擬延遲後顯示成功 (因為無法偵測跨域 iframe 的載入完成)
         setTimeout(function() {
             alert('Thank you! Your message has been sent successfully.');
-            document.getElementById('contactForm').reset(); // 清空表單
+            document.getElementById('contactForm').reset();
             btn.innerText = originalText;
             btn.disabled = false;
-        }, 1000);
-        
-        // 這裡回傳 true 讓表單繼續它的 POST 動作到 iframe
+        }, 1500);
+
+        // 回傳 true，讓瀏覽器執行 form 的 action 提交到 iframe
         return true; 
     }
 </script>
