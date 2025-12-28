@@ -4,37 +4,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Services | DoubleU-Tech Advisory</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* 專屬 Services 頁面的展開動畫樣式 */
+        /* 專屬 Services 頁面的 CSS */
+        
+        /* 展開動畫樣式 */
         details {
             border-bottom: 1px solid #eee;
             padding: 20px 0;
             cursor: pointer;
+            transition: all 0.3s ease;
         }
+        
         summary {
             font-family: 'Playfair Display', serif;
             font-size: 24px;
+            font-weight: 700;
             list-style: none;
             display: flex;
             justify-content: space-between;
             align-items: center;
             color: var(--primary-dark);
+            padding: 10px 0;
         }
+        
+        /* 隱藏預設三角形 */
         summary::-webkit-details-marker { display: none; }
+        
+        /* 自訂加號 */
         summary::after {
             content: '+';
             font-size: 30px;
             color: var(--accent);
+            font-weight: 400;
+            transition: transform 0.3s;
         }
-        details[open] summary::after { content: '-'; }
+        
+        /* 展開時變減號 */
+        details[open] summary::after { 
+            content: '-'; 
+            transform: rotate(180deg);
+        }
+        
         .details-content {
             padding: 20px 0;
-            color: var(--text-secondary);
-            font-weight: 300;
+            color: #555; /* 使用深灰增加閱讀性 */
+            font-weight: 400;
+            line-height: 1.8;
+            font-family: 'Montserrat', sans-serif;
+            animation: slideDown 0.3s ease-out;
         }
-        .details-content ul { padding-left: 20px; }
+        
+        .details-content ul { 
+            padding-left: 20px; 
+            margin-top: 15px;
+        }
+        
+        .details-content li {
+            margin-bottom: 10px;
+            list-style-type: disc;
+        }
+
+        .overline {
+            color: var(--accent);
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* RWD 微調 */
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; } /* 確保手機版按鈕出現 */
+            summary { font-size: 20px; }
+        }
     </style>
 </head>
 <body>
@@ -42,23 +93,26 @@
 <header class="navbar">
     <div class="container nav-inner">
         <div class="logo"><a href="index.html" class="logo-link"><img src="assets/images/DoubleU-logotype-24.png"></a></div>
-        <nav>
+        
+        <div class="menu-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+        
+        <nav id="nav-menu">
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="services.html" style="color:var(--accent)">Services</a></li>
-                <li><a href="insights.html">Insights </a></li>
+                <li><a href="insights.html">Insights</a></li>
                 <li><a href="about.html">About US</a></li>
-                <li><a href="#contact" class="nav-btn">Connect</a></li>
+                <li><a href="index.html#contact" class="nav-btn" onclick="toggleMenu()">Connect</a></li>
             </ul>
         </nav>
     </div>
 </header>
 
-<section class="section">
+<section class="section" style="padding: 120px 0;">
     <div class="container">
         <p class="overline">The Expertise</p>
-        <h2 style="font-size: 48px; margin-bottom: 40px;">Tailored Solutions to Grow Your Business</h2>
-        <p style="max-width: 800px; margin-bottom: 60px;">We provide a comprehensive suite of services designed to ensure your success in Taiwan and beyond. From crafting strategic plans to establishing valuable connections.</p>
+        <h2 style="font-family:'Playfair Display'; font-size: 48px; margin-bottom: 40px; color:var(--primary-dark);">Tailored Solutions to Grow Your Business</h2>
+        <p style="max-width: 800px; margin-bottom: 60px; font-size: 18px; color: #666;">We provide a comprehensive suite of services designed to ensure your success in Taiwan and beyond. From crafting strategic plans to establishing valuable connections.</p>
 
         <details>
             <summary>Product Strategy & Positioning Advisory</summary>
@@ -97,6 +151,19 @@
         </details>
     </div>
 </section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-logo"><img src="assets/images/DoubleU-logotype-27.png"></div>
+        <p>&copy; 2025 DoubleU-Tech Advisory. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<script>
+    function toggleMenu() {
+        document.getElementById('nav-menu').classList.toggle('active');
+    }
+</script>
 
 </body>
 </html>
