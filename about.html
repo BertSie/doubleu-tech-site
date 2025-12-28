@@ -11,7 +11,7 @@
 
 <header class="navbar">
     <div class="container nav-inner">
-        <div class="logo"><a href="index.html"><img src="assets/images/DoubleU-logotype-24.png"></a></div>
+        <div class="logo"><a href="index.html"><img src="assets/images/DoubleU-logotype-24.png" alt="DoubleU"></a></div>
         <div class="menu-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></div>
         <nav id="nav-menu">
             <ul>
@@ -27,8 +27,26 @@
 
 <section class="section">
     <div class="container">
-        <p class="overline">The Core Team</p>
-        <h2 class="centered">The Leadership Behind DoubleU</h2>
+        <p class="overline">The Story of DoubleU</p>
+        <h2 style="font-size: 48px; margin-bottom: 40px;">Empowering Through Bridging The Gap</h2>
+        <div class="split">
+            <div class="about-text">
+                <p>Double U began as a vision rooted in the heart of its founder. With years of experience in the semiconductor industry, the founder was driven by a passion for life-changing technologies.</p>
+                <div class="meaning-card">
+                    <p><strong>What "Double U" Means:</strong> Our name symbolizes representing foreign companies' presence in Taiwan and accelerating market penetration, effectively <strong>doubling their impact</strong>.</p>
+                </div>
+            </div>
+            <div class="about-image-placeholder" style="background:#eee; height:400px;"></div>
+        </div>
+    </div>
+</section>
+
+<section class="section" style="background: var(--grey-light);">
+    <div class="container">
+        <div class="section-header centered" style="margin-bottom:60px;">
+            <p class="overline">The Core Team</p>
+            <h2>The Leadership Behind DoubleU</h2>
+        </div>
         <div class="team-grid">
             <div class="team-member" onclick="openModal('modal-bert')">
                 <div class="member-photo"><img src="assets/images/Bert_Sie.png" alt="Bert Sie"></div>
@@ -54,8 +72,8 @@
         <span class="close" onclick="closeModal('modal-bert')">&times;</span>
         <h3>Bert Sie</h3>
         <p class="role">Managing Director</p>
-        <p style="margin-top:20px;">Bert started the "Double U" concept in early 2022. He is currently the Head of Sales & Business Development for Beammwave Taiwan.</p>
-        <a href="https://www.linkedin.com/in/bert-sie-891a9350/" target="_blank" class="linkedin-link" style="display:inline-block; padding:12px 25px; background:#0077b5; color:white; text-decoration:none; margin-top:20px;">View LinkedIn</a>
+        <p style="margin-top:20px;">Bert started the "Double U" concept in early 2022. He is currently the Head of Sales & Business Development for Beammwave Taiwan. Previously, he held leadership positions at EDOM, establishing mass market business groups.</p>
+        <a href="https://www.linkedin.com/in/bert-sie-891a9350/" target="_blank" class="linkedin-link" style="display:inline-block; padding:12px 25px; background:#0077b5; color:white; text-decoration:none; margin-top:20px; font-weight:600;">View LinkedIn Profile</a>
     </div>
 </div>
 
@@ -64,8 +82,8 @@
         <span class="close" onclick="closeModal('modal-teresa')">&times;</span>
         <h3>Teresa Jhan</h3>
         <p class="role">Principal</p>
-        <p style="margin-top:20px;">Teresa is a 15-year veteran in the IoT industry, possessing a masterful grasp of total solutions spanning cloud platforms.</p>
-        <a href="https://www.linkedin.com/in/teresa-jhan-%E8%A9%B9%E6%83%A0%E6%8D%B7-31bb5910b/" target="_blank" class="linkedin-link" style="display:inline-block; padding:12px 25px; background:#0077b5; color:white; text-decoration:none; margin-top:20px;">View LinkedIn</a>
+        <p style="margin-top:20px;">Teresa, a 15-year veteran in the IoT industry, possesses a masterful grasp of total solutions, spanning cloud platforms and key components. Her solution-oriented mindset makes her an invaluable asset.</p>
+        <a href="https://www.linkedin.com/in/teresa-jhan-%E8%A9%B9%E6%83%A0%E6%8D%B7-31bb5910b/" target="_blank" class="linkedin-link" style="display:inline-block; padding:12px 25px; background:#0077b5; color:white; text-decoration:none; margin-top:20px; font-weight:600;">View LinkedIn Profile</a>
     </div>
 </div>
 
@@ -74,7 +92,7 @@
         <span class="close" onclick="closeModal('modal-fred')">&times;</span>
         <h3>Fred Chen</h3>
         <p class="role">VP Channel & Distribution</p>
-        <p style="margin-top:20px;">Fred Chen has over two decades of expertise in the IC supply chain, leading Realtek's engagements with global brands.</p>
+        <p style="margin-top:20px;">Fred Chen has over two decades of expertise in the IC supply chain, leading Realtek's engagements with the largest PC/NB brands in China.</p>
     </div>
 </div>
 
@@ -89,6 +107,7 @@
     function toggleMenu() { document.getElementById('nav-menu').classList.toggle('active'); }
     function openModal(id) { document.getElementById(id).style.setProperty('display', 'flex', 'important'); document.body.style.overflow = "hidden"; }
     function closeModal(id) { document.getElementById(id).style.setProperty('display', 'none', 'important'); document.body.style.overflow = "auto"; }
+    window.onclick = function(e) { if (e.target.className === 'modal') { closeModal(e.target.id); } }
 </script>
 </body>
 </html>
