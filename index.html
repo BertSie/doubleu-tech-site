@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DoubleU-Tech Advisory | Taiwan Market Entry Expert</title>
+    <title>DoubleU-Tech Advisory | Home</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
@@ -11,14 +11,15 @@
 
 <header class="navbar">
     <div class="container nav-inner">
-        <div class="logo"><a href="index.html"><img src="assets/images/DoubleU-logotype-24.png" alt="DoubleU"></a></div>
-        <nav>
+        <div class="logo"><a href="index.html"><img src="assets/images/DoubleU-logotype-24.png"></a></div>
+        <div class="menu-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+        <nav id="nav-menu">
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="success-stories.html">Success Stories</a></li>
                 <li><a href="about.html">About US</a></li>
-                <li><a href="#contact" class="nav-btn">Connect</a></li>
+                <li><a href="#contact" class="nav-btn" onclick="toggleMenu()">Connect</a></li>
             </ul>
         </nav>
     </div>
@@ -28,7 +29,7 @@
     <div class="container">
         <p class="overline">Think Globally, Act Locally</p>
         <h1>Empowering Through Bridging The Gap.</h1>
-        <p style="font-size: 19px; color: var(--text-secondary); margin-bottom: 45px; max-width: 650px;">Driving Unity, Zero To One. We specialize in helping technology innovators and global corporates navigate the Taiwan and US markets.</p>
+        <p style="font-size: 19px; color: var(--text-secondary); margin-bottom: 45px; max-width: 650px;">Driving Unity, Zero To One. We specialize in helping technology innovators navigate the Taiwan and US markets.</p>
         <div class="hero-btns">
             <a href="about.html" class="btn btn-dark">Our Story</a>
             <a href="#contact" class="btn btn-outline">Start a Project</a>
@@ -63,5 +64,11 @@
     </div>
 </footer>
 
+<script>
+    function toggleMenu() {
+        document.getElementById('nav-menu').classList.toggle('active');
+        document.querySelector('.menu-toggle').classList.toggle('open');
+    }
+</script>
 </body>
 </html>
