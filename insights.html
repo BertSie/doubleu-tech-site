@@ -191,4 +191,87 @@
 <section class="section" style="background:var(--grey-light); padding:120px 0; min-height: 80vh;">
     <div class="container">
         <p style="color:var(--accent); text-align:center; font-weight:700; letter-spacing:3px;">LATEST NEWS</p>
-        <h2 style="text-align:center; font-family:'Playfair Display'; font-size:42px; margin-bottom:50px; color:var(--
+        <h2 style="text-align:center; font-family:'Playfair Display'; font-size:42px; margin-bottom:50px; color:var(--primary-dark);">Impact & Insights</h2>
+        
+        <div class="news-slider-wrapper">
+            <button class="slide-btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="slide-btn next-btn" onclick="moveSlide(1)">&#10095;</button>
+
+            <div class="news-grid" id="newsGrid">
+
+                <div class="news-card card-coming-soon">
+                    <div class="news-image">
+                        <span>STAY TUNED</span>
+                    </div>
+                    <div class="news-content">
+                        <span class="news-date">UPCOMING</span>
+                        <h4 class="news-title">More Insights on the Way</h4>
+                        <p class="news-desc">We are constantly working on new projects and partnerships. Check back soon for more updates.</p>
+                        </div>
+                </div>
+
+                <a href="https://www.alixlabs.com/2025/04/10/alixlabs-to-demonstrate-aps-on-300-millimeter-umc-wafers-at-the-2025-cmc-conference/" target="_blank" class="news-card">
+                    <div class="news-image" style="background: linear-gradient(135deg, #1a1a1a, #333);">
+                        <span>ALIXLABS & UMC</span>
+                    </div>
+                    <div class="news-content">
+                        <span class="news-date">APRIL 2025</span>
+                        <h4 class="news-title">AlixLabs to Demonstrate APS™ on 300mm UMC Wafers</h4>
+                        <p class="news-desc">Atomic Layer Etching (ALE) demonstration on UMC wafers at the 2025 CMC Conference.</p>
+                        <div class="read-more">Read Article &rarr;</div>
+                    </div>
+                </a>
+
+                <a href="https://beammwave.com/press-release/beammwave-and-alpha-networks-enters-into-an-agreement-to-do-a-joint-pre-study-for-the-next-generation-fixed-wireless-access-products/" target="_blank" class="news-card">
+                    <div class="news-image" style="background: linear-gradient(135deg, #eb611b, #ff8c42);">
+                        <span>BEAMMWAVE & ALPHA</span>
+                    </div>
+                    <div class="news-content">
+                        <span class="news-date">NOV 2025</span> 
+                        <h4 class="news-title">Beammwave and Alpha Networks Agreement</h4>
+                        <p class="news-desc">Joint pre-study for next-generation Fixed Wireless Access (FWA) products.</p>
+                        <div class="read-more">Read Article &rarr;</div>
+                    </div>
+                </a>
+
+                <a href="https://gov.texas.gov/news/post/governor-abbott-announces-state-of-texas-taiwan-office-in-taipei" target="_blank" class="news-card">
+                    <div class="news-image" style="background: linear-gradient(135deg, #002d62, #0056b3);">
+                        <span>TEXAS OFFICE</span>
+                    </div>
+                    <div class="news-content">
+                        <span class="news-date">JULY 2024</span>
+                        <h4 class="news-title">Governor Abbott Announces Texas Office in Taipei</h4>
+                        <p class="news-desc">Official press release on the new permanent office in Taiwan to strengthen economic ties.</p>
+                        <div class="read-more">Read Article &rarr;</div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-logo"><img src="assets/images/DoubleU-logotype-27.png"></div>
+        <p>&copy; 2025 DoubleU-Tech Advisory. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<script>
+    // 滑動功能
+    function moveSlide(direction) {
+        const grid = document.getElementById('newsGrid');
+        // 每次滑動一張卡片的寬度 + 間距
+        const cardWidth = 350 + 30; 
+        grid.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+    }
+
+    // 手機版選單
+    function toggleMenu() {
+        document.getElementById('nav-menu').classList.toggle('active');
+    }
+</script>
+
+</body>
+</html>
