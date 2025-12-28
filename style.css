@@ -35,20 +35,14 @@ nav ul li { margin-left: 35px; }
 nav ul li a { text-decoration: none; color: var(--primary-dark); font-size: 13px; font-weight: 600; text-transform: uppercase; }
 .nav-btn { border: 2px solid var(--accent); color: var(--accent) !important; padding: 10px 22px; border-radius: 2px; }
 
-/* --- Overline 橘色標籤 --- */
+/* --- Components --- */
 .overline { color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 5px; font-size: 16px; margin-bottom: 25px; display: block; }
-
-/* --- About & Hero Section --- */
 .section { padding: 100px 0; }
-.meaning-card { background: #fdf6f2; padding: 40px; border-left: 6px solid var(--accent); margin-top: 40px; }
+.centered { text-align: center; }
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-.hero { padding: 140px 0 110px; background-color: var(--grey-light); }
-.hero h1 { font-size: 54px; line-height: 1.15; margin-bottom: 30px; }
-.btn { padding: 18px 38px; text-decoration: none; font-weight: 600; display: inline-block; transition: 0.3s; }
-.btn-dark { background: var(--primary-dark); color: var(--white); margin-right: 15px; }
-.btn-outline { border: 1px solid var(--primary-dark); color: var(--primary-dark); }
+.meaning-card { background: #fdf6f2; padding: 40px; border-left: 6px solid var(--accent); margin-top: 40px; }
 
-/* --- Team Grid & Modals (修正並排問題) --- */
+/* --- Team Grid & Modals --- */
 .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 60px; text-align: center; }
 .team-member { cursor: pointer; transition: 0.3s; }
 .member-photo { width: 200px; height: 200px; border-radius: 50%; margin: 0 auto 25px; overflow: hidden; border: 1px solid #eee; }
@@ -56,34 +50,31 @@ nav ul li a { text-decoration: none; color: var(--primary-dark); font-size: 13px
 .role { color: var(--accent); font-weight: 700; font-size: 13px; text-transform: uppercase; }
 
 .modal {
-    display: none !important; position: fixed; z-index: 9999;
+    display: none !important; /* 確保內容隱藏 */
+    position: fixed; z-index: 9999;
     left: 0; top: 0; width: 100%; height: 100%; 
     background-color: rgba(15, 35, 50, 0.9); align-items: center; justify-content: center;
 }
-.modal[style*="display: flex"] { display: flex !important; }
 .modal-content { background: var(--white); padding: 50px; width: 90%; max-width: 650px; border-radius: 4px; position: relative; }
 .close { position: absolute; right: 25px; top: 20px; font-size: 35px; cursor: pointer; }
+.linkedin-link { display: inline-block; padding: 12px 25px; background: #0077b5; color: white; text-decoration: none; font-size: 13px; font-weight: 600; margin-top: 20px; }
 
-/* --- Connect Form --- */
-.contact { background-color: var(--grey-light); padding: 120px 0; }
+/* --- Connect Form (修正跑版問題) --- */
+.contact { background-color: var(--grey-light); padding: 110px 0; }
 .section-header { margin-bottom: 70px; }
-.ready-text { font-size: 18px; color: var(--text-secondary); white-space: nowrap; }
+.ready-text { font-size: 18px; color: var(--text-secondary); white-space: nowrap; display: block; }
 .form-row { display: flex; gap: 40px; margin-bottom: 35px; }
 .form-group { flex: 1; display: flex; flex-direction: column; text-align: left; }
-.form-group label { font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; }
-.form-group input, .form-group textarea { width: 100%; border: none; border-bottom: 1px solid #bbb; background: transparent; padding: 12px 0; font-family: inherit; font-size: 16px; outline: none; }
+.form-group label { font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; color: var(--primary-dark); }
+.form-group input, .form-group textarea { width: 100%; border: none; border-bottom: 1px solid #bbb; background: transparent; padding: 12px 0; font-family: inherit; font-size: 16px; outline: none; transition: 0.3s; }
 .submit-btn { width: 100%; background: var(--primary-dark); color: var(--white); padding: 22px; border: none; font-weight: 700; text-transform: uppercase; cursor: pointer; margin-top: 30px; transition: 0.3s; }
 .submit-btn:hover { background: var(--accent); }
 
-/* --- Footer (修正截圖中的巨大的 Logo 問題) --- */
+/* --- Footer (修正巨大 Logo) --- */
 .footer { padding: 80px 0; background: var(--primary-dark); color: var(--white); text-align: center; }
 .footer-logo { margin-bottom: 30px; }
-.footer-logo img { 
-    height: 45px !important; /* 強制固定高度，防止巨大化 */
-    width: auto; 
-    filter: brightness(0) invert(1); 
-}
-.footer p { opacity: 0.5; font-size: 12px; letter-spacing: 1px; margin-top: 10px; }
+.footer-logo img { height: 45px !important; width: auto; filter: brightness(0) invert(1); }
+.footer p { opacity: 0.5; font-size: 12px; margin-top: 10px; }
 
 @media (max-width: 992px) { 
     .team-grid, .split, .form-row { grid-template-columns: 1fr; } 
