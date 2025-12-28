@@ -1,68 +1,79 @@
-/* --- DoubleU-Tech Color System --- */
+/* --- DoubleU-Tech 基礎設定 --- */
 :root {
     --primary-dark: #0f2332;
     --accent: #eb611b;
     --grey-light: #f9f9f9;
     --text-main: #333333;
-    --text-secondary: #666666;
     --white: #ffffff;
 }
 
-/* --- Global Settings --- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-    font-family: 'Montserrat', sans-serif;
-    color: var(--text-main);
-    background-color: var(--white);
-    line-height: 1.8;
-    scroll-behavior: smooth;
-    padding-top: 100px; 
-}
-h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--primary-dark); font-weight: 400; }
-.container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+body { font-family: 'Montserrat', sans-serif; padding-top: 100px; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 40px; position: relative; }
 
 /* --- Navbar --- */
-.navbar {
-    height: 100px; background: var(--white); position: fixed; 
-    width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid #f0f0f0;
-    display: flex; align-items: center;
-}
+.navbar { height: 100px; background: #fff; position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; }
 .nav-inner { display: flex; justify-content: space-between; align-items: center; width: 100%; }
 .logo img { height: 80px; width: auto; }
-.menu-toggle { display: none; flex-direction: column; cursor: pointer; z-index: 1001; }
-.menu-toggle span { width: 25px; height: 3px; background-color: var(--primary-dark); margin: 2px 0; }
-
 nav ul { list-style: none; display: flex; align-items: center; }
 nav ul li { margin-left: 35px; }
 nav ul li a { text-decoration: none; color: var(--primary-dark); font-size: 13px; font-weight: 600; text-transform: uppercase; }
-.nav-btn { border: 2px solid var(--accent); color: var(--accent) !important; padding: 10px 22px; border-radius: 2px; }
 
-/* --- News/Insights Card Layout --- */
-.news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
-.news-card { 
-    background: var(--white); border: 1px solid #eee; border-radius: 4px; 
-    overflow: hidden; transition: 0.3s; text-decoration: none; color: inherit;
-    display: flex; flex-direction: column;
+/* --- Hero 按鈕強制修正 (解決跑版問題) --- */
+.hero { padding: 140px 0 110px; background-color: var(--grey-light); }
+.hero-btns { display: flex !important; gap: 20px !important; margin-top: 40px !important; flex-wrap: nowrap !important; }
+.btn { 
+    padding: 18px 35px !important; 
+    text-decoration: none !important; 
+    font-weight: 700 !important; 
+    display: inline-block !important; 
+    font-size: 14px !important; 
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+    border-radius: 2px !important;
+    transition: 0.3s !important;
 }
-.news-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
-.news-image { width: 100%; height: 200px; background: #eee; overflow: hidden; }
-.news-image img { width: 100%; height: 100%; object-fit: cover; }
+.btn-dark { background: var(--primary-dark) !important; color: var(--white) !important; border: 1px solid var(--primary-dark) !important; }
+.btn-outline { background: transparent !important; border: 1px solid var(--primary-dark) !important; color: var(--primary-dark) !important; }
+.btn:hover { background: var(--accent) !important; border-color: var(--accent) !important; color: #fff !important; }
+
+/* --- Insights 滑動容器排版 --- */
+.news-slider-wrapper { position: relative; display: flex; align-items: center; }
+.news-grid { 
+    display: flex; 
+    gap: 30px; 
+    overflow-x: auto; 
+    scroll-behavior: smooth; 
+    padding: 20px 5px;
+    scrollbar-width: none; /* 隱藏捲軸 */
+}
+.news-grid::-webkit-scrollbar { display: none; } /* 隱藏捲軸 */
+
+.news-card { 
+    min-width: calc(33.333% - 20px); /* 預設顯示三個 */
+    background: #fff; border: 1px solid #eee; transition: 0.3s; 
+    text-decoration: none; color: inherit; display: flex; flex-direction: column;
+}
+.news-card:hover { transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+.news-image { width: 100%; height: 200px; display: flex; align-items: center; justify-content: center; color: #fff; padding: 20px; text-align: center; }
 .news-content { padding: 25px; flex-grow: 1; }
-.news-date { font-size: 12px; color: var(--accent); font-weight: 700; margin-bottom: 10px; display: block; }
-.news-card h4 { font-size: 20px; margin-bottom: 15px; line-height: 1.4; }
-.news-card p { font-size: 14px; color: var(--text-secondary); margin-bottom: 20px; }
-.read-more { font-size: 13px; font-weight: 700; color: var(--primary-dark); text-transform: uppercase; border-bottom: 2px solid var(--accent); padding-bottom: 2px; align-self: flex-start; }
+
+/* 左右滑動按鈕 */
+.slide-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 50px; height: 50px; background: var(--white); border: 1px solid #ddd;
+    border-radius: 50%; cursor: pointer; z-index: 10; font-size: 24px;
+    display: flex; align-items: center; justify-content: center; transition: 0.3s;
+}
+.slide-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+.prev-btn { left: -25px; }
+.next-btn { right: -25px; }
 
 /* --- Footer --- */
-.footer { padding: 80px 0; background: var(--primary-dark); color: var(--white); text-align: center; }
-.footer-logo img { height: 45px; filter: brightness(0) invert(1); margin-bottom: 25px; }
+.footer { padding: 60px 0; background: var(--primary-dark); color: #fff; text-align: center; }
+.footer-logo img { height: 45px !important; filter: brightness(0) invert(1); margin-bottom: 20px; }
 
-/* --- RWD --- */
 @media (max-width: 992px) {
-    .menu-toggle { display: flex; }
-    nav { position: fixed; top: 100px; right: -100%; width: 100%; height: calc(100vh - 100px); background: #fff; transition: 0.4s; }
-    nav.active { right: 0; }
-    nav ul { flex-direction: column; padding: 40px; }
-    nav ul li { margin: 15px 0; margin-left: 0; }
-    .news-grid { grid-template-columns: 1fr; }
+    .news-card { min-width: 80%; } /* 手機版顯示大一點 */
+    .slide-btn { display: none; } /* 手機版用滑的就好 */
 }
