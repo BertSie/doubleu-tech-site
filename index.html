@@ -4,7 +4,106 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DoubleU-Tech Advisory | Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* 為了確保 Contact 區塊樣式正常，這裡補上相關 CSS */
+        :root {
+            --accent: #C5A059; /* 確保變數存在 */
+            --primary: #333333;
+            --grey-light: #f8f9fa;
+        }
+
+        /* Hero 區塊微調 (確保按鈕好看) */
+        .hero-btns {
+            margin-top: 30px;
+            display: flex;
+            gap: 20px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+        .btn-dark {
+            background-color: var(--primary);
+            color: white;
+        }
+        .btn-dark:hover {
+            background-color: var(--accent);
+        }
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* --- Connect / Contact Section 樣式 --- */
+        .contact-section {
+            padding: 80px 0;
+            background-color: var(--grey-light);
+        }
+        .contact-wrapper {
+            display: flex;
+            gap: 50px;
+            justify-content: space-between;
+        }
+        .contact-info {
+            flex: 1;
+        }
+        .contact-info h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        .contact-form {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Lato', sans-serif;
+            font-size: 14px;
+        }
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        .submit-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .submit-btn:hover {
+            background-color: #b08d4a;
+        }
+
+        /* RWD */
+        @media (max-width: 768px) {
+            .hero-btns { flex-direction: column; align-items: flex-start; }
+            .contact-wrapper { flex-direction: column; }
+        }
+    </style>
 </head>
 <body>
 
@@ -27,7 +126,7 @@
 <section class="hero">
     <div class="container">
         <p style="color:var(--accent); font-weight:700; letter-spacing:5px; text-transform:uppercase;">Think Globally, Act Locally</p>
-        <h1>Empowering Through Bridging The Gap.</h1>
+        <h1 style="font-family:'Playfair Display', serif; margin: 20px 0;">Empowering Through Bridging The Gap.</h1>
         <p style="font-size:19px; color:#666; max-width:680px; margin-bottom:40px;">Driving Unity, Zero To One. We specialize in helping technology innovators and global corporates navigate and thrive in the Taiwan and US markets.</p>
         <div class="hero-btns">
             <a href="about.html" class="btn btn-dark">Our Story</a>
@@ -36,6 +135,40 @@
     </div>
 </section>
 
+<section id="contact" class="contact-section">
+    <div class="container">
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <p style="color:var(--accent); font-weight:700; letter-spacing:3px;">GET IN TOUCH</p>
+                <h2>Ready to Start Your Journey?</h2>
+                <p style="color:#666; margin-bottom:30px;">
+                    Whether you are looking to expand into new markets or need strategic advice on your supply chain, we are here to help.
+                </p>
+                
+                <div style="margin-bottom: 20px;">
+                    <strong>Email Us:</strong><br>
+                    <a href="mailto:info@doubleu-tech.com" style="color:var(--accent); font-weight:700;">info@doubleu-tech.com</a>
+                </div>
+            </div>
+
+            <form class="contact-form" action="#" method="POST">
+                <div class="form-group">
+                    <input type="text" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Your Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Subject">
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="How can we help you?" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </div>
+</section>
 <footer class="footer">
     <div class="container">
         <div class="footer-logo"><img src="assets/images/DoubleU-logotype-27.png"></div>
