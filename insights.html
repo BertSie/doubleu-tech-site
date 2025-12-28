@@ -8,9 +8,7 @@
     <link rel="stylesheet" href="style.css">
     
     <style>
-        /* --- 頁面專屬 CSS (優化卡片樣式) --- */
-        
-        /* 滑動容器設定 */
+        /* --- 頁面專屬 CSS --- */
         .news-slider-wrapper {
             position: relative;
             max-width: 1200px;
@@ -23,19 +21,19 @@
             gap: 30px;
             overflow-x: auto;
             scroll-behavior: smooth;
-            padding: 20px 10px; /* 增加上下 padding 以免陰影被切掉 */
+            padding: 20px 10px;
             -webkit-overflow-scrolling: touch;
-            scrollbar-width: none; /* Firefox 隱藏捲軸 */
+            scrollbar-width: none;
         }
-        .news-grid::-webkit-scrollbar { display: none; /* Chrome/Safari 隱藏捲軸 */ }
+        .news-grid::-webkit-scrollbar { display: none; }
 
-        /* --- 卡片設計 --- */
+        /* 卡片設計 */
         .news-card {
-            min-width: 350px; /* 卡片寬度 */
+            min-width: 350px;
             background: #fff;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05); /* 輕微陰影 */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-decoration: none;
             color: inherit;
@@ -45,11 +43,11 @@
         }
 
         .news-card:hover {
-            transform: translateY(-5px); /* 滑鼠移過去上浮 */
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1); /* 加深陰影 */
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
 
-        /* 圖片/色塊區域 */
+        /* 圖片區域 */
         .news-image {
             height: 200px;
             display: flex;
@@ -65,7 +63,6 @@
             background-size: cover;
             position: relative;
         }
-        /* 加上一層半透明遮罩讓文字更清楚 (模擬高級感) */
         .news-image::after {
             content: '';
             position: absolute;
@@ -104,7 +101,7 @@
             color: #666;
             line-height: 1.6;
             margin-bottom: 20px;
-            flex-grow: 1; /* 讓底部按鈕對齊 */
+            flex-grow: 1;
         }
 
         .read-more {
@@ -122,7 +119,7 @@
         /* --- "Coming Soon" 特別樣式 --- */
         .card-coming-soon {
             background-color: #f8f9fa;
-            border: 2px dashed #ddd;
+            border: 2px dashed #ccc;
             box-shadow: none;
             cursor: default;
         }
@@ -133,11 +130,12 @@
         }
         .card-coming-soon .news-image {
             background: #eee;
-            color: #999;
+            color: #aaa;
         }
-        .card-coming-soon .news-title { color: #999; }
+        .card-coming-soon .news-title { color: #888; }
+        .card-coming-soon .news-desc { color: #999; }
 
-        /* --- 左右切換按鈕 --- */
+        /* 左右按鈕 */
         .slide-btn {
             width: 50px; height: 50px;
             background: #fff;
@@ -163,10 +161,9 @@
         .prev-btn { left: -25px; }
         .next-btn { right: -25px; }
 
-        /* RWD */
         @media (max-width: 768px) {
-            .news-card { min-width: 85vw; } /* 手機版一張卡片佔寬一點 */
-            .prev-btn, .next-btn { display: none; /* 手機版用滑的就好，隱藏按鈕 */ }
+            .news-card { min-width: 85vw; }
+            .prev-btn, .next-btn { display: none; }
         }
     </style>
 </head>
@@ -199,17 +196,6 @@
 
             <div class="news-grid" id="newsGrid">
 
-                <div class="news-card card-coming-soon">
-                    <div class="news-image">
-                        <span>STAY TUNED</span>
-                    </div>
-                    <div class="news-content">
-                        <span class="news-date">UPCOMING</span>
-                        <h4 class="news-title">More Insights on the Way</h4>
-                        <p class="news-desc">We are constantly working on new projects and partnerships. Check back soon for more updates.</p>
-                        </div>
-                </div>
-
                 <a href="https://www.alixlabs.com/2025/04/10/alixlabs-to-demonstrate-aps-on-300-millimeter-umc-wafers-at-the-2025-cmc-conference/" target="_blank" class="news-card">
                     <div class="news-image" style="background: linear-gradient(135deg, #1a1a1a, #333);">
                         <span>ALIXLABS & UMC</span>
@@ -227,7 +213,7 @@
                         <span>BEAMMWAVE & ALPHA</span>
                     </div>
                     <div class="news-content">
-                        <span class="news-date">DEC 2024</span> 
+                        <span class="news-date">NOV 2025</span> 
                         <h4 class="news-title">Beammwave and Alpha Networks Agreement</h4>
                         <p class="news-desc">Joint pre-study for next-generation Fixed Wireless Access (FWA) products.</p>
                         <div class="read-more">Read Article &rarr;</div>
@@ -246,6 +232,17 @@
                     </div>
                 </a>
 
+                <div class="news-card card-coming-soon">
+                    <div class="news-image">
+                        <span>EXPANSION</span>
+                    </div>
+                    <div class="news-content">
+                        <span class="news-date">IN THE PIPELINE</span>
+                        <h4 class="news-title">Future Strategic Initiatives</h4>
+                        <p class="news-desc">We are actively cultivating new partnerships across the semiconductor and IoT value chains. Stay tuned for upcoming announcements on market expansion.</p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -259,15 +256,11 @@
 </footer>
 
 <script>
-    // 滑動功能
     function moveSlide(direction) {
         const grid = document.getElementById('newsGrid');
-        // 每次滑動一張卡片的寬度 + 間距
         const cardWidth = 350 + 30; 
         grid.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
     }
-
-    // 手機版選單
     function toggleMenu() {
         document.getElementById('nav-menu').classList.toggle('active');
     }
