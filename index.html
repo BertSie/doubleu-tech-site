@@ -4,259 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DoubleU-Tech Advisory | Home</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    
-    <style>
-        /* --- 1. 更新 CSS 變數：使用您提供的色碼 --- */
-        :root {
-            --primary-dark: #0f2332;  /* 深藍色：用於標題、按鈕背景、導覽列文字 */
-            --accent: #eb611b;        /* 亮橘色：用於強調、Hover、輸入框底線 */
-            --grey-light: #f9f9f9;    /* 淺灰背景 */
-            --text-main: #333333;     /* 主要內文灰 */
-            --white: #ffffff;         /* 純白 */
-            --border-color: #e0e0e0;  /* 輸入框預設底線 */
-        }
-
-        /* 確保全域字體顏色正確 */
-        body {
-            color: var(--text-main);
-            font-family: 'Lato', sans-serif;
-        }
-
-        h1, h2, h3, h4 {
-            color: var(--primary-dark);
-        }
-
-        /* --- 2. 導覽列與 Hero 區塊的顏色調整 --- */
-        .navbar {
-            background: var(--white);
-        }
-        
-        #nav-menu a {
-            color: var(--primary-dark);
-            font-weight: 700;
-        }
-        
-        #nav-menu a:hover, #nav-menu a.active { 
-            color: var(--accent); /* Hover 變橘色 */
-        }
-        
-        .hero h1 {
-            color: var(--primary-dark);
-        }
-
-        /* --- 3. Contact 區塊樣式 (仿照圖片 + 新配色) --- */
-        .contact-section {
-            padding: 100px 0;
-            background-color: var(--white);
-            text-align: center;
-        }
-
-        .contact-header {
-            margin-bottom: 60px;
-        }
-        .contact-header h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            color: var(--primary-dark);
-            margin-bottom: 20px;
-        }
-        .contact-header p {
-            color: var(--text-main);
-            opacity: 0.8;
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* 表單佈局 Grid */
-        .contact-form-styled {
-            max-width: 900px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            column-gap: 50px;
-            row-gap: 40px;
-            text-align: left;
-        }
-
-        .form-full-width {
-            grid-column: span 2;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* 標籤：使用深藍色，清晰專業 */
-        .form-group label {
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--primary-dark); 
-            margin-bottom: 15px;
-        }
-
-        /* 輸入框：預設淺灰底線 */
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            border: none;
-            border-bottom: 1px solid var(--border-color);
-            padding: 10px 0;
-            font-family: 'Lato', sans-serif;
-            font-size: 18px;
-            color: var(--primary-dark);
-            background: transparent;
-            transition: border-color 0.3s;
-            border-radius: 0;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            height: 120px;
-        }
-
-        /* 輸入框聚焦：底線變橘色 */
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-bottom: 2px solid var(--accent); 
-        }
-
-        ::placeholder { color: #cccccc; opacity: 1; }
-
-        /* 送出按鈕：深藍背景 -> Hover 變橘色 */
-        .btn-submit-styled {
-            width: 100%;
-            padding: 20px;
-            background-color: var(--primary-dark);
-            color: var(--white);
-            border: none;
-            font-size: 16px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .btn-submit-styled:hover {
-            background-color: var(--accent);
-        }
-
-        /* 按鈕通用樣式 (Hero 區塊用) */
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            text-decoration: none;
-            font-weight: 700;
-            border-radius: 4px;
-            transition: 0.3s;
-        }
-        .btn-dark {
-            background-color: var(--primary-dark);
-            color: var(--white);
-        }
-        .btn-dark:hover {
-            background-color: var(--accent);
-        }
-        .btn-outline {
-            border: 2px solid var(--primary-dark);
-            color: var(--primary-dark);
-        }
-        .btn-outline:hover {
-            background-color: var(--primary-dark);
-            color: var(--white);
-        }
-
-        /* RWD */
-        @media (max-width: 768px) {
-            .contact-header h2 { font-size: 2.2rem; }
-            .contact-form-styled { grid-template-columns: 1fr; column-gap: 0; }
-            .form-full-width { grid-column: span 1; }
-            .hero-btns { flex-direction: column; align-items: center; }
-        }
-    </style>
 </head>
 <body>
 
-<header class="navbar">
-    <div class="container nav-inner">
-        <div class="logo"><a href="index.html"><img src="assets/images/DoubleU-logotype-24.png"></a></div>
-        <div class="menu-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></div>
-        <nav id="nav-menu">
-            <ul>
-                <li><a href="index.html" style="color:var(--accent)">Home</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="insights.html">Insights</a></li>
-                <li><a href="about.html">About US</a></li>
-                <li><a href="#contact" class="nav-btn" onclick="toggleMenu()">Connect</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
-
-<section class="hero">
-    <div class="container">
-        <p style="color:var(--accent); font-weight:700; letter-spacing:5px; text-transform:uppercase;">Think Globally, Act Locally</p>
-        
-        <h1 style="font-family:'Playfair Display', serif; margin: 20px 0; font-size: 3.5rem; line-height: 1.2;">Empowering Through Bridging The Gap.</h1>
-        
-        <p style="font-size:19px; color:var(--text-main); max-width:680px; margin-bottom:40px;">Driving Unity, Zero To One. We specialize in helping technology innovators and global corporates navigate and thrive in the Taiwan and US markets.</p>
-        
-        <div class="hero-btns" style="display:flex; gap:20px;">
-            <a href="about.html" class="btn btn-dark">Our Story</a>
-            <a href="#contact" class="btn btn-outline">Start a Project</a>
+    <header class="navbar">
+        <div class="container nav-inner">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/DoubleU-logotype-24.png" alt="DoubleU Logo">
+                </a>
+            </div>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </div>
+            <nav id="nav-menu">
+                <ul>
+                    <li><a href="index.html" style="color:var(--accent)">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="insights.html">Insights</a></li>
+                    <li><a href="about.html">About US</a></li>
+                    <li><a href="#contact" class="nav-btn" onclick="toggleMenu()">Connect</a></li>
+                </ul>
+            </nav>
         </div>
-    </div>
-</section>
+    </header>
 
-<section id="contact" class="contact-section">
-    <div class="container">
-        <div class="contact-header">
-            <h2>Inquire Now</h2>
-            <p>Ready to expand? Send us a message and we will contact you shortly.</p>
+    <section class="hero">
+        <div class="container">
+            <p style="color:var(--accent); font-weight:700; letter-spacing:5px; text-transform:uppercase;">Think Globally, Act Locally</p>
+            <h1>Empowering Through<br>Bridging The Gap.</h1>
+            <p style="font-size:16px; max-width:680px; margin-bottom:40px;">
+                Driving Unity, Zero To One. We specialize in helping technology innovators and global corporates navigate and thrive in the Taiwan and US markets.
+            </p>
+            <div class="hero-btns">
+                <a href="about.html" class="btn btn-dark">Our Story</a>
+                <a href="#contact" class="btn btn-outline">Start a Project</a>
+            </div>
         </div>
+    </section>
 
-        <form class="contact-form-styled" action="#" method="POST">
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" placeholder="Full Name" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" placeholder="email@company.com" required>
-            </div >
-            <div class="form-group form-full-width">
-                <label for="subject">Subject</label>
-                <input type="text" id="subject" placeholder="Inquiry Subject">
-            </div>
-            <div class="form-group form-full-width">
-                <label for="message">Message</label>
-                <textarea id="message" placeholder="How can we help your business?" required></textarea>
-            </div>
-            <div class="form-full-width" style="margin-top: 20px;">
-                <button type="submit" class="btn-submit-styled">Submit Inquiry</button>
-            </div>
-        </form>
-    </div>
-</section>
-<footer class="footer">
-    <div class="container">
-        <div class="footer-logo"><img src="assets/images/DoubleU-logotype-27.png"></div>
-        <p>&copy; 2025 DoubleU-Tech Advisory. All Rights Reserved.</p>
-    </div>
-</footer>
+    <section id="contact" style="padding: 100px 0;">
+        <div class="container" style="text-align: center;">
+            <h2 style="font-family:'Playfair Display'; font-size:42px; color:var(--primary-dark); margin-bottom:20px;">Ready to Expand?</h2>
+            <p style="margin-bottom:40px;">Let's discuss how we can help your business grow.</p>
+            <a href="mailto:info@doubleu-tech.com" class="btn btn-dark">Contact Us Now</a>
+        </div>
+    </section>
 
-<script>
-    function toggleMenu() {
-        document.getElementById('nav-menu').classList.toggle('active');
-        document.querySelector('.menu-toggle').classList.toggle('open');
-    }
-</script>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">
+                <img src="assets/images/DoubleU-logotype-27.png" alt="Footer Logo">
+            </div>
+            <p>&copy; 2025 DoubleU-Tech Advisory. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 手機版選單切換
+        function toggleMenu() {
+            const nav = document.getElementById('nav-menu');
+            nav.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
