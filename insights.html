@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insights | DoubleU-Tech Advisory</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -24,10 +23,10 @@
     </div>
 </header>
 
-<section class="section" style="background: var(--grey-light); overflow: hidden;">
+<section class="section" style="background:var(--grey-light); overflow:hidden; padding:120px 0;">
     <div class="container">
         <p style="color:var(--accent); text-align:center; font-weight:700; letter-spacing:3px;">LATEST NEWS</p>
-        <h2 style="text-align:center; font-family:'Playfair Display'; font-size: 42px; margin-bottom: 50px;">Impact & Insights</h2>
+        <h2 style="text-align:center; font-size:42px; margin-bottom:50px;">Impact & Insights</h2>
         
         <div class="news-slider-wrapper">
             <button class="slide-btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
@@ -35,40 +34,31 @@
 
             <div class="news-grid" id="newsGrid">
                 <a href="https://www.alixlabs.com/2025/04/10/alixlabs-to-demonstrate-aps-on-300-millimeter-umc-wafers-at-the-2025-cmc-conference/" target="_blank" class="news-card">
-                    <div class="news-image" style="background: #1a1a1a;"><h3>ALIXLABS & UMC</h3></div>
+                    <div class="news-image" style="background:#1a1a1a;">ALIXLABS & UMC</div>
                     <div class="news-content">
                         <span style="color:var(--accent); font-weight:700; font-size:12px;">APRIL 2025</span>
                         <h4 style="margin:10px 0;">AlixLabs to Demonstrate APS™ on 300mm UMC Wafers</h4>
-                        <p style="font-size:14px; color:#666;">Demonstrating Atomic Layer Etching (ALE) on UMC wafers at the 2025 CMC Conference.</p>
+                        <p style="font-size:14px; color:#666;">Atomic Layer Etching (ALE) demonstration on UMC wafers.</p>
                     </div>
                 </a>
 
                 <a href="https://gov.texas.gov/news/post/governor-abbott-announces-state-of-texas-taiwan-office-in-taipei" target="_blank" class="news-card">
-                    <div class="news-image" style="background: #002d62;"><h3>TEXAS OFFICE</h3></div>
+                    <div class="news-image" style="background:#002d62;">TEXAS OFFICE</div>
                     <div class="news-content">
                         <span style="color:var(--accent); font-weight:700; font-size:12px;">JULY 2024</span>
                         <h4 style="margin:10px 0;">Governor Abbott Announces Texas Office in Taipei</h4>
-                        <p style="font-size:14px; color:#666;">Strengthening economic ties through a new permanent presence in Taiwan.</p>
+                        <p style="font-size:14px; color:#666;">New permanent office to strengthen Texas-Taiwan ties.</p>
                     </div>
                 </a>
 
                 <a href="https://beammwave.com/press-release/beammwave-and-alpha-networks-enters-into-an-agreement-to-do-a-joint-pre-study-for-the-next-generation-fixed-wireless-access-products/" target="_blank" class="news-card">
-                    <div class="news-image" style="background: #eb611b;"><h3>BEAMMWAVE & ALPHA</h3></div>
+                    <div class="news-image" style="background:#eb611b;">BEAMMWAVE & ALPHA</div>
                     <div class="news-content">
                         <span style="color:var(--accent); font-weight:700; font-size:12px;">NOV 2025</span>
                         <h4 style="margin:10px 0;">Beammwave and Alpha Networks Agreement</h4>
-                        <p style="font-size:14px; color:#666;">Joint pre-study for next-generation Fixed Wireless Access (FWA) products.</p>
+                        <p style="font-size:14px; color:#666;">Joint pre-study for next-generation FWA products.</p>
                     </div>
                 </a>
-
-                <div class="news-card">
-                    <div class="news-image" style="background: #999;"><h3>COMING SOON</h3></div>
-                    <div class="news-content">
-                        <span style="color:var(--accent); font-weight:700; font-size:12px;">2026</span>
-                        <h4 style="margin:10px 0;">Future Success Stories</h4>
-                        <p style="font-size:14px; color:#666;">More market entry milestones coming soon.</p>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -77,7 +67,7 @@
 <script>
     function moveSlide(direction) {
         const grid = document.getElementById('newsGrid');
-        const scrollAmount = grid.offsetWidth / 3; // 每次滑動三分之一容器寬度
+        const scrollAmount = grid.offsetWidth / 3;
         grid.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
     }
 </script>
