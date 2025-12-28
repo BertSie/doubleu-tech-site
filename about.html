@@ -4,44 +4,261 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About US | DoubleU-Tech Advisory</title>
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- 1. 全局設定 (CSS Reset & Global) --- */
+        :root {
+            --primary: #333333;
+            --accent: #C5A059; /* 假設的金色強調色，可自行修改 */
+            --grey-light: #f8f9fa;
+            --white: #ffffff;
+            --text-color: #555555;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* --- 2. 導覽列 (Navbar) --- */
+        .navbar {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img { height: 40px; } /* 調整Logo大小 */
+
+        #nav-menu ul { display: flex; gap: 30px; align-items: center; }
+        #nav-menu a {
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary);
+        }
+        #nav-menu a:hover, #nav-menu a.active { color: var(--accent); }
+
+        .nav-btn {
+            padding: 8px 20px;
+            border: 1px solid var(--primary);
+            border-radius: 4px;
+        }
+        .nav-btn:hover { background: var(--primary); color: var(--white) !important; }
+
+        /* 手機版選單切換按鈕 */
+        .menu-toggle { display: none; cursor: pointer; }
+        .menu-toggle span {
+            display: block; width: 25px; height: 3px; background: var(--primary); margin: 5px 0;
+        }
+
+        /* --- 3. 關於我們敘述區塊 (New Section) --- */
+        .about-intro {
+            padding: 80px 0;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text { flex: 1; }
+        .about-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        .about-text .subtitle {
+            color: var(--accent);
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .about-image { flex: 1; }
+        .about-image img { border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+
+        /* --- 4. 團隊區塊 (Team Section) --- */
+        .section { padding: 80px 0; }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .team-member {
+            background: var(--white);
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border-radius: 8px;
+        }
+        .team-member:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+
+        .member-photo {
+            width: 150px; height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 20px;
+            border: 3px solid var(--accent);
+        }
+        .member-photo img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .team-member h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+
+        /* --- 5. 彈跳視窗 (Modals) --- */
+        .modal {
+            display: none; /* 預設隱藏 */
+            position: fixed;
+            z-index: 2000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            width: 90%; max-width: 500px;
+            position: relative;
+            text-align: center;
+            animation: fadeIn 0.3s;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px; right: 20px;
+            font-size: 30px;
+            cursor: pointer;
+            color: #aaa;
+        }
+        .close:hover { color: var(--primary); }
+
+        @keyframes fadeIn { from {opacity: 0; transform: translateY(-20px);} to {opacity: 1; transform: translateY(0);} }
+
+        /* --- 6. 頁尾 (Footer) --- */
+        .footer {
+            background: var(--primary);
+            padding: 40px 0;
+            text-align: center;
+        }
+        .footer-logo img { height: 30px; margin: 0 auto; opacity: 0.8; }
+
+        /* --- 7. RWD 響應式調整 --- */
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            #nav-menu {
+                display: none;
+                position: absolute;
+                top: 70px; left: 0; width: 100%;
+                background: var(--white);
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                padding: 20px 0;
+            }
+            #nav-menu.active { display: block; }
+            #nav-menu ul { flex-direction: column; gap: 15px; }
+            
+            .about-intro { flex-direction: column; text-align: center; }
+            .about-text h1 { font-size: 36px; }
+        }
+    </style>
 </head>
 <body>
 
 <header class="navbar">
     <div class="container nav-inner">
-        <div class="logo"><a href="index.html"><img src="assets/images/DoubleU-logotype-24.png"></a></div>
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/images/DoubleU-logotype-24.png" alt="DoubleU Tech" onerror="this.style.display='none'; this.parentNode.innerHTML='<b>DoubleU</b>'">
+            </a>
+        </div>
         <div class="menu-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></div>
         <nav id="nav-menu">
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="insights.html">Insights</a></li>
-                <li><a href="about.html" style="color:var(--accent)">About US</a></li>
+                <li><a href="about.html" class="active" style="color:var(--accent)">About US</a></li>
                 <li><a href="index.html#contact" class="nav-btn" onclick="toggleMenu()">Connect</a></li>
             </ul>
         </nav>
     </div>
 </header>
 
+<section class="container about-intro">
+    <div class="about-text">
+        <span class="subtitle">Who We Are</span>
+        <h1>Bridging Technology & Business</h1>
+        <p>
+            DoubleU-Tech Advisory 成立於 2022 年，我們專注於連結技術創新與商業價值。
+            作為您最值得信賴的合作夥伴，我們整合了數十年的半導體供應鏈、物聯網 (IoT) 以及通訊技術經驗。
+        </p>
+        <br>
+        <p>
+            我們的使命是協助企業在複雜的技術生態系統中找到最清晰的道路，無論是市場拓展、通路策略，或是技術落地的最後一哩路。
+        </p>
+    </div>
+    <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Team Meeting">
+    </div>
+</section>
+
 <section class="section" style="background:var(--grey-light);">
     <div class="container">
         <p style="color:var(--accent); text-align:center; font-weight:700; letter-spacing:3px;">THE CORE TEAM</p>
-        <h2 style="text-align:center; font-family:'Playfair Display'; font-size:42px; margin-top:20px;">The Leadership Behind DoubleU</h2>
+        <h2 style="text-align:center; font-family:'Playfair Display'; font-size:42px; margin-top:20px; color:var(--primary);">The Leadership Behind DoubleU</h2>
         
         <div class="team-grid">
             <div class="team-member" onclick="openModal('modal-bert')">
-                <div class="member-photo"><img src="assets/images/Bert_Sie.png" alt="Bert Sie"></div>
+                <div class="member-photo"><img src="assets/images/Bert_Sie.png" alt="Bert Sie" onerror="this.src='https://via.placeholder.com/150'"></div>
                 <h4>Bert Sie</h4>
                 <p style="color:var(--accent); font-weight:700; font-size:12px; text-transform:uppercase;">Managing Director</p>
             </div>
+            
             <div class="team-member" onclick="openModal('modal-teresa')">
-                <div class="member-photo"><img src="assets/images/Teresa.JPG" alt="Teresa Jhan"></div>
+                <div class="member-photo"><img src="assets/images/Teresa.JPG" alt="Teresa Jhan" onerror="this.src='https://via.placeholder.com/150'"></div>
                 <h4>Teresa Jhan</h4>
                 <p style="color:var(--accent); font-weight:700; font-size:12px; text-transform:uppercase;">Principal</p>
             </div>
+            
             <div class="team-member" onclick="openModal('modal-fred')">
-                <div class="member-photo"><img src="assets/images/FRED_3_0.png" alt="Fred Chen"></div>
+                <div class="member-photo"><img src="assets/images/FRED_3_0.png" alt="Fred Chen" onerror="this.src='https://via.placeholder.com/150'"></div>
                 <h4>Fred Chen</h4>
                 <p style="color:var(--accent); font-weight:700; font-size:12px; text-transform:uppercase;">VP Channel & Distribution</p>
             </div>
@@ -54,7 +271,7 @@
         <span class="close" onclick="closeModal('modal-bert')">&times;</span>
         <h3 style="font-family:'Playfair Display'; font-size:28px;">Bert Sie</h3>
         <p style="color:var(--accent); font-weight:700; margin-bottom:20px;">Managing Director</p>
-        <p>Bert started the "Double U" concept in early 2022. He is currently the Head of Sales & BD for Beammwave Taiwan.</p>
+        <p style="text-align: left;">Bert started the "Double U" concept in early 2022. He is currently the Head of Sales & BD for Beammwave Taiwan, bringing extensive leadership in business development.</p>
     </div>
 </div>
 
@@ -63,35 +280,56 @@
         <span class="close" onclick="closeModal('modal-teresa')">&times;</span>
         <h3 style="font-family:'Playfair Display'; font-size:28px;">Teresa Jhan</h3>
         <p style="color:var(--accent); font-weight:700; margin-bottom:20px;">Principal</p>
-        <p>Teresa is a 15-year IoT veteran, possessing a masterful grasp of total solutions.</p>
+        <p style="text-align: left;">Teresa is a 15-year IoT veteran, possessing a masterful grasp of total solutions and integration strategies across various industries.</p>
     </div>
 </div>
 
 <div id="modal-fred" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal('modal-fred')">&times;</span>
-        <h3>Fred Chen</h3>
+        <h3 style="font-family:'Playfair Display'; font-size:28px;">Fred Chen</h3>
         <p style="color:var(--accent); font-weight:700; margin-bottom:20px;">VP Channel & Distribution</p>
-        <p>Fred has over two decades of expertise in the IC supply chain.</p>
+        <p style="text-align: left;">Fred has over two decades of expertise in the IC supply chain, specializing in channel management and distribution networks.</p>
     </div>
 </div>
 
 <footer class="footer">
-    <div class="container"><div class="footer-logo"><img src="assets/images/DoubleU-logotype-27.png"></div></div>
+    <div class="container">
+        <div class="footer-logo">
+            <img src="assets/images/DoubleU-logotype-27.png" alt="DoubleU Footer Logo" onerror="this.style.display='none'; this.parentNode.innerHTML='<b style=\'color:white\'>DoubleU-Tech Advisory</b>'">
+        </div>
+        <p style="color: #999; font-size: 12px; margin-top: 15px;">&copy; 2024 DoubleU-Tech Advisory. All Rights Reserved.</p>
+    </div>
 </footer>
 
 <script>
-    function toggleMenu() { document.getElementById('nav-menu').classList.toggle('active'); }
+    // 選單切換
+    function toggleMenu() { 
+        document.getElementById('nav-menu').classList.toggle('active'); 
+    }
+
+    // 開啟彈窗
     function openModal(id) {
         const modal = document.getElementById(id);
         modal.style.setProperty('display', 'flex', 'important');
-        document.body.style.overflow = "hidden";
+        document.body.style.overflow = "hidden"; // 禁止背景滾動
     }
+
+    // 關閉彈窗
     function closeModal(id) {
         const modal = document.getElementById(id);
         modal.style.setProperty('display', 'none', 'important');
-        document.body.style.overflow = "auto";
+        document.body.style.overflow = "auto"; // 恢復背景滾動
+    }
+
+    // 點擊彈窗外部區域也可關閉
+    window.onclick = function(event) {
+        if (event.target.classList.contains('modal')) {
+            event.target.style.setProperty('display', 'none', 'important');
+            document.body.style.overflow = "auto";
+        }
     }
 </script>
+
 </body>
 </html>
