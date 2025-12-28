@@ -3,11 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About US | DoubleU-Tech Advisory</title>
+    
+    <title>About Us | Bert Sie & Teresa Jhan | DoubleU-Tech Advisory</title>
+    <meta name="description" content="Meet the leadership behind DoubleU-Tech Advisory. Bert Sie (Managing Director) and Teresa Jhan (Principal) lead our expert team in tech consulting.">
+    <meta name="keywords" content="Bert Sie, Teresa Jhan, Fred Chen, DoubleU-Tech Team, Tech Consultants Taiwan">
+    
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Bert Sie",
+        "jobTitle": "Managing Director",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "DoubleU-Tech Advisory"
+        },
+        "url": "https://www.doubleu-tech.com/about.html",
+        "image": "https://www.doubleu-tech.com/assets/images/Bert_Sie.png",
+        "sameAs": ["https://tw.linkedin.com/in/bert-sie-891a9350"]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Teresa Jhan",
+        "jobTitle": "Principal",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "DoubleU-Tech Advisory"
+        },
+        "url": "https://www.doubleu-tech.com/about.html",
+        "image": "https://www.doubleu-tech.com/assets/images/Teresa.JPG",
+        "sameAs": ["https://tw.linkedin.com/in/teresa-jhan-%E8%A9%B9%E6%83%A0%E6%8D%B7-31bb5910b"]
+      }
+    ]
+    </script>
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- 1. 全局變數與重設 (獨立於 index.html) --- */
+        /* --- 1. 全局變數與重設 --- */
         :root {
             --primary-dark: #0f2332;
             --accent: #eb611b;
@@ -91,14 +126,14 @@
             font-family: 'Playfair Display', serif; font-size: 24px; color: var(--primary-dark); margin-bottom: 5px;
         }
         
-        /* 修改處：優化職稱樣式 */
+        /* 職稱優化 */
         .team-member p.role-title {
             color: var(--accent);
             font-weight: 700;
-            font-size: 13px;       /* 稍微加大 */
+            font-size: 13px;       
             text-transform: uppercase;
-            letter-spacing: 2px;   /* 增加字距，解決擁擠感 */
-            margin-top: 10px;      /* 增加與名字的距離 */
+            letter-spacing: 2px;   
+            margin-top: 10px;      
         }
 
         /* --- Modal (彈窗) --- */
@@ -145,7 +180,7 @@
 
 <header class="navbar">
     <div class="container nav-inner">
-        <div class="logo"><a href="index.html"><img src="assets/images/DoubleU-logotype-24.png"></a></div>
+        <div class="logo"><a href="index.html"><img src="assets/images/DoubleU-logotype-24.png" alt="DoubleU Tech Logo"></a></div>
         <div class="menu-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></div>
         <nav id="nav-menu">
             <ul>
@@ -163,7 +198,7 @@
     <div class="container about-intro">
         <div class="about-text">
             <p style="color:var(--accent); font-weight:700; letter-spacing:3px; margin-bottom:10px;">WHO WE ARE</p>
-            <h2>Bridging Technology & Business</h2>
+            <h1>Bridging Technology & Business</h1>
             <p style="margin-bottom:20px; color:#555;">
                 DoubleU-Tech Advisory was established with a mission to bridge the gap between complex technological innovations and practical business applications.
             </p>
@@ -172,7 +207,7 @@
             </p>
         </div>
         <div class="about-img-placeholder">
-            <img src="https://via.placeholder.com/600x400?text=DoubleU+Office" alt="About Image">
+            <img src="https://via.placeholder.com/600x400?text=DoubleU+Office" alt="DoubleU Tech Office">
         </div>
     </div>
 </section>
@@ -184,17 +219,17 @@
         
         <div class="team-grid">
             <div class="team-member" onclick="openModal('modal-bert')">
-                <div class="member-photo"><img src="assets/images/Bert_Sie.png" alt="Bert Sie"></div>
+                <div class="member-photo"><img src="assets/images/Bert_Sie.png" alt="Bert Sie - Managing Director"></div>
                 <h4>Bert Sie</h4>
                 <p class="role-title">Managing Director</p>
             </div>
             <div class="team-member" onclick="openModal('modal-teresa')">
-                <div class="member-photo"><img src="assets/images/Teresa.JPG" alt="Teresa Jhan"></div>
+                <div class="member-photo"><img src="assets/images/Teresa.JPG" alt="Teresa Jhan - Principal"></div>
                 <h4>Teresa Jhan</h4>
                 <p class="role-title">Principal</p>
             </div>
             <div class="team-member" onclick="openModal('modal-fred')">
-                <div class="member-photo"><img src="assets/images/FRED_3_0.png" alt="Fred Chen"></div>
+                <div class="member-photo"><img src="assets/images/FRED_3_0.png" alt="Fred Chen - VP Channel"></div>
                 <h4>Fred Chen</h4>
                 <p class="role-title">VP Channel & Distribution</p>
             </div>
@@ -232,7 +267,7 @@
 </div>
 
 <footer class="footer">
-    <div class="container"><div class="footer-logo"><img src="assets/images/DoubleU-logotype-27.png"></div></div>
+    <div class="container"><div class="footer-logo"><img src="assets/images/DoubleU-logotype-27.png" alt="DoubleU Tech Logo"></div></div>
 </footer>
 
 <script>
@@ -244,13 +279,3 @@
     function closeModal(id) {
         document.getElementById(id).style.display = 'none';
         document.body.style.overflow = "auto";
-    }
-    window.onclick = function(event) {
-        if (event.target.classList.contains('modal')) {
-            event.target.style.display = 'none';
-            document.body.style.overflow = "auto";
-        }
-    }
-</script>
-</body>
-</html>
