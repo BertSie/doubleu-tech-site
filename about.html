@@ -30,7 +30,7 @@
         <h2 style="font-size: 48px; margin-bottom: 40px;">Empowering Through Bridging The Gap</h2>
         <div class="split">
             <div class="about-text">
-                <p style="margin-bottom: 25px;">Double U began as a vision rooted in the heart of its founder. With years of experience in the semiconductor industry, the founder was driven by a passion for life-changing technologies.</p>
+                <p>Double U began as a vision rooted in the heart of its founder. With years of experience in the semiconductor industry, the founder was driven by a passion for life-changing technologies.</p>
                 <div class="meaning-card">
                     <p><strong>What "Double U" Means:</strong> Our name symbolizes representing foreign companies' presence in Taiwan and accelerating market penetration, effectively <strong>doubling their impact</strong>.</p>
                 </div>
@@ -71,10 +71,8 @@
         <span class="close" onclick="closeModal('modal-bert')">&times;</span>
         <h3>Bert Sie</h3>
         <p class="role">Managing Director</p>
-        <div class="modal-body">
-            <p>Bert started the "Double U" concept in early 2022. He is currently the Head of Sales & Business Development for Beammwave Taiwan. Previously, Bert held leadership positions at EDOM, establishing the first mass market business group.</p>
-            <a href="https://www.linkedin.com/in/bert-sie-891a9350/" target="_blank" class="linkedin-link">View LinkedIn Profile</a>
-        </div>
+        <p style="margin-top:20px;">Bert started the "Double U" concept in early 2022. He is currently the Head of Sales & Business Development for Beammwave Taiwan. Previously, he held leadership positions at EDOM, establishing mass market business groups.</p>
+        <a href="https://www.linkedin.com/in/bert-sie-891a9350/" target="_blank" class="linkedin-link" style="display:inline-block; padding:12px 25px; background:#0077b5; color:white; text-decoration:none; font-size:13px; font-weight:600; margin-top:20px;">View LinkedIn Profile</a>
     </div>
 </div>
 
@@ -83,10 +81,8 @@
         <span class="close" onclick="closeModal('modal-teresa')">&times;</span>
         <h3>Teresa Jhan</h3>
         <p class="role">Principal</p>
-        <div class="modal-body">
-            <p>Teresa, a seasoned 15-year veteran in the IoT industry, possesses a masterful grasp of total solutions, spanning cloud platforms, devices, and key components.</p>
-            <a href="https://www.linkedin.com/in/teresa-jhan-%E8%A9%B9%E6%83%A0%E6%8D%B7-31bb5910b/" target="_blank" class="linkedin-link">View LinkedIn Profile</a>
-        </div>
+        <p style="margin-top:20px;">Teresa, a 15-year veteran in the IoT industry, possesses a masterful grasp of total solutions, spanning cloud platforms and key components. Her solution-oriented mindset makes her an invaluable asset.</p>
+        <a href="https://www.linkedin.com/in/teresa-jhan-%E8%A9%B9%E6%83%A0%E6%8D%B7-31bb5910b/" target="_blank" class="linkedin-link" style="display:inline-block; padding:12px 25px; background:#0077b5; color:white; text-decoration:none; font-size:13px; font-weight:600; margin-top:20px;">View LinkedIn Profile</a>
     </div>
 </div>
 
@@ -95,53 +91,20 @@
         <span class="close" onclick="closeModal('modal-fred')">&times;</span>
         <h3>Fred Chen</h3>
         <p class="role">VP Channel & Distribution</p>
-        <div class="modal-body">
-            <p>Fred Chen, with over two decades of expertise in the IC supply chain. Previously, Fred led Realtek's engagements with the largest PC/NB brand in China.</p>
-            <a href="#" target="_blank" class="linkedin-link">View LinkedIn Profile</a>
-        </div>
+        <p style="margin-top:20px;">Fred Chen, with over two decades of expertise in the IC supply chain. Previously, Fred led Realtek's engagements with the largest PC/NB brand in China.</p>
     </div>
 </div>
-
-<section id="contact" class="section contact">
-    <div class="container">
-        <div class="section-header centered">
-            <p class="overline">Stay in the loop</p>
-            <h2>Connect With Our Experts</h2>
-            <p class="ready-text">Ready to transform your business vision into reality? Contact DoubleU Technology today.</p>
-        </div>
-        <div class="custom-form-wrapper narrow">
-            <form id="g-form">
-                <div class="form-row">
-                    <div class="form-group"><label>Name</label><input type="text" placeholder="Full Name" required></div>
-                    <div class="form-group"><label>Email Address</label><input type="email" placeholder="email@company.com" required></div>
-                </div>
-                <div class="form-group"><label>Message</label><textarea rows="4" placeholder="How can we help your business?"></textarea></div>
-                <button type="submit" class="submit-btn">Submit Connect Request</button>
-            </form>
-        </div>
-    </div>
-</section>
 
 <footer class="footer">
     <div class="container">
         <div class="footer-logo"><img src="assets/images/DoubleU-logotype-27.png"></div>
-        <p>Taipei, Taiwan | info@doubleu-tech.com</p>
         <p>&copy; 2025 DoubleU-Tech Advisory. All Rights Reserved.</p>
     </div>
 </footer>
 
 <script>
-    function openModal(id) {
-        var modal = document.getElementById(id);
-        modal.style.setProperty('display', 'flex', 'important');
-        document.body.style.overflow = "hidden";
-    }
-    function closeModal(id) {
-        var modal = document.getElementById(id);
-        modal.style.setProperty('display', 'none', 'important');
-        document.body.style.overflow = "auto";
-    }
-    window.onclick = function(e) { if (e.target.className === 'modal') { closeModal(e.target.id); } }
+    function openModal(id) { document.getElementById(id).style.setProperty('display', 'flex', 'important'); document.body.style.overflow = "hidden"; }
+    function closeModal(id) { document.getElementById(id).style.setProperty('display', 'none', 'important'); document.body.style.overflow = "auto"; }
 </script>
 </body>
 </html>
