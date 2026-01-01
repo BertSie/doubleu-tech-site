@@ -81,10 +81,48 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* RWD 微調 */
+        /* --- RWD 手機版設定 --- */
         @media (max-width: 768px) {
-            .menu-toggle { display: block; } /* 確保手機版按鈕出現 */
+            
+            /* 1. 確保選單按鈕出現 */
+            .menu-toggle { 
+                display: block; 
+                cursor: pointer;
+            } 
+            
+            /* 2. 手機版字體調整 */
             summary { font-size: 20px; }
+
+            /* 3. 手機選單核心 CSS (補強部分) */
+            #nav-menu {
+                display: none; /* 預設隱藏 */
+                position: absolute;
+                top: 70px; /* 依照 header 高度調整 */
+                left: 0;
+                width: 100%;
+                background-color: #fff;
+                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+                padding: 20px 0;
+                flex-direction: column;
+                z-index: 1000;
+            }
+
+            /* 當有 .active class 時顯示 */
+            #nav-menu.active {
+                display: flex;
+            }
+
+            #nav-menu ul {
+                flex-direction: column;
+                width: 100%;
+                align-items: center;
+                gap: 20px;
+            }
+
+            #nav-menu li {
+                width: 100%;
+                text-align: center;
+            }
         }
     </style>
 </head>
