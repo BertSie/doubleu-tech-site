@@ -9,6 +9,12 @@
     
     <style>
         /* --- 頁面專屬 CSS --- */
+        :root {
+            --primary-dark: #333; /* 預設深色變數，若 style.css 有定義可移除 */
+            --accent: #cc272f;    /* 預設強調色 */
+            --grey-light: #f4f4f4;
+        }
+
         .news-slider-wrapper {
             position: relative;
             max-width: 1200px;
@@ -63,6 +69,7 @@
             background-size: cover;
             position: relative;
         }
+        /* 移除偽元素遮罩，讓純色背景更鮮明，若需要遮罩可保留 */
         .news-image::after {
             content: '';
             position: absolute;
@@ -171,7 +178,7 @@
 
 <header class="navbar">
     <div class="container nav-inner">
-        <div class="logo"><a href="index.html"><img src="assets/images/DoubleU-logotype-24.png"></a></div>
+        <div class="logo"><a href="index.html"><img src="assets/images/DoubleU-logotype-24.png" alt="DoubleU Tech"></a></div>
         <div class="menu-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></div>
         <nav id="nav-menu">
             <ul>
@@ -197,7 +204,7 @@
             <div class="news-grid" id="newsGrid">
 
                 <a href="https://www.alixlabs.com/2025/04/10/alixlabs-to-demonstrate-aps-on-300-millimeter-umc-wafers-at-the-2025-cmc-conference/" target="_blank" class="news-card">
-                    <div class="news-image" style="background: linear-gradient(135deg, #1a1a1a, #333);">
+                    <div class="news-image" style="background: #cc272f;">
                         <span>ALIXLABS & UMC</span>
                     </div>
                     <div class="news-content">
@@ -209,19 +216,19 @@
                 </a>
                 
                 <a href="https://kulr.ai/kulr-awarded-6-7m-by-texas-space-commission-to-advance-cold-temperature-kulr-one-space-battery-platform/" target="_blank" class="news-card">
-                    <div class="news-image" style="background: linear-gradient(135deg, #F8E1F4, #E0C7F0);
-                        <span>KULR  Awarded $6.7M </span>
+                    <div class="news-image" style="background: linear-gradient(135deg, #F8E1F4, #E0C7F0);">
+                        <span>KULR Awarded $6.7M</span>
                     </div>
                     <div class="news-content">
                         <span class="news-date">APRIL 2025</span>
-                        <h4 class="news-title">a leader in advanced energy management platforms awarded $6,703,500n</h4>
-                        <p class="news-desc">by the Texas Space Commission</p>
+                        <h4 class="news-title">KULR Awarded $6.7M by Texas Space Commission</h4>
+                        <p class="news-desc">Funding to advance the cold temperature KULR ONE space battery platform.</p>
                         <div class="read-more">Read Article &rarr;</div>
                     </div>
                 </a>
                 
                 <a href="https://beammwave.com/press-release/beammwave-and-alpha-networks-enters-into-an-agreement-to-do-a-joint-pre-study-for-the-next-generation-fixed-wireless-access-products/" target="_blank" class="news-card">
-                    <div class="news-image" style="background: linear-gradient(135deg, #eb611b, #ff8c42);">
+                    <div class="news-image" style="background: #812b77;">
                         <span>BEAMMWAVE & ALPHA</span>
                     </div>
                     <div class="news-content">
@@ -262,7 +269,7 @@
 
 <footer class="footer">
     <div class="container">
-        <div class="footer-logo"><img src="assets/images/DoubleU-logotype-27.png"></div>
+        <div class="footer-logo"><img src="assets/images/DoubleU-logotype-27.png" alt="DoubleU Tech"></div>
         <p>&copy; 2025 DoubleU-Tech Advisory. All Rights Reserved.</p>
     </div>
 </footer>
@@ -270,7 +277,7 @@
 <script>
     function moveSlide(direction) {
         const grid = document.getElementById('newsGrid');
-        const cardWidth = 350 + 30; 
+        const cardWidth = 350 + 30; // 350px card width + 30px gap
         grid.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
     }
     function toggleMenu() {
