@@ -7,15 +7,17 @@
     <title>Our Services | DoubleU-Tech Advisory</title>
     <meta name="description" content="Explore our expert services in Product Strategy, Marketing Promotion, and Business Development.">
     
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- 1. 全局變數 (保持一致) --- */
+        /* --- 1. 全局變數 --- */
         :root {
             --primary-dark: #0f2332;
             --accent: #eb611b;
-            --grey-light: #f9f9f9;
+            --accent-light: rgba(235, 97, 27, 0.1); /* 淺橘色背景用 */
+            --grey-bg: #f4f6f8;
             --text-main: #333333;
+            --text-light: #666666;
             --white: #ffffff;
         }
 
@@ -25,148 +27,169 @@
             font-family: 'Montserrat', sans-serif;
             color: var(--text-main);
             background: var(--white);
-            line-height: 1.6;
+            line-height: 1.7; /* 增加行距提升閱讀感 */
             -webkit-tap-highlight-color: transparent;
         }
 
-        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+        .container { width: 90%; max-width: 1100px; margin: 0 auto; padding: 0 15px; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         ul { list-style: none; }
         img { max-width: 100%; height: auto; display: block; }
 
-        /* --- 2. Navbar 導覽列 (整合您的功能與樣式) --- */
+        /* --- 2. Navbar (維持功能不變，微調陰影) --- */
         .navbar {
             background: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
             position: sticky; top: 0; z-index: 1000; padding: 15px 0;
         }
         .nav-inner { display: flex; justify-content: space-between; align-items: center; }
         .logo img { height: 75px; }
         
-        /* 電腦版選單樣式 */
         #nav-menu ul { display: flex; gap: 30px; align-items: center; }
         #nav-menu a {
-            font-weight: 700; font-size: 14px; text-transform: uppercase;
+            font-weight: 600; font-size: 14px; text-transform: uppercase;
             letter-spacing: 1px; color: var(--primary-dark);
+            position: relative;
         }
+        /* 選單 Hover 底線效果 */
+        #nav-menu a::after {
+            content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px;
+            background: var(--accent); transition: width 0.3s;
+        }
+        #nav-menu a:hover::after { width: 100%; }
         #nav-menu a:hover { color: var(--accent); }
         
-        /* Connect 按鈕樣式 */
-        .nav-btn { padding: 8px 20px; border: 1px solid var(--primary-dark); border-radius: 4px; }
+        .nav-btn { padding: 8px 25px; border: 1px solid var(--primary-dark); border-radius: 50px; /* 改為膠囊狀按鈕 */ }
         .nav-btn:hover { background: var(--primary-dark); color: var(--white) !important; }
 
-        /* 漢堡選單按鈕 (預設隱藏) */
         .menu-toggle {
-            display: none; 
-            flex-direction: column;
-            justify-content: space-between;
-            width: 30px; height: 21px;
-            cursor: pointer;
-            z-index: 1001;
+            display: none; flex-direction: column; justify-content: space-between;
+            width: 28px; height: 20px; cursor: pointer; z-index: 1001;
         }
         .menu-toggle span {
-            display: block; width: 100%; height: 3px;
-            background-color: var(--primary-dark);
-            border-radius: 3px;
+            display: block; width: 100%; height: 2px; background-color: var(--primary-dark);
             transition: all 0.3s ease;
         }
 
-        /* --- 3. 頁面標題區 (Hero) --- */
+        /* --- 3. Header Hero (增加質感) --- */
         .page-header {
             background-color: var(--primary-dark);
             color: var(--white);
-            padding: 80px 0;
+            padding: 100px 0 80px;
             text-align: center;
+            background-image: radial-gradient(circle at 10% 20%, rgba(235, 97, 27, 0.1) 0%, transparent 20%); /* 增加微微的背景層次 */
         }
         .page-header h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 48px; margin-bottom: 15px;
+            font-size: 52px; margin-bottom: 20px;
         }
         .page-header p {
-            max-width: 600px; margin: 0 auto;
-            color: rgba(255,255,255,0.8); font-size: 16px;
+            max-width: 700px; margin: 0 auto;
+            color: rgba(255,255,255,0.85); font-size: 18px; font-weight: 300;
         }
 
-        /* --- 4. 服務卡片樣式 (採用新設計) --- */
-        .services-section { padding: 80px 0; background: var(--grey-light); }
+        /* --- 4. 服務卡片 (全新設計) --- */
+        .services-section { padding: 80px 0; background: var(--grey-bg); }
         
         .service-card {
             background: var(--white);
-            border-radius: 8px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.08);
+            margin-bottom: 60px;
+            display: flex;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            margin-bottom: 40px;
-            display: flex; /* 左右佈局 */
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
         }
         .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px -10px rgba(0,0,0,0.12);
+        }
+        /* 頂部裝飾條 (取代原本左側的) */
+        .service-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 6px; height: 100%;
+            background: var(--accent);
         }
 
-        /* 左側裝飾色條 */
-        .card-accent-bar { width: 8px; background-color: var(--accent); flex-shrink: 0; }
-        .card-content { padding: 50px; flex: 1; }
-        
-        .service-number {
-            font-size: 14px; font-weight: 700; color: var(--accent);
-            letter-spacing: 2px; margin-bottom: 10px; display: block;
+        .card-icon-col {
+            flex: 0 0 120px;
+            display: flex; justify-content: center; padding-top: 60px;
+            background: #fff;
         }
+        .icon-box {
+            width: 60px; height: 60px;
+            background: var(--accent-light);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--accent);
+        }
+        .icon-box svg { width: 28px; height: 28px; fill: currentColor; }
+
+        .card-content { flex: 1; padding: 50px 50px 50px 20px; }
+
+        .service-number {
+            font-size: 13px; font-weight: 700; color: #aaa;
+            letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; display: block;
+        }
+        
         .service-title {
             font-family: 'Playfair Display', serif;
-            font-size: 32px; color: var(--primary-dark);
-            margin-bottom: 20px; position: relative; display: inline-block;
+            font-size: 30px; color: var(--primary-dark);
+            margin-bottom: 20px; line-height: 1.3;
         }
-        .service-title::after {
-            content: ''; display: block; width: 40px; height: 3px;
-            background: var(--accent); margin-top: 10px;
+
+        .service-desc { 
+            margin-bottom: 30px; color: var(--text-light); 
+            font-size: 16px; border-left: 2px solid #eee; padding-left: 15px;
         }
-        .service-desc { margin-bottom: 25px; color: #666; font-style: italic; }
         
-        /* 列表樣式 */
-        .service-list { margin-top: 20px; }
+        /* 統一列表樣式 */
         .service-list li {
-            position: relative; padding-left: 25px; margin-bottom: 15px; color: var(--text-main);
+            position: relative; padding-left: 30px; margin-bottom: 12px; 
+            color: var(--text-main); font-size: 16px;
         }
+        /* 使用 SVG 勾勾作為 Bullet Point */
         .service-list li::before {
-            content: ''; position: absolute; left: 0; top: 10px;
-            width: 8px; height: 8px; border-radius: 50%; background-color: var(--accent);
+            content: '✓'; 
+            position: absolute; left: 0; top: 0px;
+            color: var(--accent); font-weight: 700; font-size: 14px;
         }
-        .list-bold { font-weight: 700; color: var(--primary-dark); }
+        
+        /* 解決一致性問題：將粗體標題變成橘色標籤感 */
+        .list-label {
+            color: var(--accent);
+            font-weight: 600;
+            margin-right: 5px;
+        }
 
-        /* --- 5. Footer (保持一致) --- */
-        .footer { padding: 50px 0; background: var(--primary-dark); color: var(--white); text-align: center; }
-        .footer-logo img { height: 30px; margin: 0 auto 20px; filter: brightness(0) invert(1); }
+        /* --- 5. Footer --- */
+        .footer { padding: 60px 0; background: var(--primary-dark); color: var(--white); text-align: center; }
+        .footer-logo img { height: 35px; margin: 0 auto 20px; filter: brightness(0) invert(1); opacity: 0.9; }
+        .footer p { font-size: 14px; opacity: 0.6; }
 
-        /* --- 6. RWD 手機版設定 (整合您的邏輯) --- */
+        /* --- 6. RWD --- */
         @media (max-width: 768px) {
-            /* 顯示漢堡按鈕 */
             .menu-toggle { display: flex; }
             
-            /* 手機版選單本體 */
             #nav-menu {
-                display: none; /* 預設隱藏 */
-                position: absolute;
-                top: 105px; /* 根據 Logo 高度調整 */
-                left: 0; width: 100%;
-                background-color: var(--white);
-                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-                padding: 20px 0;
-                flex-direction: column;
-                border-top: 1px solid #eee;
+                display: none; position: absolute; top: 100%; left: 0; width: 100%;
+                background-color: var(--white); box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+                padding: 20px 0; flex-direction: column; border-top: 1px solid #eee;
             }
-            /* 加上 active class 後顯示 */
             #nav-menu.active { display: flex; }
-            
             #nav-menu ul { flex-direction: column; width: 100%; gap: 20px; }
             #nav-menu li { width: 100%; text-align: center; }
 
-            /* 卡片內容 RWD */
             .page-header h1 { font-size: 36px; }
-            .service-card { flex-direction: column; } /* 卡片改為垂直排列 */
-            .card-accent-bar { width: 100%; height: 8px; } /* 色條改為頂部橫條 */
-            .card-content { padding: 30px 20px; }
-            .service-title { font-size: 26px; }
+            
+            .service-card { flex-direction: column; }
+            .service-card::before { width: 100%; height: 6px; } /* 手機版變頂部線條 */
+            
+            .card-icon-col { 
+                padding: 40px 0 10px; flex: 0 0 auto; 
+                justify-content: flex-start; padding-left: 30px;
+            }
+            .card-content { padding: 20px 30px 40px; }
         }
     </style>
 </head>
@@ -195,7 +218,7 @@
 <section class="page-header">
     <div class="container">
         <h1>Our Expertise</h1>
-        <p>We provide a comprehensive suite of services designed to ensure your success in Taiwan and beyond. From crafting strategic plans to establishing valuable connections.</p>
+        <p>Comprehensive solutions designed to navigate the complexities of the semiconductor and IoT markets.</p>
     </div>
 </section>
 
@@ -203,7 +226,11 @@
     <div class="container">
         
         <div class="service-card">
-            <div class="card-accent-bar"></div>
+            <div class="card-icon-col">
+                <div class="icon-box">
+                    <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+                </div>
+            </div>
             <div class="card-content">
                 <span class="service-number">01</span>
                 <h2 class="service-title">Product Strategy & Positioning Advisory</h2>
@@ -217,21 +244,29 @@
         </div>
 
         <div class="service-card">
-            <div class="card-accent-bar"></div>
+            <div class="card-icon-col">
+                <div class="icon-box">
+                    <svg viewBox="0 0 24 24"><path d="M21 11l-4-3V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h4v5h2v-5h4l4 3v-9z"/></svg>
+                </div>
+            </div>
             <div class="card-content">
                 <span class="service-number">02</span>
                 <h2 class="service-title">Marketing & Promotion</h2>
                 <ul class="service-list">
-                    <li><span class="list-bold">Material Generation:</span> Compelling marketing materials that communicate your value.</li>
-                    <li><span class="list-bold">Exhibition Support:</span> Expert planning and execution for industry events.</li>
-                    <li><span class="list-bold">Event & Seminar Organization:</span> Targeted engagement for your business.</li>
-                    <li><span class="list-bold">Publication:</span> Press releases and magazine features.</li>
+                    <li><span class="list-label">Material Generation:</span> Compelling marketing materials that communicate your value.</li>
+                    <li><span class="list-label">Exhibition Support:</span> Expert planning and execution for industry events.</li>
+                    <li><span class="list-label">Event & Seminar:</span> Targeted engagement for your business.</li>
+                    <li><span class="list-label">Publication:</span> Press releases and magazine features.</li>
                 </ul>
             </div>
         </div>
 
         <div class="service-card">
-            <div class="card-accent-bar"></div>
+            <div class="card-icon-col">
+                <div class="icon-box">
+                    <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                </div>
+            </div>
             <div class="card-content">
                 <span class="service-number">03</span>
                 <h2 class="service-title">Business Development & Model Optimization</h2>
@@ -255,7 +290,6 @@
 </footer>
 
 <script>
-    // 保持與您原本代碼一致的開關邏輯
     function toggleMenu() {
         document.getElementById('nav-menu').classList.toggle('active');
     }
