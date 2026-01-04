@@ -1,12 +1,12 @@
 /* =========================================
-   DoubleU-Tech 最終修復版樣式表 (Final Fixed)
-   狀態：已清洗特殊空白字元，修復手機版與Hover
+   DoubleU-Tech 最終樣式表 (Mobile Touch Optimized)
+   更新項目：新增 :active 狀態，讓手機點擊時有橘色回饋
    ========================================= */
 
 /* --- 1. 變數與全站重設 --- */
 :root {
-    --primary-dark: #0f2332;       /* 深藍色 */
-    --accent: #eb611b;             /* 橘色 (強調色) */
+    --primary-dark: #0f2332;
+    --accent: #eb611b;
     --accent-light: rgba(235, 97, 27, 0.1);
     --grey-light: #f9f9f9;
     --grey-bg: #f4f6f8;
@@ -45,7 +45,7 @@ h1, h2, h3, h4 {
     color: var(--primary-dark); 
 }
 
-/* --- 2. 按鈕系統 --- */
+/* --- 2. 按鈕系統 (已加入觸控回饋) --- */
 .btn {
     display: inline-block;
     padding: 12px 30px;
@@ -55,31 +55,35 @@ h1, h2, h3, h4 {
     text-transform: uppercase;
     letter-spacing: 1px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease; /* 加快一點反應速度 */
     border: 2px solid transparent;
     text-align: center;
 }
 
-/* 實心按鈕 (深藍底 -> 橘底) */
+/* 實心按鈕 */
 .btn-primary {
     background-color: var(--primary-dark);
     color: var(--white);
     border-color: var(--primary-dark);
 }
-.btn-primary:hover {
+/* 加入 :active 讓手機按下去變色 */
+.btn-primary:hover, 
+.btn-primary:active {
     background-color: var(--accent);
     border-color: var(--accent);
     transform: translateY(-2px);
 }
 
-/* 線框按鈕 (深藍框 -> 橘底) - 用於 Meet The Team */
+/* 線框按鈕 (Meet The Team) */
 .btn-outline {
     background-color: transparent;
     color: var(--primary-dark);
     border-color: var(--primary-dark);
 }
-.btn-outline:hover {
-    background-color: var(--accent); /* 變橘色 */
+/* 加入 :active 讓手機按下去變色 */
+.btn-outline:hover, 
+.btn-outline:active {
+    background-color: var(--accent);
     border-color: var(--accent);
     color: var(--white);
     transform: translateY(-2px);
@@ -90,7 +94,10 @@ h1, h2, h3, h4 {
     font-size: 13px; font-weight: 700; text-transform: uppercase;
     color: var(--primary-dark); display: inline-flex; align-items: center; gap: 5px; cursor: pointer;
 }
-.read-more-btn:hover { color: var(--accent); gap: 8px; }
+.read-more-btn:hover, 
+.read-more-btn:active { 
+    color: var(--accent); gap: 8px; 
+}
 
 /* 區塊標題 */
 .section-header { text-align: center; margin-bottom: 50px; }
@@ -118,8 +125,9 @@ h1, h2, h3, h4 {
     content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px;
     background: var(--accent); transition: width 0.3s;
 }
-#nav-menu a:hover::after, #nav-menu a.active::after { width: 100%; }
-#nav-menu a:hover, #nav-menu a.active { color: var(--accent); }
+/* 加入 :active */
+#nav-menu a:hover::after, #nav-menu a:active::after, #nav-menu a.active::after { width: 100%; }
+#nav-menu a:hover, #nav-menu a:active, #nav-menu a.active { color: var(--accent); }
 
 /* 右上角 Connect 按鈕 */
 .nav-btn-highlight {
@@ -128,14 +136,16 @@ h1, h2, h3, h4 {
     border-radius: var(--radius) !important;
     transition: all 0.3s ease !important;
 }
-.nav-btn-highlight:hover {
-    background: var(--accent) !important;      /* 背景變橘色 */
-    border-color: var(--accent) !important;    /* 邊框變橘色 */
-    color: var(--white) !important;            /* 文字變白色 */
+/* 加入 :active */
+.nav-btn-highlight:hover, 
+.nav-btn-highlight:active {
+    background: var(--accent) !important;
+    border-color: var(--accent) !important;
+    color: var(--white) !important;
 }
 .nav-btn-highlight::after { display: none !important; }
 
-/* 漢堡選單圖示 */
+/* 漢堡選單 */
 .menu-toggle { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
 .menu-toggle span { width: 25px; height: 3px; background: var(--primary-dark); transition: 0.3s; }
 
@@ -158,7 +168,8 @@ h1, h2, h3, h4 {
     border-radius: 8px; border: 1px solid #eee;
     transition: 0.3s; display: flex; flex-direction: column;
 }
-.service-preview-card:hover {
+.service-preview-card:hover, 
+.service-preview-card:active {
     transform: translateY(-5px);
     box-shadow: var(--shadow); border-color: transparent;
 }
@@ -171,19 +182,21 @@ h1, h2, h3, h4 {
 .service-preview-card h3 { font-size: 22px; margin-bottom: 15px; }
 .service-preview-card p { color: var(--text-light); font-size: 15px; margin-bottom: 20px; flex-grow: 1; }
 
-/* 內頁詳細卡片 */
 .service-detailed-card {
     background: var(--white); border-radius: 8px; margin-bottom: 40px;
     box-shadow: 0 10px 40px -10px rgba(0,0,0,0.08); display: flex; overflow: hidden;
     border-left: 5px solid var(--accent); transition: 0.3s;
 }
-.service-detailed-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px -10px rgba(0,0,0,0.12); }
+.service-detailed-card:hover, 
+.service-detailed-card:active { 
+    transform: translateY(-5px); box-shadow: 0 20px 50px -10px rgba(0,0,0,0.12); 
+}
 .card-icon-col { flex: 0 0 100px; display: flex; justify-content: center; padding-top: 50px; background: #fff; }
 .card-content { flex: 1; padding: 40px 40px 40px 20px; }
 .service-list li { position: relative; padding-left: 25px; margin-bottom: 10px; color: var(--text-main); }
 .service-list li::before { content: '✓'; position: absolute; left: 0; top: 0; color: var(--accent); font-weight: 700; }
 
-/* --- 6. 新聞/洞察 (Insights) --- */
+/* --- 6. 新聞/洞察 --- */
 .insights-scroller {
     display: flex; gap: 30px; overflow-x: auto; padding: 20px 5px;
     scroll-behavior: smooth; scrollbar-width: none;
@@ -197,7 +210,10 @@ h1, h2, h3, h4 {
     overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s;
     display: flex; flex-direction: column; border: 1px solid #eee;
 }
-.insight-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+.insight-card:hover, 
+.insight-card:active { 
+    transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); 
+}
 .insight-img {
     height: 180px; background: #ddd; display: flex; align-items: center; justify-content: center;
     color: var(--white); font-weight: 700; font-family: 'Playfair Display'; font-size: 20px;
@@ -242,7 +258,8 @@ h1, h2, h3, h4 {
     gap: 40px; margin-top: 50px; text-align: center;
 }
 .team-member { cursor: pointer; transition: transform 0.3s; }
-.team-member:hover { transform: translateY(-10px); }
+.team-member:hover, 
+.team-member:active { transform: translateY(-10px); }
 .member-photo {
     width: 200px; height: 200px; border-radius: 50%; overflow: hidden;
     margin: 0 auto 20px; border: 3px solid #f0f0f0;
@@ -282,7 +299,7 @@ h1, h2, h3, h4 {
 }
 .footer p { font-size: 14px; }
 
-/* --- 10. RWD 手機版面大修復 (Mobile Fixes) --- */
+/* --- 10. RWD Mobile Fixes --- */
 @media (max-width: 900px) {
     .services-grid { grid-template-columns: 1fr; }
     .contact-form-styled { grid-template-columns: 1fr; }
@@ -291,8 +308,8 @@ h1, h2, h3, h4 {
 }
 
 @media (max-width: 768px) {
-    /* 1. 導覽列與選單 */
     .menu-toggle { display: flex; }
+    
     #nav-menu {
         display: none; 
         position: absolute; 
@@ -304,32 +321,25 @@ h1, h2, h3, h4 {
         box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         border-top: 1px solid #eee;
     }
+    
     #nav-menu.active { display: block; }
     #nav-menu ul { flex-direction: column; align-items: stretch; gap: 10px; }
     #nav-menu li { width: 100%; text-align: center; }
     #nav-menu a { display: block; padding: 12px 0; font-size: 16px; }
     .nav-btn-highlight { display: block; text-align: center; margin-top: 10px; }
     
-    /* 2. Hero 區塊 */
-    .hero { 
-        padding: 100px 0 60px; 
-    }
+    .hero { padding: 100px 0 60px; }
     .hero h1 { font-size: 32px; margin: 15px 0; }
     .hero p { font-size: 16px; margin-bottom: 30px; }
     
-    /* 3. 按鈕排列 */
     .hero-btns { 
         flex-direction: column; 
         gap: 15px; 
         padding: 0 20px;
     }
-    .btn { 
-        display: block; 
-        width: 100%; 
-        text-align: center; 
-    }
     
-    /* 4. 內頁修正 */
+    .btn { display: block; width: 100%; text-align: center; }
+    
     .service-detailed-card { flex-direction: column; }
     .card-icon-col { padding: 30px 0 0 30px; justify-content: flex-start; }
     .card-content { padding: 20px 30px 40px; }
