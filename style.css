@@ -1,6 +1,8 @@
 /* =========================================
    DoubleU-Tech 最終完整版樣式表
-   更新：針對手機按鈕顏色進行強制修正 (!important)
+   更新說明：
+   1. 已針對手機按鈕添加 :focus 狀態，解決點擊不變橘色的問題。
+   2. 添加 outline: none 防止點擊時出現默認外框。
    ========================================= */
 
 /* --- 1. 變數與全站重設 --- */
@@ -25,7 +27,7 @@ body {
     line-height: 1.6;
     color: var(--text-main);
     background: var(--white);
-    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: transparent; /* 移除 iOS 點擊高亮色塊 */
 }
 
 a { text-decoration: none; color: inherit; transition: 0.3s; }
@@ -45,7 +47,7 @@ h1, h2, h3, h4 {
     color: var(--primary-dark); 
 }
 
-/* --- 2. 按鈕系統 (強制橘色修正) --- */
+/* --- 2. 按鈕系統 (已修正手機點擊問題) --- */
 .btn {
     display: inline-block;
     padding: 12px 30px;
@@ -67,13 +69,15 @@ h1, h2, h3, h4 {
     border-color: var(--primary-dark);
 }
 
-/* 強制手機點擊與滑鼠懸浮都變橘色 */
+/* 修正：加入 :focus 確保點擊後維持橘色 */
 .btn-primary:hover, 
-.btn-primary:active {
+.btn-primary:active,
+.btn-primary:focus {
     background-color: var(--accent) !important;
     border-color: var(--accent) !important;
     color: var(--white) !important;
     transform: translateY(-2px);
+    outline: none;
 }
 
 /* 線框按鈕 (Meet The Team) */
@@ -83,13 +87,15 @@ h1, h2, h3, h4 {
     border-color: var(--primary-dark);
 }
 
-/* 強制手機點擊與滑鼠懸浮都變橘色 */
+/* 修正：加入 :focus 確保點擊後維持橘色 */
 .btn-outline:hover, 
-.btn-outline:active {
+.btn-outline:active,
+.btn-outline:focus {
     background-color: var(--accent) !important;
     border-color: var(--accent) !important;
     color: var(--white) !important;
     transform: translateY(-2px);
+    outline: none;
 }
 
 /* 文字連結按鈕 (Read More) */
@@ -97,9 +103,11 @@ h1, h2, h3, h4 {
     font-size: 13px; font-weight: 700; text-transform: uppercase;
     color: var(--primary-dark); display: inline-flex; align-items: center; gap: 5px; cursor: pointer;
 }
+/* 修正：加入 :focus */
 .read-more-btn:hover, 
-.read-more-btn:active { 
-    color: var(--accent) !important; gap: 8px; 
+.read-more-btn:active,
+.read-more-btn:focus { 
+    color: var(--accent) !important; gap: 8px; outline: none;
 }
 
 /* 區塊標題 */
@@ -131,18 +139,21 @@ h1, h2, h3, h4 {
 #nav-menu a:hover::after, #nav-menu a:active::after, #nav-menu a.active::after { width: 100%; }
 #nav-menu a:hover, #nav-menu a:active, #nav-menu a.active { color: var(--accent); }
 
-/* 右上角 Connect 按鈕 (原本就正確，保持 !important) */
+/* 右上角 Connect 按鈕 */
 .nav-btn-highlight {
     padding: 8px 24px !important;
     border: 1px solid var(--primary-dark) !important;
     border-radius: var(--radius) !important;
     transition: all 0.3s ease !important;
 }
+/* 修正：加入 :focus 保持一致性 */
 .nav-btn-highlight:hover, 
-.nav-btn-highlight:active {
+.nav-btn-highlight:active,
+.nav-btn-highlight:focus {
     background: var(--accent) !important;
     border-color: var(--accent) !important;
     color: var(--white) !important;
+    outline: none;
 }
 .nav-btn-highlight::after { display: none !important; }
 
