@@ -1,291 +1,259 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insights | DoubleU-Tech Advisory</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    
-    <style>
-        /* --- 頁面專屬 CSS --- */
-        :root {
-             --primary-dark: #0f2332;
-             --accent: #eb611b;
-             --grey-light: #f9f9f9;
-             --text-main: #333333;
-          --white: #ffffff;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insights | DoubleU-Tech Advisory</title>
 
-        .news-slider-wrapper {
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px 0;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 
-        .news-grid {
-            display: flex;
-            gap: 30px;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            padding: 20px 10px;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-        }
-        .news-grid::-webkit-scrollbar { display: none; }
+<style>
+:root {
+    --primary-dark: #0f2332;
+    --accent: #eb611b;
+    --grey-light: #f9f9f9;
+    --text-main: #333;
+    --white: #fff;
+}
 
-        /* 卡片設計 */
-        .news-card {
-            min-width: 350px;
-            background: #fff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid rgba(0,0,0,0.03);
-        }
+/* ======================
+   DESKTOP / DEFAULT
+====================== */
 
-        .news-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
+.news-slider-wrapper {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-        /* 圖片區域 */
-        .news-image {
-            height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-family: 'Playfair Display', serif;
-            font-size: 24px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-align: center;
-            padding: 20px;
-            background-size: cover;
-            position: relative;
-        }
-        /* 移除偽元素遮罩，讓純色背景更鮮明，若需要遮罩可保留 */
-        .news-image::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.1);
-        }
-        .news-image span { position: relative; z-index: 2; }
+.news-grid {
+    display: flex;
+    gap: 30px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 20px 10px;
+    scrollbar-width: none;
+}
+.news-grid::-webkit-scrollbar { display: none; }
 
-        /* 內容區域 */
-        .news-content {
-            padding: 30px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
+.news-card {
+    min-width: 350px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,.05);
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    transition: .3s;
+}
 
-        .news-date {
-            color: var(--accent);
-            font-weight: 700;
-            font-size: 12px;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-            display: block;
-        }
+.news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,.1);
+}
 
-        .news-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 22px;
-            line-height: 1.3;
-            margin-bottom: 15px;
-            color: var(--primary-dark);
-        }
+.news-image {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    color: #fff;
+    text-align: center;
+    position: relative;
+}
 
-        .news-desc {
-            font-size: 14px;
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            flex-grow: 1;
-        }
+.news-image::after {
+    content:'';
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.12);
+}
 
-        .read-more {
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--primary-dark);
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            margin-top: auto;
-        }
-        .news-card:hover .read-more { color: var(--accent); }
+.news-image span {
+    position: relative;
+    z-index: 2;
+}
 
-        /* --- "Coming Soon" 特別樣式 --- */
-        .card-coming-soon {
-            background-color: #f8f9fa;
-            border: 2px dashed #ccc;
-            box-shadow: none;
-            cursor: default;
-        }
-        .card-coming-soon:hover {
-            transform: none;
-            box-shadow: none;
-            border-color: var(--accent);
-        }
-        .card-coming-soon .news-image {
-            background: #eee;
-            color: #aaa;
-        }
-        .card-coming-soon .news-title { color: #888; }
-        .card-coming-soon .news-desc { color: #999; }
+.news-content {
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
 
-        /* 左右按鈕 */
-        .slide-btn {
-            width: 50px; height: 50px;
-            background: #fff;
-            border: 1px solid #eee;
-            border-radius: 50%;
-            cursor: pointer;
-            position: absolute;
-            z-index: 20;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            top: 50%;
-            transform: translateY(-50%);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: 0.3s;
-            font-size: 18px;
-            color: var(--primary-dark);
-        }
-        .slide-btn:hover {
-            background: var(--primary-dark);
-            color: #fff;
-        }
-        .prev-btn { left: -25px; }
-        .next-btn { right: -25px; }
+.news-date {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--accent);
+    margin-bottom: 10px;
+}
 
-        @media (max-width: 768px) {
-            .news-card { min-width: 85vw; }
-            .prev-btn, .next-btn { display: none; }
-        }
-    </style>
+.news-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--primary-dark);
+    margin-bottom: 12px;
+}
+
+.news-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #666;
+    flex-grow: 1;
+}
+
+.read-more {
+    margin-top: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--primary-dark);
+}
+.news-card:hover .read-more { color: var(--accent); }
+
+/* Coming soon */
+.card-coming-soon {
+    background: #f8f9fa;
+    border: 2px dashed #ccc;
+    box-shadow: none;
+    cursor: default;
+}
+.card-coming-soon:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* Slider buttons */
+.slide-btn {
+    width: 48px;
+    height: 48px;
+    background: #fff;
+    border-radius: 50%;
+    border: 1px solid #eee;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--primary-dark);
+    box-shadow: 0 5px 15px rgba(0,0,0,.1);
+}
+.slide-btn:hover {
+    background: var(--primary-dark);
+    color: #fff;
+}
+.prev-btn { left: -25px; }
+.next-btn { right: -25px; }
+
+/* ======================
+   MOBILE OPTIMIZATION
+====================== */
+@media (max-width: 768px) {
+
+    .news-slider-wrapper {
+        padding: 0;
+    }
+
+    /* 👉 改成直向閱讀 */
+    .news-grid {
+        flex-direction: column;
+        overflow-x: hidden;
+        padding: 0;
+        gap: 22px;
+    }
+
+    .news-card {
+        min-width: 100%;
+        border-radius: 14px;
+    }
+
+    .news-image {
+        height: 180px;
+        font-size: 20px;
+    }
+
+    .news-title {
+        font-size: 20px;
+    }
+
+    .news-desc {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+    .read-more {
+        margin-top: 16px;
+        padding: 10px 14px;
+        border: 1px solid var(--primary-dark);
+        border-radius: 6px;
+        width: fit-content;
+        font-size: 12px;
+    }
+
+    .slide-btn {
+        display: none;
+    }
+}
+</style>
 </head>
+
 <body>
 
 <header class="navbar">
-    <div class="container nav-inner">
-        <div class="logo"><a href="index.html"><img src="assets/images/DoubleU-logotype-24.png" alt="DoubleU Tech"></a></div>
-        <div class="menu-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></div>
-        <nav id="nav-menu">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="insights.html" style="color:var(--accent)">Insights</a></li>
-                <li><a href="about.html">About US</a></li>
-                <li><a href="index.html#contact" class="nav-btn" onclick="toggleMenu()">Connect</a></li>
-            </ul>
-        </nav>
+<div class="container nav-inner">
+    <div class="logo">
+        <a href="index.html">
+            <img src="assets/images/DoubleU-logotype-24.png" alt="DoubleU Tech">
+        </a>
     </div>
+    <div class="menu-toggle" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+    </div>
+    <nav id="nav-menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="insights.html" style="color:var(--accent)">Insights</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="index.html#contact" class="nav-btn">Connect</a></li>
+        </ul>
+    </nav>
+</div>
 </header>
 
-<section class="section" style="background:var(--grey-light); padding:120px 0; min-height: 80vh;">
-    <div class="container">
-        <p style="color:var(--accent); text-align:center; font-weight:700; letter-spacing:3px;">LATEST NEWS</p>
-        <h2 style="text-align:center; font-family:'Playfair Display'; font-size:42px; margin-bottom:50px; color:var(--primary-dark);">Impact & Insights</h2>
-        
-        <div class="news-slider-wrapper">
-            <button class="slide-btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
-            <button class="slide-btn next-btn" onclick="moveSlide(1)">&#10095;</button>
+<section class="section" style="background:var(--grey-light); padding:120px 0;">
+<div class="container">
 
-            <div class="news-grid" id="newsGrid">
+<p style="text-align:center; color:var(--accent); font-weight:700; letter-spacing:3px;">
+LATEST NEWS
+</p>
 
-                <a href="https://www.alixlabs.com/2025/04/10/alixlabs-to-demonstrate-aps-on-300-millimeter-umc-wafers-at-the-2025-cmc-conference/" target="_blank" class="news-card">
-                    <div class="news-image" style="background: #cc272f;">
-                        <span>ALIXLABS & UMC</span>
-                    </div>
-                    <div class="news-content">
-                        <span class="news-date">APRIL 2025</span>
-                        <h4 class="news-title">AlixLabs to Demonstrate APS™ on 300mm UMC Wafers</h4>
-                        <p class="news-desc">Atomic Layer Etching (ALE) demonstration on UMC wafers at the 2025 CMC Conference.</p>
-                        <div class="read-more">Read Article &rarr;</div>
-                    </div>
-                </a>
-                
-                <a href="https://kulr.ai/kulr-awarded-6-7m-by-texas-space-commission-to-advance-cold-temperature-kulr-one-space-battery-platform/" target="_blank" class="news-card">
-                    <div class="news-image" style="background: linear-gradient(135deg, #1073a4, #E0C7F0);">
-                        <span>KULR Awarded $6.7M</span>
-                    </div>
-                    <div class="news-content">
-                        <span class="news-date">APRIL 2025</span>
-                        <h4 class="news-title">KULR Awarded $6.7M by Texas Space Commission</h4>
-                        <p class="news-desc">Funding to advance the cold temperature KULR ONE space battery platform.</p>
-                        <div class="read-more">Read Article &rarr;</div>
-                    </div>
-                </a>
-                
-                <a href="https://beammwave.com/press-release/beammwave-and-alpha-networks-enters-into-an-agreement-to-do-a-joint-pre-study-for-the-next-generation-fixed-wireless-access-products/" target="_blank" class="news-card">
-                    <div class="news-image" style="background: #812b77;">
-                        <span>BEAMMWAVE & ALPHA</span>
-                    </div>
-                    <div class="news-content">
-                        <span class="news-date">NOV 2024</span> 
-                        <h4 class="news-title">Beammwave and Alpha Networks Agreement</h4>
-                        <p class="news-desc">Joint pre-study for next-generation Fixed Wireless Access (FWA) products.</p>
-                        <div class="read-more">Read Article &rarr;</div>
-                    </div>
-                </a>
+<h2 style="text-align:center; font-family:'Playfair Display'; font-size:42px; margin-bottom:50px; color:var(--primary-dark);">
+Impact & Insights
+</h2>
 
-                <a href="https://gov.texas.gov/news/post/governor-abbott-announces-state-of-texas-taiwan-office-in-taipei" target="_blank" class="news-card">
-                    <div class="news-image" style="background: linear-gradient(135deg, #002d62, #0056b3);">
-                        <span>TEXAS OFFICE</span>
-                    </div>
-                    <div class="news-content">
-                        <span class="news-date">JULY 2024</span>
-                        <h4 class="news-title">Governor Abbott Announces Texas Office in Taipei</h4>
-                        <p class="news-desc">Official press release on the new permanent office in Taiwan to strengthen economic ties.</p>
-                        <div class="read-more">Read Article &rarr;</div>
-                    </div>
-                </a>
+<div class="news-slider-wrapper">
+<button class="slide-btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+<button class="slide-btn next-btn" onclick="moveSlide(1)">&#10095;</button>
 
-                <div class="news-card card-coming-soon">
-                    <div class="news-image">
-                        <span>EXPANSION</span>
-                    </div>
-                    <div class="news-content">
-                        <span class="news-date">IN THE PIPELINE</span>
-                        <h4 class="news-title">Future Strategic Initiatives</h4>
-                        <p class="news-desc">We are actively cultivating new partnerships across the semiconductor and IoT value chains. Stay tuned for upcoming announcements on market expansion.</p>
-                    </div>
-                </div>
+<div class="news-grid" id="newsGrid">
 
-            </div>
-        </div>
-    </div>
-</section>
+<a href="https://www.alixlabs.com/2025/04/10/alixlabs-to-demonstrate-aps-on-300-millimeter-umc-wafers-at-the-2025-cmc-conference/" target="_blank" class="news-card">
+<div class="news-image" style="background:#cc272f;">
+<span>ALIXLABS & UMC</span>
+</div>
+<div class="news-content">
+<span class="news-date">APRIL 2025</span>
+<h4 class="news-title">AlixLabs to Demonstrate APS™ on 300mm UMC Wafers</h4>
+<p class="news-desc">Atomic Layer Etching demonstration on UMC wafers at the 2025 CMC Conference.</p>
+<div class="read-more">Read Article →</div>
+</div>
+</a>
 
-<footer class="footer">
-    <div class="container">
-        <div class="footer-logo"><img src="assets/images/DoubleU-logotype-27.png" alt="DoubleU Tech"></div>
-        <p>&copy; 2025 DoubleU-Tech Advisory. All Rights Reserved.</p>
-    </div>
-</footer>
-
-<script>
-    function moveSlide(direction) {
-        const grid = document.getElementById('newsGrid');
-        const cardWidth = 350 + 30; // 350px card width + 30px gap
-        grid.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
-    }
-    function toggleMenu() {
-        document.getElementById('nav-menu').classList.toggle('active');
-    }
-</script>
-
-</body>
-</html>
+<a href="https://kulr.ai/kulr-awarded-6-7m-by-texas-space-commission-to-advance-cold-temperature-kulr-one-space-battery-platform/" target="_blank" clas_
