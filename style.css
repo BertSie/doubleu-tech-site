@@ -1,6 +1,6 @@
 /* =========================================
    DoubleU-Tech 最終修復版樣式表 (Final Fixed)
-   修正項目：Connect按鈕變色、手機排版、Footer圖片
+   狀態：已清洗特殊空白字元，修復手機版與Hover
    ========================================= */
 
 /* --- 1. 變數與全站重設 --- */
@@ -72,7 +72,7 @@ h1, h2, h3, h4 {
     transform: translateY(-2px);
 }
 
-/* 線框按鈕 (深藍框 -> 橘底) - 用於 "Meet The Team" */
+/* 線框按鈕 (深藍框 -> 橘底) - 用於 Meet The Team */
 .btn-outline {
     background-color: transparent;
     color: var(--primary-dark);
@@ -121,7 +121,7 @@ h1, h2, h3, h4 {
 #nav-menu a:hover::after, #nav-menu a.active::after { width: 100%; }
 #nav-menu a:hover, #nav-menu a.active { color: var(--accent); }
 
-/* --- [關鍵修正] 右上角 Connect 按鈕 --- */
+/* 右上角 Connect 按鈕 */
 .nav-btn-highlight {
     padding: 8px 24px !important;
     border: 1px solid var(--primary-dark) !important;
