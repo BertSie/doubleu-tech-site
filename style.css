@@ -1,5 +1,6 @@
 /* =========================================
    DoubleU-Tech 完整樣式表 (Complete Style)
+   更新日期: 2026-01-04
    ========================================= */
 
 /* --- 1. 變數與全站重設 (Variables & Reset) --- */
@@ -312,9 +313,22 @@ h1, h2, h3, h4 {
 
 @keyframes fadeIn { from {opacity: 0; transform: translateY(20px);} to {opacity: 1; transform: translateY(0);} }
 
-/* --- 9. Footer --- */
-.footer { background: var(--primary-dark); color: rgba(255,255,255,0.6); padding: 80px 0 40px; text-align: center; }
-.footer-logo img { filter: brightness(0) invert(1); margin: 0 auto 30px; opacity: 0.9; }
+/* --- 9. Footer (修復 Logo 大小問題) --- */
+.footer { 
+    background: var(--primary-dark); 
+    color: rgba(255,255,255,0.6); 
+    padding: 80px 0 40px; 
+    text-align: center; 
+}
+
+.footer-logo img { 
+    height: 40px;  /* 關鍵修復：限制高度 */
+    width: auto;   /* 保持比例 */
+    filter: brightness(0) invert(1); 
+    margin: 0 auto 30px; 
+    opacity: 0.9; 
+}
+
 .footer p { font-size: 14px; }
 
 /* --- 10. RWD 響應式設計 --- */
