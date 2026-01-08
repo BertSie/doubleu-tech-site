@@ -133,37 +133,8 @@
             <h2 class="main-title">Making Impact!</h2>
         </div>
 
-        <div class="insights-scroller">
-            <a href="https://www.alixlabs.com/" target="_blank" class="insight-card">
-                <div class="insight-img" style="background:#cc272f;"><span>ALIXLABS & UMC</span></div>
-                <div class="insight-body">
-                    <span class="insight-date">APRIL 2025</span>
-                    <h4 class="insight-title">AlixLabs to Demonstrate APS™ on 300mm UMC Wafers</h4>
-                    <p class="insight-desc">Demonstration at the 2025 CMC Conference.</p>
-                    <span class="read-more-btn">Read Article &rarr;</span>
-                </div>
-            </a>
-            
-            <a href="https://kulr.ai/" target="_blank" class="insight-card">
-                <div class="insight-img" style="background:linear-gradient(135deg,#1073a4,#E0C7F0);"><span>KULR Awarded $6.7M</span></div>
-                <div class="insight-body">
-                    <span class="insight-date">APRIL 2025</span>
-                    <h4 class="insight-title">KULR Awarded $6.7M by Texas Space Commission</h4>
-                    <p class="insight-desc">Funding to advance the cold temperature battery platform.</p>
-                    <span class="read-more-btn">Read Article &rarr;</span>
-                </div>
-            </a>
-            
-            <a href="https://beammwave.com/" target="_blank" class="insight-card">
-                <div class="insight-img" style="background:#812b77;"><span>BEAMMWAVE & ALPHA</span></div>
-                <div class="insight-body">
-                    <span class="insight-date">NOV 2024</span>
-                    <h4 class="insight-title">Beammwave and Alpha Networks Agreement</h4>
-                    <p class="insight-desc">Joint pre-study for next-generation Fixed Wireless Access.</p>
-                    <span class="read-more-btn">Read Article &rarr;</span>
-                </div>
-            </a>
-        </div>
+        <div class="insights-scroller" id="home-news-container">
+            </div>
         
         <div style="text-align: center; margin-top: 40px;">
             <a href="insights.html" class="btn btn-outline">View All Insights</a>
@@ -231,6 +202,8 @@
     </div>
 </footer>
 
+<script src="news-data.js"></script>
+
 <script>
     function toggleMenu() {
         document.getElementById('nav-menu').classList.toggle('active');
@@ -246,25 +219,26 @@
             });
         });
 
-        // 頁面載入時生成驗證碼
+        // 1. 生成驗證碼
         generateCaptcha();
-        // 點擊圖片也可以重新整理
         document.getElementById('captchaCanvas').addEventListener('click', generateCaptcha);
+
+        // 2. 載入新聞 (首頁只顯示前 3 則)
+        renderNews('home-news-container', 3);
     });
 
-    // --- 驗證碼邏輯開始 ---
+    // --- 驗證碼邏輯 ---
     let currentCaptchaCode = "";
 
     function generateCaptcha() {
         const canvas = document.getElementById('captchaCanvas');
+        if (!canvas) return; // 保護機制
         const ctx = canvas.getContext('2d');
         
-        // 清除畫布
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = "#f0f0f0";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        // 生成隨機文字 (移除容易混淆的字元如 I, l, 1, O, 0)
         const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
         let code = "";
         for (let i = 0; i < 5; i++) {
@@ -272,7 +246,6 @@
         }
         currentCaptchaCode = code;
 
-        // 加入干擾線
         for (let i = 0; i < 7; i++) {
             ctx.strokeStyle = getRandomColor();
             ctx.beginPath();
@@ -281,7 +254,6 @@
             ctx.stroke();
         }
 
-        // 加入干擾點
         for (let i = 0; i < 30; i++) {
             ctx.fillStyle = getRandomColor();
             ctx.beginPath();
@@ -289,14 +261,11 @@
             ctx.fill();
         }
 
-        // 繪製文字
         ctx.font = "bold 24px Arial";
         for (let i = 0; i < code.length; i++) {
             ctx.save();
-            // 移動到每個字的位置
             let x = 15 + i * 20;
             let y = 28;
-            // 隨機旋轉角度
             let angle = (Math.random() - 0.5) * 0.4; 
             ctx.translate(x, y);
             ctx.rotate(angle);
@@ -314,21 +283,17 @@
         }
         return color;
     }
-    // --- 驗證碼邏輯結束 ---
 
     function handleFormSubmit() {
-        // 1. 檢查驗證碼
         const userInput = document.getElementById('captchaInput').value.toUpperCase();
         
         if (userInput !== currentCaptchaCode) {
             alert("Verification code is incorrect. Please try again.");
-            // 清空輸入框並重新生成
             document.getElementById('captchaInput').value = "";
             generateCaptcha();
-            return false; // 阻止表單送出
+            return false;
         }
 
-        // 2. 驗證碼正確，執行原本的送出邏輯
         var btn = document.querySelector('button[type="submit"]');
         var originalText = btn.innerText;
         btn.innerText = "Sending...";
@@ -338,11 +303,9 @@
         setTimeout(function() {
             alert('Thank you! Your message has been sent successfully.');
             document.getElementById('contactForm').reset();
-            // 重置按鈕
             btn.innerText = originalText;
             btn.disabled = false;
             btn.style.opacity = "1";
-            // 重新生成驗證碼，防止重複使用
             generateCaptcha(); 
         }, 1500);
 
