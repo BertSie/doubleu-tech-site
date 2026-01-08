@@ -12,15 +12,15 @@
 
 <header class="navbar">
     <div class="container nav-inner">
-        <div class="logo"><a href="index.html"><img src="assets/images/DoubleU-logotype-24.png" alt="DoubleU Tech Logo"></a></div>
+        <div class="logo"><a href="./"><img src="assets/images/DoubleU-logotype-24.png" alt="DoubleU Tech Logo"></a></div>
         <div class="menu-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></div>
         <nav id="nav-menu">
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="./">Home</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="insights.html" class="active">Insights</a></li>
                 <li><a href="about.html">About US</a></li>
-                <li><a href="index.html#contact" class="nav-btn-highlight">Connect</a></li>
+                <li><a href="./#contact" class="nav-btn-highlight">Connect</a></li>
             </ul>
         </nav>
     </div>
@@ -36,48 +36,9 @@
 <section style="padding: 80px 0;">
     <div class="container">
         
-        <div class="insights-grid-wrap">
-            
-            <a href="https://www.alixlabs.com/2025/04/10/alixlabs-to-demonstrate-aps-on-300-millimeter-umc-wafers-at-the-2025-cmc-conference/" target="_blank" class="insight-card">
-                <div class="insight-img" style="background:#cc272f;"><span>ALIXLABS & UMC</span></div>
-                <div class="insight-body">
-                    <span class="insight-date">APRIL 2025</span>
-                    <h4 class="insight-title">AlixLabs to Demonstrate APS™ on 300mm UMC Wafers</h4>
-                    <p class="insight-desc">Atomic Layer Etching demonstration on UMC wafers at the 2025 CMC Conference.</p>
-                    <span class="read-more-btn">Read Article &rarr;</span>
-                </div>
-            </a>
-
-            <a href="https://kulr.ai/kulr-awarded-6-7m-by-texas-space-commission-to-advance-cold-temperature-kulr-one-space-battery-platform/" target="_blank" class="insight-card">
-                <div class="insight-img" style="background:linear-gradient(135deg,#1073a4,#E0C7F0);"><span>KULR Awarded $6.7M</span></div>
-                <div class="insight-body">
-                    <span class="insight-date">APRIL 2025</span>
-                    <h4 class="insight-title">KULR Awarded $6.7M by Texas Space Commission</h4>
-                    <p class="insight-desc">Funding to advance the cold temperature KULR ONE space battery platform.</p>
-                    <span class="read-more-btn">Read Article &rarr;</span>
-                </div>
-            </a>
-
-            <a href="https://beammwave.com/press-release/beammwave-and-alpha-networks-enters-into-an-agreement-to-do-a-joint-pre-study-for-the-next-generation-fixed-wireless-access-products/" target="_blank" class="insight-card">
-                <div class="insight-img" style="background:#812b77;"><span>BEAMMWAVE & ALPHA</span></div>
-                <div class="insight-body">
-                    <span class="insight-date">NOV 2024</span>
-                    <h4 class="insight-title">Beammwave and Alpha Networks Agreement</h4>
-                    <p class="insight-desc">Joint pre-study for next-generation Fixed Wireless Access products.</p>
-                    <span class="read-more-btn">Read Article &rarr;</span>
-                </div>
-            </a>
-
-            <div class="insight-card" style="cursor: default; opacity: 0.8;">
-                <div class="insight-img" style="background:#eee; color:#999;"><span>COMING SOON</span></div>
-                <div class="insight-body">
-                    <span class="insight-date">IN THE PIPELINE</span>
-                    <h4 class="insight-title">Future Strategic Initiatives</h4>
-                    <p class="insight-desc">We are actively cultivating new partnerships across semiconductor and IoT value chains.</p>
-                </div>
+        <div class="insights-grid-wrap" id="page-news-container">
             </div>
 
-        </div>
     </div>
 </section>
 
@@ -88,8 +49,15 @@
     </div>
 </footer>
 
+<script src="news-data.js"></script>
+
 <script>
     function toggleMenu() { document.getElementById('nav-menu').classList.toggle('active'); }
+
+    // 載入新聞 (不傳入 limit 參數，代表顯示全部)
+    document.addEventListener("DOMContentLoaded", function() {
+        renderNews('page-news-container'); 
+    });
 </script>
 
 </body>
