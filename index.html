@@ -12,6 +12,32 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css"> 
+    
+    <style>
+        .captcha-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 5px;
+        }
+        canvas#captchaCanvas {
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .refresh-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            color: var(--text-light, #666);
+            padding: 0 5px;
+        }
+        .refresh-btn:hover {
+            color: #000;
+        }
+    </style>
 </head>
 <body>
 
@@ -179,6 +205,16 @@
                 <label for="message">Message</label>
                 <textarea id="message" name="entry.512682809" placeholder="How can we help your business?" required></textarea>
             </div>
+
+            <div class="form-group form-full">
+                <label for="captchaInput">Verification Code</label>
+                <input type="text" id="captchaInput" placeholder="Enter the code shown below" required autocomplete="off">
+                <div class="captcha-wrapper">
+                    <canvas id="captchaCanvas" width="120" height="40" title="Click to refresh"></canvas>
+                    <button type="button" class="refresh-btn" onclick="generateCaptcha()" title="Refresh Code">&#x21bb;</button>
+                </div>
+            </div>
+
             <div class="form-full" style="margin-top: 20px;">
                 <button type="submit" class="btn btn-primary" style="width:100%">Submit Inquiry</button>
             </div>
@@ -200,7 +236,6 @@
         document.getElementById('nav-menu').classList.toggle('active');
     }
 
-    // 新增：點擊選單內的連結後，自動關閉選單
     document.addEventListener("DOMContentLoaded", function() {
         const menuLinks = document.querySelectorAll('#nav-menu a');
         const navMenu = document.getElementById('nav-menu');
@@ -210,9 +245,90 @@
                 navMenu.classList.remove('active');
             });
         });
+
+        // 頁面載入時生成驗證碼
+        generateCaptcha();
+        // 點擊圖片也可以重新整理
+        document.getElementById('captchaCanvas').addEventListener('click', generateCaptcha);
     });
 
+    // --- 驗證碼邏輯開始 ---
+    let currentCaptchaCode = "";
+
+    function generateCaptcha() {
+        const canvas = document.getElementById('captchaCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // 清除畫布
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "#f0f0f0";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // 生成隨機文字 (移除容易混淆的字元如 I, l, 1, O, 0)
+        const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+        let code = "";
+        for (let i = 0; i < 5; i++) {
+            code += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        currentCaptchaCode = code;
+
+        // 加入干擾線
+        for (let i = 0; i < 7; i++) {
+            ctx.strokeStyle = getRandomColor();
+            ctx.beginPath();
+            ctx.moveTo(Math.random() * canvas.width, Math.random() * canvas.height);
+            ctx.lineTo(Math.random() * canvas.width, Math.random() * canvas.height);
+            ctx.stroke();
+        }
+
+        // 加入干擾點
+        for (let i = 0; i < 30; i++) {
+            ctx.fillStyle = getRandomColor();
+            ctx.beginPath();
+            ctx.arc(Math.random() * canvas.width, Math.random() * canvas.height, 1, 0, 2 * Math.PI);
+            ctx.fill();
+        }
+
+        // 繪製文字
+        ctx.font = "bold 24px Arial";
+        for (let i = 0; i < code.length; i++) {
+            ctx.save();
+            // 移動到每個字的位置
+            let x = 15 + i * 20;
+            let y = 28;
+            // 隨機旋轉角度
+            let angle = (Math.random() - 0.5) * 0.4; 
+            ctx.translate(x, y);
+            ctx.rotate(angle);
+            ctx.fillStyle = "#333";
+            ctx.fillText(code[i], 0, 0);
+            ctx.restore();
+        }
+    }
+
+    function getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+    // --- 驗證碼邏輯結束 ---
+
     function handleFormSubmit() {
+        // 1. 檢查驗證碼
+        const userInput = document.getElementById('captchaInput').value.toUpperCase();
+        
+        if (userInput !== currentCaptchaCode) {
+            alert("Verification code is incorrect. Please try again.");
+            // 清空輸入框並重新生成
+            document.getElementById('captchaInput').value = "";
+            generateCaptcha();
+            return false; // 阻止表單送出
+        }
+
+        // 2. 驗證碼正確，執行原本的送出邏輯
         var btn = document.querySelector('button[type="submit"]');
         var originalText = btn.innerText;
         btn.innerText = "Sending...";
@@ -222,9 +338,12 @@
         setTimeout(function() {
             alert('Thank you! Your message has been sent successfully.');
             document.getElementById('contactForm').reset();
+            // 重置按鈕
             btn.innerText = originalText;
             btn.disabled = false;
             btn.style.opacity = "1";
+            // 重新生成驗證碼，防止重複使用
+            generateCaptcha(); 
         }, 1500);
 
         return true; 
