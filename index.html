@@ -186,7 +186,10 @@
                 <label for="message">Message</label>
                 <textarea id="message" name="entry.512682809" placeholder="How can we help your business?" required></textarea>
             </div>
-
+            <div style="display:none;">
+               <label for="honeypot">Leave this field empty</label>
+               <input type="text" id="honeypot" name="honeypot" tabindex="-1" autocomplete="off">
+            </div>
             <div class="form-group form-full">
                 <label for="captchaInput">Verification Code</label>
                 <input type="text" id="captchaInput" placeholder="Enter the code shown below" required autocomplete="off">
