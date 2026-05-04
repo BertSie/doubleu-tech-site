@@ -167,20 +167,33 @@ h1, h2, h3, h4 {
 .hero-btns { display: flex; justify-content: center; gap: 20px; }
 
 /* --- 5. 服務卡片 --- */
-.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+/* --- 專業顧問版 Service Card 優化 --- */
 .service-preview-card {
-    background: var(--white); padding: 40px 30px;
-    border-radius: 8px; border: 1px solid #eee; transition: 0.3s;
+    background: var(--white);
+    padding: 50px 40px; /* 增加留白，顯得更大氣 */
+    border-radius: 0;   /* 改為方角，專業感較強 */
+    border: none;
+    border-top: 1px solid #eee; /* 改為極細頂線 */
+    transition: all 0.4s ease;
+    text-align: left; /* 改為靠左對齊，商業氣息較重 */
 }
-.service-preview-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
 
-.service-detailed-card {
-    background: var(--white); border-radius: 8px; margin-bottom: 40px;
-    box-shadow: 0 10px 40px -10px rgba(0,0,0,0.08); display: flex; overflow: hidden;
-    border-left: 5px solid var(--accent);
+.service-preview-card:hover {
+    border-top: 4px solid var(--accent); /* 懸停時頂線變粗變橘色 */
+    background: var(--grey-bg);
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
 }
-.card-icon-col { flex: 0 0 100px; display: flex; justify-content: center; padding-top: 50px; }
-.card-content { flex: 1; padding: 40px; }
+
+.service-preview-card h3 {
+    font-size: 24px;
+    letter-spacing: -0.5px;
+}
+
+/* 拿掉原本醜醜的 SVG icon */
+.service-icon {
+    display: none;
+}
 
 /* --- 6. 新聞/洞察視覺優化 --- */
 .insights-grid-wrap {
