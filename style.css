@@ -182,31 +182,59 @@ h1, h2, h3, h4 {
 .card-icon-col { flex: 0 0 100px; display: flex; justify-content: center; padding-top: 50px; }
 .card-content { flex: 1; padding: 40px; }
 
-/* --- 6. 新聞/洞察 (核心優化：手機左右滑動) --- */
-.insights-scroller {
-    display: flex; gap: 30px; overflow-x: auto; padding: 20px 5px;
-    scroll-behavior: smooth; scrollbar-width: none;
-}
-.insights-scroller::-webkit-scrollbar { display: none; }
-
+/* --- 6. 新聞/洞察 (修正版) --- */
+/* 桌機版：維持網格排列 */
 .insights-grid-wrap {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
 }
 
+/* 讓卡片在桌機版不要被 flex 壓縮 */
 .insight-card {
-    background: var(--white); border-radius: 8px; overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s;
-    display: flex; flex-direction: column; border: 1px solid #eee;
+    background: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #eee;
+    width: 100%; /* 確保撐滿網格 */
 }
-.insight-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
 
-.insight-img {
-    height: 180px; background: #ddd; display: flex; align-items: center; justify-content: center;
-    color: var(--white); font-weight: 700; font-family: 'Playfair Display'; font-size: 20px;
+/* 視覺質感優化 */
+.modal {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
-.insight-body { padding: 25px; flex: 1; display: flex; flex-direction: column; }
-.insight-title { font-size: 20px; margin-bottom: 10px; line-height: 1.4; }
-.insight-desc { font-size: 14px; color: var(--text-light); margin-bottom: 20px; flex-grow: 1; }
+
+/* --- 10. RWD Mobile Fixes (新增手機滑動邏輯) --- */
+@media (max-width: 768px) {
+    /* 在手機版將 Grid 轉為 Flex 以實現左右滑動 */
+    .insights-scroller {
+        display: flex !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory;
+        gap: 20px;
+        padding: 10px 20px 30px;
+        margin-left: -20px;
+        margin-right: -20px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; /* 隱藏捲動條 */
+    }
+    
+    .insights-scroller::-webkit-scrollbar {
+        display: none;
+    }
+
+    .insights-scroller .insight-card {
+        min-width: 85% !important; /* 露出下一張卡片 */
+        scroll-snap-align: center;
+        flex-shrink: 0;
+    }
+}
 
 /* --- 7. 聯絡表單 --- */
 .contact-form-styled {
