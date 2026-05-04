@@ -182,32 +182,67 @@ h1, h2, h3, h4 {
 .card-icon-col { flex: 0 0 100px; display: flex; justify-content: center; padding-top: 50px; }
 .card-content { flex: 1; padding: 40px; }
 
-/* --- 6. 新聞/洞察 (修正版) --- */
-/* 桌機版：維持網格排列 */
+/* --- 6. 新聞/洞察視覺優化 --- */
 .insights-grid-wrap {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 30px;
     margin-top: 40px;
+    align-items: stretch; /* 確保所有卡片等高 */
 }
 
-/* 讓卡片在桌機版不要被 flex 壓縮 */
 .insight-card {
     background: var(--white);
-    border-radius: 8px;
+    border-radius: 12px; /* 圓角稍微加大更現代 */
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    transition: 0.3s;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* 垂直佈局 */
     border: 1px solid #eee;
-    width: 100%; /* 確保撐滿網格 */
+    height: 100%; /* 強制撐滿容器 */
+    text-decoration: none;
 }
 
-/* 視覺質感優化 */
-.modal {
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+.insight-img {
+    height: 140px; /* 縮小圖片高度，讓比例更好看 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff !important; /* ★ 強制文字為白色，解決看不清楚的問題 */
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 1px;
+    text-align: center;
+    padding: 20px;
+}
+
+.insight-body {
+    padding: 25px;
+    flex: 1; /* ★ 讓內文區域自動撐開 */
+    display: flex;
+    flex-direction: column;
+}
+
+.insight-title {
+    font-size: 19px;
+    margin-bottom: 12px;
+    line-height: 1.4;
+    color: var(--primary-dark);
+}
+
+.insight-desc {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 25px;
+    flex-grow: 1; /* ★ 讓描述文字佔據剩餘空間，確保底部的 Read Article 對齊 */
+}
+
+.read-more-btn {
+    margin-top: auto; /* ★ 確保按鈕永遠靠在底部 */
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 13px;
 }
 
 /* --- 10. RWD Mobile Fixes (新增手機滑動邏輯) --- */
