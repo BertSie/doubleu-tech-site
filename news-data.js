@@ -1,6 +1,5 @@
 // news-data.js
 
-// --- 這裡是新聞資料設定區 (由新到舊排列) ---
 const newsData = [
     {
         title: "AOI Awarded $20.9M Texas Semiconductor Innovation Fund Grant",
@@ -8,7 +7,7 @@ const newsData = [
         desc: "Grant to advance semiconductor manufacturing in Sugar Land, Texas.",
         link: "https://investors.ao-inc.com/news-releases/news-release-details/aoi-awarded-209m-texas-semiconductor-innovation-fund-grant",
         imgText: "AOI & TEXAS GRANT",
-        imgStyle: "background: linear-gradient(135deg, #003366, #0066cc);", // 科技感藍色漸層
+        imgStyle: "background: linear-gradient(135deg, #003366, #0066cc);",
         isExternal: true
     },
     {
@@ -17,8 +16,8 @@ const newsData = [
         desc: "Demonstration at the 2025 CMC Conference.",
         link: "https://www.alixlabs.com/2025/04/10/alixlabs-to-demonstrate-aps-on-300-millimeter-umc-wafers-at-the-2025-cmc-conference/",
         imgText: "ALIXLABS & UMC",
-        imgStyle: "background:#cc272f;", 
-        isExternal: true 
+        imgStyle: "background:#cc272f;",
+        isExternal: true
     },
     {
         title: "KULR Awarded $6.7M by Texas Space Commission",
@@ -50,5 +49,32 @@ const newsData = [
     }
 ];
 
-// --- 這是產生 HTML 的程式邏輯 (不需要修改) ---
-// ... 保持原本檔案下方的 renderNews 函數內容不變 ...
+function renderNews(containerId, limit = null) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    let htmlContent = "";
+    // 如果有 limit (首頁)，過濾掉 isDisabled；如果是全部 (Insights 頁)，顯示全部
+    let displayData = limit ? newsData.filter(item => !item.isDisabled).slice(0, limit) : newsData;
+
+    displayData.forEach(item => {
+        const targetAttr = item.isExternal ? 'target="_blank"' : '';
+        const hrefAttr = item.isDisabled ? 'javascript:void(0)' : `href="${item.link}"`;
+        const tagType = item.isDisabled ? 'div' : 'a';
+        const btnText = item.isDisabled ? '' : '<span class="read-more-btn">Read Article &rarr;</span>';
+
+        htmlContent += `
+            <${tagType} ${hrefAttr} ${targetAttr} class="insight-card">
+                <div class="insight-img" style="${item.imgStyle}"><span>${item.imgText}</span></div>
+                <div class="insight-body">
+                    <span class="insight-date">${item.date}</span>
+                    <h3 class="insight-title">${item.title}</h3>
+                    <p class="insight-desc">${item.desc}</p>
+                    ${btnText}
+                </div>
+            </${tagType}>
+        `;
+    });
+
+    container.innerHTML = htmlContent;
+}
