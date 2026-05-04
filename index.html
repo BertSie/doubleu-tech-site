@@ -77,21 +77,47 @@
     </div>
 </section>
 
-<section style="padding: 80px 0;">
-    <div class="container" style="text-align: center; max-width: 800px;">
-        <span class="sub-title">Who We Are</span>
-        <h2 class="main-title" style="margin-bottom: 30px;">Your Strategic Partner in Tech</h2>
-        <p style="color: var(--text-light); margin-bottom: 40px;">
-            DoubleU-Tech Advisory was established to bridge the gap between complex technological innovations and practical business applications. With decades of experience in the semiconductor supply chain, we provide the insight needed to win.
-        </p>
-        <a href="about.html" class="read-more-btn">Read Our Story &rarr;</a>
+<section class="home-insights" style="background: var(--grey-bg); padding: 100px 0;">
+    <div class="container">
+        <div class="section-header">
+            <span class="sub-title">Impact & Track Record</span>
+            <h2 class="main-title">Making Headlines, Creating Value</h2>
+        </div>
+
+        <div class="insights-scroller" id="home-news-container">
+            </div>
+        
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="insights.html" class="btn btn-outline">View All Success Stories</a>
+        </div>
     </div>
 </section>
 
-<section style="padding: 100px 0; background: var(--white);">
+<section class="home-about" style="background: var(--white); padding: 120px 0;">
+    <div class="container" style="display: flex; align-items: center; gap: 60px; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 300px;">
+            <span class="sub-title">Who We Are</span>
+            <h2 class="main-title" style="margin-bottom: 25px; font-size: 42px;">Your Strategic Partner in Tech Expansion</h2>
+            <p style="color: var(--text-light); font-size: 18px; line-height: 1.8; margin-bottom: 30px;">
+                DoubleU-Tech Advisory was established to bridge the gap between complex technological innovations and practical business applications. With decades of experience in the semiconductor supply chain, we provide the localized intelligence needed to win.
+            </p>
+            <a href="about.html" class="read-more-btn" style="font-size: 14px;">Read Our Full Story &rarr;</a>
+        </div>
+        <div style="flex: 1; min-width: 300px;">
+            <div style="background: var(--grey-bg); padding: 40px; border-radius: 8px; border-left: 5px solid var(--accent);">
+                <p style="font-style: italic; font-size: 20px; color: var(--primary-dark); line-height: 1.6;">
+                    "We don't just advise; we execute growth alongside our partners."
+                </p>
+                <p style="margin-top: 20px; font-weight: 700; color: var(--accent);">— The DoubleU Leadership Team</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section style="padding: 100px 0; background: var(--grey-bg);">
     <div class="container">
         <div class="section-header">
-            <span class="sub-title">Expertise & Track Record</span>
+            <span class="sub-title">Expertise</span>
             <h2 class="main-title">Strategic Growth Solutions</h2>
         </div>
         
@@ -102,7 +128,7 @@
                 <p style="font-size: 14px; color: var(--text-light); margin-bottom: 20px;">
                     Helping deep-tech companies define roadmap and competitive positioning in the global IC supply chain.
                 </p>
-                <a href="insights.html" class="read-more-btn" style="font-size: 12px;">VIEW IMPACT CASE &rarr;</a>
+                <a href="services.html" class="read-more-btn" style="font-size: 12px;">EXPLORE SOLUTIONS &rarr;</a>
             </div>
 
             <div class="service-preview-card">
@@ -111,7 +137,7 @@
                 <p style="font-size: 14px; color: var(--text-light); margin-bottom: 20px;">
                     Elevating brand authority through strategic media placement and high-level industrial conferences.
                 </p>
-                <a href="insights.html" class="read-more-btn" style="font-size: 12px;">SUCCESS STORY &rarr;</a>
+                <a href="services.html" class="read-more-btn" style="font-size: 12px;">EXPLORE SOLUTIONS &rarr;</a>
             </div>
 
             <div class="service-preview-card">
@@ -120,29 +146,13 @@
                 <p style="font-size: 14px; color: var(--text-light); margin-bottom: 20px;">
                     Securing multi-million dollar grants and fostering strategic partnerships across US & Asia markets.
                 </p>
-                <a href="insights.html" class="read-more-btn" style="font-size: 12px;">GRANT ACHIEVEMENT &rarr;</a>
+                <a href="services.html" class="read-more-btn" style="font-size: 12px;">EXPLORE SOLUTIONS &rarr;</a>
             </div>
         </div>
     </div>
 </section>
 
-<section style="padding: 100px 0;">
-    <div class="container">
-        <div class="section-header">
-            <span class="sub-title">Latest Updates</span>
-            <h2 class="main-title">Making Impact!</h2>
-        </div>
-
-        <div class="insights-scroller" id="home-news-container">
-            </div>
-        
-        <div style="text-align: center; margin-top: 40px;">
-            <a href="insights.html" class="btn btn-outline">View All Insights</a>
-        </div>
-    </div>
-</section>
-
-<section id="contact" class="contact-section" style="background: var(--grey-bg);">
+<section id="contact" class="contact-section" style="background: var(--white);">
     <div class="container">
         <div class="section-header">
             <span class="sub-title">STAY IN LOOP</span>
@@ -219,20 +229,16 @@
             });
         });
 
-        // 1. 生成驗證碼
         generateCaptcha();
         document.getElementById('captchaCanvas').addEventListener('click', generateCaptcha);
-
-        // 2. 載入新聞 (首頁只顯示前 3 則)
         renderNews('home-news-container', 3);
     });
 
-    // --- 驗證碼邏輯 ---
     let currentCaptchaCode = "";
 
     function generateCaptcha() {
         const canvas = document.getElementById('captchaCanvas');
-        if (!canvas) return; // 保護機制
+        if (!canvas) return;
         const ctx = canvas.getContext('2d');
         
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -252,13 +258,6 @@
             ctx.moveTo(Math.random() * canvas.width, Math.random() * canvas.height);
             ctx.lineTo(Math.random() * canvas.width, Math.random() * canvas.height);
             ctx.stroke();
-        }
-
-        for (let i = 0; i < 30; i++) {
-            ctx.fillStyle = getRandomColor();
-            ctx.beginPath();
-            ctx.arc(Math.random() * canvas.width, Math.random() * canvas.height, 1, 0, 2 * Math.PI);
-            ctx.fill();
         }
 
         ctx.font = "bold 24px Arial";
@@ -295,17 +294,14 @@
         }
 
         var btn = document.querySelector('button[type="submit"]');
-        var originalText = btn.innerText;
         btn.innerText = "Sending...";
         btn.disabled = true;
-        btn.style.opacity = "0.7";
 
         setTimeout(function() {
             alert('Thank you! Your message has been sent successfully.');
             document.getElementById('contactForm').reset();
-            btn.innerText = originalText;
+            btn.innerText = "Submit Inquiry";
             btn.disabled = false;
-            btn.style.opacity = "1";
             generateCaptcha(); 
         }, 1500);
 
