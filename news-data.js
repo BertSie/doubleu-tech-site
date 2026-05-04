@@ -6,7 +6,7 @@ const newsData = [
         date: "APRIL 2026",
         desc: "Grant to advance semiconductor manufacturing in Sugar Land, Texas.",
         link: "https://investors.ao-inc.com/news-releases/news-release-details/aoi-awarded-209m-texas-semiconductor-innovation-fund-grant",
-        imgText: "AOI & TEXAS GRANT",
+        imgText: "AOI Awarded $20.9M From TSIF",
         imgStyle: "background: linear-gradient(135deg, #003366, #0066cc);",
         isExternal: true
     },
@@ -24,7 +24,7 @@ const newsData = [
         date: "APRIL 2025",
         desc: "Funding to advance the cold temperature battery platform.",
         link: "https://kulr.ai/kulr-awarded-6-7m-by-texas-space-commission-to-advance-cold-temperature-kulr-one-space-battery-platform/",
-        imgText: "KULR Awarded $6.7M",
+        imgText: "KULR Awarded $6.7M from TSC",
         imgStyle: "background:linear-gradient(135deg,#1073a4,#E0C7F0);",
         isExternal: true
     },
@@ -33,7 +33,7 @@ const newsData = [
         date: "NOV 2024",
         desc: "Joint pre-study for next-generation Fixed Wireless Access products.",
         link: "https://beammwave.com/press-release/beammwave-and-alpha-networks-enters-into-an-agreement-to-do-a-joint-pre-study-for-the-next-generation-fixed-wireless-access-products/",
-        imgText: "BEAMMWAVE & ALPHA",
+        imgText: "BEAMMWAVE & ALPHANETWORKS",
         imgStyle: "background:#812b77;",
         isExternal: true
     },
