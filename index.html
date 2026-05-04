@@ -37,6 +37,15 @@
         .refresh-btn:hover {
             color: #000;
         }
+        /* 優化 Honeypot 隱藏方式，防止聰明的機器人偵測到 display:none */
+        .hp-field {
+            position: absolute;
+            left: -5000px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
     </style>
 </head>
 <body>
@@ -84,8 +93,7 @@
             <h2 class="main-title">Making Headlines, Creating Value</h2>
         </div>
 
-        <div class="insights-scroller" id="home-news-container">
-            </div>
+        <div class="insights-scroller" id="home-news-container"></div>
         
         <div style="text-align: center; margin-top: 40px;">
             <a href="insights.html" class="btn btn-outline">View All Success Stories</a>
@@ -186,10 +194,12 @@
                 <label for="message">Message</label>
                 <textarea id="message" name="entry.512682809" placeholder="How can we help your business?" required></textarea>
             </div>
-            <div style="display:none;">
-               <label for="honeypot">Leave this field empty</label>
-               <input type="text" id="honeypot" name="honeypot" tabindex="-1" autocomplete="off">
+
+            <div class="hp-field" aria-hidden="true">
+                <label for="b_website">Website</label>
+                <input type="text" id="b_website" name="b_website" tabindex="-1" autocomplete="off">
             </div>
+
             <div class="form-group form-full">
                 <label for="captchaInput">Verification Code</label>
                 <input type="text" id="captchaInput" placeholder="Enter the code shown below" required autocomplete="off">
@@ -287,6 +297,15 @@
     }
 
     function handleFormSubmit() {
+        // --- Honeypot 攔截邏輯 ---
+        const hpValue = document.getElementById('b_website').value;
+        if (hpValue !== "") {
+            console.warn("Spam attempt blocked.");
+            // 靜默失敗：不跳通知，直接重置表單，讓機器人以為成功但實際上沒送出
+            document.getElementById('contactForm').reset();
+            return false;
+        }
+
         const userInput = document.getElementById('captchaInput').value.toUpperCase();
         
         if (userInput !== currentCaptchaCode) {
