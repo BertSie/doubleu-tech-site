@@ -152,3 +152,25 @@ h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary-da
     #nav-menu ul { flex-direction: column; }
     .hero-btns { flex-direction: column; }
 }
+
+/* --- 恢復深色 Footer 質感 --- */
+.footer { 
+    background: var(--primary-dark); /* 恢復深藍/黑色背景 */
+    color: rgba(255, 255, 255, 0.6); /* 文字設為半透明白 */
+    padding: 80px 0 40px; 
+    text-align: center; 
+}
+
+.footer-logo img { 
+    height: 40px; 
+    width: auto; 
+    /* 關鍵：透過這行讓原本黑色的 Logo 圖片在黑底上變成白色顯示 */
+    filter: brightness(0) invert(1); 
+    margin: 0 auto 30px; 
+    opacity: 0.9; 
+}
+
+.footer p { 
+    font-size: 14px; 
+    letter-spacing: 0.5px;
+}
