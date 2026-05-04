@@ -13,31 +13,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css"> 
     
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    
     <style>
-        .captcha-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 5px;
-        }
-        canvas#captchaCanvas {
-            background-color: #f0f0f0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .refresh-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 20px;
-            color: var(--text-light, #666);
-            padding: 0 5px;
-        }
-        .refresh-btn:hover {
-            color: #000;
-        }
-        /* 優化 Honeypot 隱藏方式，防止聰明的機器人偵測到 display:none */
+        /* 優化 Honeypot 隱藏方式 */
         .hp-field {
             position: absolute;
             left: -5000px;
@@ -45,6 +24,11 @@
             width: 1px;
             height: 1px;
             overflow: hidden;
+        }
+        /* Turnstile 容器樣式 */
+        .turnstile-wrapper {
+            margin: 15px 0;
+            min-height: 65px;
         }
     </style>
 </head>
@@ -201,16 +185,14 @@
             </div>
 
             <div class="form-group form-full">
-                <label for="captchaInput">Verification Code</label>
-                <input type="text" id="captchaInput" placeholder="Enter the code shown below" required autocomplete="off">
-                <div class="captcha-wrapper">
-                    <canvas id="captchaCanvas" width="120" height="40" title="Click to refresh"></canvas>
-                    <button type="button" class="refresh-btn" onclick="generateCaptcha()" title="Refresh Code">&#x21bb;</button>
+                <label>Security Verification</label>
+                <div class="turnstile-wrapper">
+                    <div class="cf-turnstile" data-sitekey="0x4AAAAAADI8TRgfQTyEjEBx" data-callback="onTurnstileSuccess"></div>
                 </div>
             </div>
 
             <div class="form-full" style="margin-top: 20px;">
-                <button type="submit" class="btn btn-primary" style="width:100%">Submit Inquiry</button>
+                <button type="submit" id="submitBtn" class="btn btn-primary" style="width:100%">Submit Inquiry</button>
             </div>
         </form>
     </div>
@@ -232,6 +214,13 @@
         document.getElementById('nav-menu').classList.toggle('active');
     }
 
+    let isTurnstileVerified = false;
+
+    // 當 Turnstile 驗證通過時呼叫
+    function onTurnstileSuccess(token) {
+        isTurnstileVerified = true;
+    }
+
     document.addEventListener("DOMContentLoaded", function() {
         const menuLinks = document.querySelectorAll('#nav-menu a');
         const navMenu = document.getElementById('nav-menu');
@@ -242,80 +231,24 @@
             });
         });
 
-        generateCaptcha();
-        document.getElementById('captchaCanvas').addEventListener('click', generateCaptcha);
         renderNews('home-news-container', 3);
     });
 
-    let currentCaptchaCode = "";
-
-    function generateCaptcha() {
-        const canvas = document.getElementById('captchaCanvas');
-        if (!canvas) return;
-        const ctx = canvas.getContext('2d');
-        
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = "#f0f0f0";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-        let code = "";
-        for (let i = 0; i < 5; i++) {
-            code += chars.charAt(Math.floor(Math.random() * chars.length));
-        }
-        currentCaptchaCode = code;
-
-        for (let i = 0; i < 7; i++) {
-            ctx.strokeStyle = getRandomColor();
-            ctx.beginPath();
-            ctx.moveTo(Math.random() * canvas.width, Math.random() * canvas.height);
-            ctx.lineTo(Math.random() * canvas.width, Math.random() * canvas.height);
-            ctx.stroke();
-        }
-
-        ctx.font = "bold 24px Arial";
-        for (let i = 0; i < code.length; i++) {
-            ctx.save();
-            let x = 15 + i * 20;
-            let y = 28;
-            let angle = (Math.random() - 0.5) * 0.4; 
-            ctx.translate(x, y);
-            ctx.rotate(angle);
-            ctx.fillStyle = "#333";
-            ctx.fillText(code[i], 0, 0);
-            ctx.restore();
-        }
-    }
-
-    function getRandomColor() {
-        const letters = '0123456789ABCDEF';
-        let color = '#';
-        for (let i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-    }
-
     function handleFormSubmit() {
-        // --- Honeypot 攔截邏輯 ---
+        // --- Honeypot 攔截 ---
         const hpValue = document.getElementById('b_website').value;
         if (hpValue !== "") {
-            console.warn("Spam attempt blocked.");
-            // 靜默失敗：不跳通知，直接重置表單，讓機器人以為成功但實際上沒送出
             document.getElementById('contactForm').reset();
             return false;
         }
 
-        const userInput = document.getElementById('captchaInput').value.toUpperCase();
-        
-        if (userInput !== currentCaptchaCode) {
-            alert("Verification code is incorrect. Please try again.");
-            document.getElementById('captchaInput').value = "";
-            generateCaptcha();
+        // --- Turnstile 驗證檢查 ---
+        if (!isTurnstileVerified) {
+            alert("Please complete the security verification.");
             return false;
         }
 
-        var btn = document.querySelector('button[type="submit"]');
+        var btn = document.getElementById('submitBtn');
         btn.innerText = "Sending...";
         btn.disabled = true;
 
@@ -324,7 +257,10 @@
             document.getElementById('contactForm').reset();
             btn.innerText = "Submit Inquiry";
             btn.disabled = false;
-            generateCaptcha(); 
+            
+            // 重置驗證狀態
+            isTurnstileVerified = false;
+            if (typeof turnstile !== 'undefined') turnstile.reset();
         }, 1500);
 
         return true; 
