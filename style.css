@@ -1,10 +1,10 @@
 /* =========================================
    DoubleU-Tech 最終整合旗艦版 (Boutique Advisory Style)
    修正內容：
-   1. 完美橫向佈局：使用 grid-template-columns: repeat(3, 360px) 確保首頁三卡片橫排。
-   2. 精緻比例：固定單張卡片寬度為 360px，不再橫向撐長，維持精品感。
-   3. 統一 Placeholder：所有表單預留文字統一為 Montserrat 字體。
-   4. 內頁兼容：Insights 頁面自動適應網格，不會變形。
+   1. 徹底解決直排問題：改用 Flexbox 並精確控制卡片佔比。
+   2. 完美等寬：鎖定單張卡片為寬度的 31% 並限制 max-width 360px。
+   3. 統一字體：Placeholder 統一為 Montserrat。
+   4. 質感 Footer：深色背景與純白 Logo。
    ========================================= */
 
 /* --- 1. 全域變數與重設 --- */
@@ -62,10 +62,10 @@ h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary-da
 .navbar { background: var(--white); box-shadow: 0 2px 15px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; padding: 15px 0; }
 .nav-inner { display: flex; justify-content: space-between; align-items: center; }
 .logo img { height: 75px; } 
-
 #nav-menu ul { display: flex; gap: 30px; align-items: center; }
 #nav-menu a { font-weight: 600; font-size: 14px; text-transform: uppercase; color: var(--primary-dark); }
 #nav-menu a:hover, #nav-menu a.active { color: var(--accent); }
+.nav-btn-highlight { padding: 8px 24px !important; border: 1px solid var(--primary-dark) !important; border-radius: var(--radius) !important; }
 
 /* --- 4. Hero Section --- */
 .hero {
@@ -76,13 +76,12 @@ h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary-da
     overflow: hidden;
 }
 
-/* --- 5. 首頁服務預覽 --- */
+/* --- 5. 服務預覽 --- */
 .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
 .service-preview-card {
     background: var(--white);
     padding: 50px 40px;
     border-top: 1px solid #eee;
-    transition: all 0.4s ease;
 }
 
 /* --- 6. Services 內頁精品卡片 --- */
@@ -97,20 +96,16 @@ h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary-da
 }
 .card-content { flex: 1; padding: 60px 80px; }
 
-/* --- 7. Insights/新聞：修正橫向且精緻等寬佈局 (解決直排問題) --- */
+/* --- 7. Insights/新聞：強制橫向排列 (修正垂直堆疊) --- */
 .insights-grid-wrap { 
-    display: grid; 
-    /* 核心修正：在大螢幕強制橫向三欄，每欄固定 360px，確保不撐滿 1200px 容器 */
-    grid-template-columns: repeat(3, 360px); 
-    justify-content: center; /* 將整組卡片置中 */
+    display: flex; 
+    flex-direction: row;     /* 強制橫向排列 */
+    justify-content: center; /* 讓三張卡片在容器中置中 */
+    align-items: stretch;    /* 讓卡片高度對齊 */
     gap: 30px; 
     width: 100%;
     margin: 40px auto 0;
-}
-
-/* 針對 Insights 內頁 (如果新聞超過三則) 讓它自動換行 */
-#page-news-container.insights-grid-wrap {
-    grid-template-columns: repeat(auto-fit, 360px);
+    flex-wrap: wrap;         /* 寬度不夠時(如平板)自動換行 */
 }
 
 .insight-card {
@@ -123,7 +118,10 @@ h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary-da
     flex-direction: column;
     border: 1px solid #eee;
     text-align: left;
-    height: 100%;
+    
+    /* 關鍵：在大螢幕鎖定為寬度的約三分之一，但不得超過 360px */
+    flex: 0 1 360px;
+    width: 360px;
     text-decoration: none !important;
     color: inherit;
 }
@@ -201,34 +199,31 @@ h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary-da
     width: 100%; border: none; border-bottom: 1px solid #ddd; padding: 12px 0; 
     font-size: 16px; font-family: 'Montserrat', sans-serif; background: transparent; 
 }
-::placeholder { 
-    font-family: 'Montserrat', sans-serif !important; 
-    font-size: 14px; 
-    color: var(--text-light); 
-    opacity: 0.7; 
-}
+::placeholder { font-family: 'Montserrat', sans-serif !important; font-size: 14px; color: var(--text-light); opacity: 0.7; }
 
 /* --- 9. RWD 響應式佈局 --- */
 @media (max-width: 1200px) {
-    /* 螢幕縮小時，縮減卡片寬度以適應容器 */
+    .insight-card {
+        flex: 0 1 31%; /* 確保平板版依然橫排 */
+    }
+}
+
+@media (max-width: 900px) {
+    .insight-card {
+        flex: 0 1 45%; /* 螢幕變小時改為二路 */
+    }
+}
+
+@media (max-width: 700px) {
     .insights-grid-wrap {
-        grid-template-columns: repeat(3, 1fr);
+        flex-direction: column;
+        align-items: center;
     }
-}
-
-@media (max-width: 992px) {
-    /* 中型螢幕變為兩欄 */
-    .insights-grid-wrap, #page-news-container.insights-grid-wrap {
-        grid-template-columns: repeat(2, 1fr);
+    .insight-card {
+        flex: 1 1 auto;
+        width: 100%;
+        max-width: 100%;
     }
-}
-
-@media (max-width: 768px) {
-    /* 手機版變為單欄 */
-    .insights-grid-wrap, #page-news-container.insights-grid-wrap {
-        grid-template-columns: 1fr;
-    }
-    .hero h1 { font-size: 36px; }
 }
 
 /* --- 10. Footer --- */
