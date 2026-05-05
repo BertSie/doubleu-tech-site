@@ -1,10 +1,11 @@
 /* =========================================
    DoubleU-Tech 最終整合優化版 (Boutique Advisory Style)
    整合內容：
-   1. 移除 Services 內頁巨大圖標，改為精品諮詢排版。
-   2. 恢復深色 Footer 並修正 Logo 過濾器。
-   3. 保持首頁 Hero 漸層與區塊交錯美感。
-   4. 優化手機版 Insights 左右滑動感。
+   1. 修正表單 Placeholder 字體與樣式統一。
+   2. 移除 Services 內頁巨大圖標，改為精品諮詢排版。
+   3. 恢復深色 Footer 並修正 Logo 過濾器。
+   4. 保持首頁 Hero 漸層與區塊交錯美感。
+   5. 優化手機版 Insights 左右滑動感。
    ========================================= */
 
 /* --- 1. 變數與全站重設 --- */
@@ -124,7 +125,7 @@ h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary-da
 .service-preview-card h3 { font-size: 24px; letter-spacing: -0.5px; }
 .service-icon { display: none; } /* 隱藏舊圖標 */
 
-/* --- 6. Services 內頁：專業詳細服務卡片 (解決圖標巨大問題) --- */
+/* --- 6. Services 內頁：專業詳細服務卡片 --- */
 .service-detailed-card {
     background: var(--white);
     border-radius: 8px;
@@ -198,19 +199,37 @@ h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary-da
 .insight-title { font-size: 19px; margin-bottom: 12px; line-height: 1.4; color: var(--primary-dark); }
 .insight-desc { font-size: 14px; color: var(--text-light); margin-bottom: 25px; flex-grow: 1; }
 
-/* --- 8. 表單與彈窗 --- */
+/* --- 8. 表單與 Placeholder 統一優化 --- */
 .contact-form-styled { max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
 .form-full { grid-column: span 2; }
-.form-group input, .form-group textarea { width: 100%; border: none; border-bottom: 1px solid #ddd; padding: 12px 0; font-size: 16px; background: transparent; transition: 0.3s; }
-.form-group input:focus, .form-group textarea:focus { outline: none; border-bottom: 2px solid var(--accent); }
 
-.modal {
-    display: none; position: fixed; z-index: 9999; left: 0; top: 0;
-    width: 100%; height: 100%; 
-    background-color: rgba(15, 35, 50, 0.9);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    align-items: center; justify-content: center; padding: 20px;
+/* 統一輸入框樣式與字體繼承 */
+.form-group input, 
+.form-group textarea { 
+    width: 100%; 
+    border: none; 
+    border-bottom: 1px solid #ddd; 
+    padding: 12px 0; 
+    font-size: 16px; 
+    font-family: 'Montserrat', sans-serif; /* 強制繼承主體字體 */
+    background: transparent; 
+    transition: 0.3s; 
+    color: var(--text-main);
+}
+
+.form-group input:focus, 
+.form-group textarea:focus { 
+    outline: none; 
+    border-bottom: 2px solid var(--accent); 
+}
+
+/* 修正 Placeholder 字體不一致問題 */
+input::placeholder,
+textarea::placeholder {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: var(--text-light);
+    opacity: 1; /* 修復 Firefox 預設不透明度 */
 }
 
 /* --- 9. RWD 響應式佈局 --- */
