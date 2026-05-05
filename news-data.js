@@ -4,7 +4,7 @@ const newsData = [
     {
         title: "HEVO Unveils Strategy-Asia Supply Chain",
         date: "May 2026",
-        desc: "HEVO Unveils Wireless Charging Strategy for Commercial Electric Fleets and Advances Toward Scalable Production",
+        desc: "HEVO Unveils Strategy for Commercial Electric Fleets and Advances Toward Scalable Production",
         link: "https://www.prnewswire.com/news-releases/hevo-unveils-wireless-charging-strategy-for-commercial-electric-fleets-and-advances-toward-scalable-production-302761538.html",
         imgText: "HEVO Unveils Strategy-Asia Supply Chain",
         imgStyle: "background: linear-gradient(131deg, #1083a4, #0266cc);",
