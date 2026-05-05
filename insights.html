@@ -7,12 +7,33 @@
     <meta name="description" content="Latest news and impact stories from DoubleU-Tech.">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* 針對 Insights 頁面的標題微調，增加專業感 */
+        .page-header {
+            padding: 100px 0 60px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            text-align: center;
+        }
+        .page-header h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        .page-header p {
+            color: var(--text-light);
+            font-size: 18px;
+            letter-spacing: 1px;
+        }
+    </style>
 </head>
 <body>
 
 <header class="navbar">
     <div class="container nav-inner">
-        <div class="logo"><a href="./"><img src="assets/images/DoubleU-logotype-24.png" alt="DoubleU Tech Logo"></a></div>
+        <div class="logo">
+            <a href="./">
+                <img src="assets/images/DoubleU-logotype-24.png" alt="DoubleU Tech Logo">
+            </a>
+        </div>
         <div class="menu-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></div>
         <nav id="nav-menu">
             <ul>
@@ -29,22 +50,22 @@
 <section class="page-header">
     <div class="container">
         <h1>Making Impact, Making Headlines</h1>
-        <p>Our Footprints. </p>
+        <p>Our Footprints & Success Stories</p>
     </div>
 </section>
 
-<section style="padding: 80px 0;">
+<section style="padding: 100px 0; background: var(--white);">
     <div class="container">
-        
         <div class="insights-grid-wrap" id="page-news-container">
             </div>
-
     </div>
 </section>
 
 <footer class="footer">
     <div class="container">
-        <div class="footer-logo"><img src="assets/images/DoubleU-logotype-27.png" alt="DoubleU Tech Logo"></div>
+        <div class="footer-logo">
+            <img src="assets/images/DoubleU-logotype-27.png" alt="DoubleU Footer Logo">
+        </div>
         <p>&copy; 2026 DoubleU-Tech Advisory. All Rights Reserved.</p>
     </div>
 </footer>
@@ -52,10 +73,14 @@
 <script src="news-data.js"></script>
 
 <script>
-    function toggleMenu() { document.getElementById('nav-menu').classList.toggle('active'); }
+    function toggleMenu() { 
+        document.getElementById('nav-menu').classList.toggle('active'); 
+    }
 
-    // 載入新聞 (不傳入 limit 參數，代表顯示全部)
+    // 當頁面載入完成後，執行渲染
     document.addEventListener("DOMContentLoaded", function() {
+        // 呼叫 renderNews，傳入 container ID
+        // 不傳入第二個參數 (limit)，這會觸發 news-data.js 渲染全部新聞的邏輯
         renderNews('page-news-container'); 
     });
 </script>
