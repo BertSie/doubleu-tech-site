@@ -1,6 +1,17 @@
 // news-data.js
 
 const newsData = [
+       {
+        title: "HEVO Unveils Strategy-Asia Supply Chain",
+        date: "May 2026",
+        desc: "HEVO Unveils Wireless Charging Strategy for Commercial Electric Fleets and Advances Toward Scalable Production",
+        link: "https://www.prnewswire.com/news-releases/hevo-unveils-wireless-charging-strategy-for-commercial-electric-fleets-and-advances-toward-scalable-production-302761538.html",
+        imgText: "HEVO Unveils Strategy-Asia Supply Chain",
+        imgStyle: "background: linear-gradient(131deg, #013366, #0266cc);",
+        isExternal: true
+    },
+    
+    
     {
         title: "AOI Awarded $20.9M Texas Semiconductor Innovation Fund Grant",
         date: "APRIL 2026",
