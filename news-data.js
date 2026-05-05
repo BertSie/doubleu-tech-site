@@ -1,7 +1,7 @@
 // news-data.js
 
 const newsData = [
-       {
+    {
         title: "HEVO Unveils Strategy-Asia Supply Chain",
         date: "May 2026",
         desc: "HEVO Unveils Wireless Charging Strategy for Commercial Electric Fleets and Advances Toward Scalable Production",
@@ -10,8 +10,6 @@ const newsData = [
         imgStyle: "background: linear-gradient(131deg, #1083a4, #0266cc);",
         isExternal: true
     },
-    
-    
     {
         title: "AOI Awarded $20.9M Texas Semiconductor Innovation Fund Grant",
         date: "APRIL 2026",
@@ -60,31 +58,48 @@ const newsData = [
     }
 ];
 
+/**
+ * 渲染新聞卡片
+ * @param {string} containerId - 容器的 ID (例如 'home-news-container' 或 'all-news-container')
+ * @param {number} limit - 顯示數量 (null 則顯示全部)
+ */
 function renderNews(containerId, limit = null) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
     let htmlContent = "";
-    // 如果有 limit (首頁)，過濾掉 isDisabled；如果是全部 (Insights 頁)，顯示全部
+    
+    // 邏輯：首頁只顯示非 disabled 的前 3 則；Insights 頁面則顯示全部。
     let displayData = limit ? newsData.filter(item => !item.isDisabled).slice(0, limit) : newsData;
 
     displayData.forEach(item => {
-        const targetAttr = item.isExternal ? 'target="_blank"' : '';
-        const hrefAttr = item.isDisabled ? 'javascript:void(0)' : `href="${item.link}"`;
-        const tagType = item.isDisabled ? 'div' : 'a';
-        const btnText = item.isDisabled ? '' : '<span class="read-more-btn">Read Article &rarr;</span>';
-
-        htmlContent += `
-            <${tagType} ${hrefAttr} ${targetAttr} class="insight-card">
-                <div class="insight-img" style="${item.imgStyle}"><span>${item.imgText}</span></div>
-                <div class="insight-body">
-                    <span class="insight-date">${item.date}</span>
-                    <h3 class="insight-title">${item.title}</h3>
-                    <p class="insight-desc">${item.desc}</p>
-                    ${btnText}
+        const isExternal = item.isExternal ? 'target="_blank" rel="noopener noreferrer"' : '';
+        
+        // 判斷是否為不可點擊狀態
+        if (item.isDisabled) {
+            htmlContent += `
+                <div class="insight-card" style="cursor: default; opacity: 0.8;">
+                    <div class="insight-img" style="${item.imgStyle}"><span>${item.imgText}</span></div>
+                    <div class="insight-body">
+                        <span style="font-size: 12px; color: var(--text-light); text-transform: uppercase; font-weight: 600;">${item.date}</span>
+                        <h3 class="insight-title">${item.title}</h3>
+                        <p class="insight-desc">${item.desc}</p>
+                    </div>
                 </div>
-            </${tagType}>
-        `;
+            `;
+        } else {
+            htmlContent += `
+                <a href="${item.link}" ${isExternal} class="insight-card">
+                    <div class="insight-img" style="${item.imgStyle}"><span>${item.imgText}</span></div>
+                    <div class="insight-body">
+                        <span style="font-size: 12px; color: var(--text-light); text-transform: uppercase; font-weight: 600;">${item.date}</span>
+                        <h3 class="insight-title">${item.title}</h3>
+                        <p class="insight-desc">${item.desc}</p>
+                        <span class="read-more-btn">Read Article &rarr;</span>
+                    </div>
+                </a>
+            `;
+        }
     });
 
     container.innerHTML = htmlContent;
