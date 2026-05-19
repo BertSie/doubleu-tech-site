@@ -1,8 +1,7 @@
 // news-data.js
 
 const newsData = [
-    {
-    },
+
     {
         title: "AOI Awarded $20.9M Texas Semiconductor Innovation Fund Grant",
         date: "APRIL 2026",
