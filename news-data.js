@@ -73,7 +73,7 @@ function renderNews(containerId, limit = null) {
                 <div class="insight-card" style="cursor: default; opacity: 0.8;">
                     <div class="insight-img" style="${item.imgStyle}"><span>${item.imgText}</span></div>
                     <div class="insight-body">
-                        <span style="font-size: 12px; color: var(--text-light); text-transform: uppercase; font-weight: 600;">${item.date}</span>
+                        <span class="insight-date">${item.date}</span>
                         <h3 class="insight-title">${item.title}</h3>
                         <p class="insight-desc">${item.desc}</p>
                     </div>
@@ -84,7 +84,7 @@ function renderNews(containerId, limit = null) {
                 <a href="${item.link}" ${isExternal} class="insight-card">
                     <div class="insight-img" style="${item.imgStyle}"><span>${item.imgText}</span></div>
                     <div class="insight-body">
-                        <span style="font-size: 12px; color: var(--text-light); text-transform: uppercase; font-weight: 600;">${item.date}</span>
+                        <span class="insight-date">${item.date}</span>
                         <h3 class="insight-title">${item.title}</h3>
                         <p class="insight-desc">${item.desc}</p>
                         <span class="read-more-btn">Read Article &rarr;</span>

@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Services | DoubleU-Tech Advisory</title>
     <meta name="description" content="Explore our expert services in Product Strategy, Marketing Promotion, and Business Development.">
+    <link rel="canonical" href="https://www.doubleu-tech.com/services" />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+    <meta name="theme-color" content="#0f2332">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="DoubleU-Tech Advisory">
+    <meta property="og:title" content="Our Services | DoubleU-Tech Advisory">
+    <meta property="og:description" content="Product strategy, marketing & PR, and business development for technology companies entering Taiwan, the US and global markets.">
+    <meta property="og:url" content="https://www.doubleu-tech.com/services">
+    <meta property="og:image" content="https://www.doubleu-tech.com/assets/images/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -12,15 +26,15 @@
 
 <header class="navbar">
     <div class="container nav-inner">
-        <div class="logo"><a href="index.html"><img src="assets/images/DoubleU-logotype-24.png" alt="DoubleU Tech Logo"></a></div>
-        <div class="menu-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+        <div class="logo"><a href="./"><img src="assets/images/DoubleU-logotype-24.png" alt="DoubleU Tech Logo"></a></div>
+        <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-controls="nav-menu" aria-expanded="false"><span></span><span></span><span></span></button>
         <nav id="nav-menu">
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="./">Home</a></li>
                 <li><a href="services.html" class="active">Services</a></li>
                 <li><a href="insights.html">Insights</a></li>
                 <li><a href="about.html">About US</a></li>
-                <li><a href="index.html#contact" class="nav-btn-highlight">Connect</a></li>
+                <li><a href="./#contact" class="nav-btn-highlight">Connect</a></li>
             </ul>
         </nav>
     </div>
@@ -35,7 +49,7 @@
 
 <section style="padding: 100px 0; background: var(--grey-bg);">
     <div class="container">
-        
+
         <div class="service-detailed-card">
             <div class="card-content">
                 <span class="sub-title">01 / STRATEGY</span>
@@ -83,14 +97,37 @@
 
 <footer class="footer">
     <div class="container">
-        <div class="footer-logo"><img src="assets/images/DoubleU-logotype-27.png" alt="DoubleU Tech Logo"></div>
-        <p>&copy; 2026 DoubleU-Tech Advisory. All Rights Reserved.</p>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo"><img src="assets/images/DoubleU-logotype-27.png" alt="DoubleU Footer Logo"></div>
+                <p>Go-to-market and business development partner for technology companies expanding across Taiwan, the US and global markets.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="insights.html">Insights</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <ul>
+                    <!-- TODO: 加上公司 Email，例如 <li><a href="mailto:you@doubleu-tech.com">you@doubleu-tech.com</a></li> -->
+                    <li><a href="./#contact">Send Us a Message</a></li>
+                    <li><a href="https://tw.linkedin.com/in/bert-sie-891a9350" target="_blank" rel="noopener noreferrer">Bert Sie on LinkedIn</a></li>
+                    <li><a href="https://tw.linkedin.com/in/teresa-jhan-%E8%A9%B9%E6%83%A0%E6%8D%B7-31bb5910b" target="_blank" rel="noopener noreferrer">Teresa Jhan on LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 DoubleU-Tech Advisory. All Rights Reserved.</p>
+            <a href="privacy.html">Privacy Policy</a>
+        </div>
     </div>
 </footer>
 
-<script>
-    function toggleMenu() { document.getElementById('nav-menu').classList.toggle('active'); }
-</script>
+<script src="site.js"></script>
 
 </body>
 </html>

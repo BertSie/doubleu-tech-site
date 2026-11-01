@@ -2,12 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>About Us | Bert Sie & Teresa Jhan | DoubleU-Tech </title>
     <meta name="description" content="Meet the leadership behind DoubleU-Tech. Bert Sie (Managing Director) and Teresa Jhan (Principal) lead our expert team in tech consulting.">
     <meta name="keywords" content="Bert Sie, Teresa Jhan, Fred Chen, DoubleU-Tech Team, Tech Consultants Taiwan, Semiconductor, IoT">
-    
+    <link rel="canonical" href="https://www.doubleu-tech.com/about" />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+    <meta name="theme-color" content="#0f2332">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="DoubleU-Tech Advisory">
+    <meta property="og:title" content="About Us | DoubleU-Tech Advisory">
+    <meta property="og:description" content="Meet the leadership behind DoubleU-Tech: decades of experience across the semiconductor supply chain and IoT.">
+    <meta property="og:url" content="https://www.doubleu-tech.com/about">
+    <meta property="og:image" content="https://www.doubleu-tech.com/assets/images/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+
     <script type="application/ld+json">
     [
       {
@@ -16,7 +29,7 @@
         "name": "Bert Sie",
         "jobTitle": "Managing Director",
         "worksFor": { "@type": "Organization", "name": "DoubleU-Tech Advisory" },
-        "url": "https://www.doubleu-tech.com/about.html",
+        "url": "https://www.doubleu-tech.com/about",
         "image": "https://www.doubleu-tech.com/assets/images/Bert_Sie.png",
         "sameAs": ["https://tw.linkedin.com/in/bert-sie-891a9350"]
       },
@@ -26,163 +39,29 @@
         "name": "Teresa Jhan",
         "jobTitle": "Principal",
         "worksFor": { "@type": "Organization", "name": "DoubleU-Tech Advisory" },
-        "url": "https://www.doubleu-tech.com/about.html",
+        "url": "https://www.doubleu-tech.com/about",
         "image": "https://www.doubleu-tech.com/assets/images/Teresa.JPG",
         "sameAs": ["https://tw.linkedin.com/in/teresa-jhan-%E8%A9%B9%E6%83%A0%E6%8D%B7-31bb5910b"]
       }
     ]
     </script>
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    
-    <style>
-        /* --- 全局變數與重設 --- */
-        :root {
-            --primary-dark: #0f2332;
-            --accent: #eb611b;
-            --grey-light: #f9f9f9;
-            --text-main: #333333;
-            --white: #ffffff;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--text-main);
-            background: var(--white);
-            line-height: 1.6;
-            -webkit-tap-highlight-color: transparent; /* 移除手機點擊高亮 */
-        }
-
-        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px; }
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        ul { list-style: none; }
-        img { max-width: 100%; height: auto; display: block; }
-
-        /* --- Navbar --- */
-        .navbar {
-            background: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: sticky; top: 0; z-index: 1000; padding: 15px 0;
-        }
-        .nav-inner { display: flex; justify-content: space-between; align-items: center; }
-        .logo img { height: 75px; }
-        #nav-menu ul { display: flex; gap: 30px; align-items: center; }
-        #nav-menu a {
-            font-weight: 700; font-size: 14px; text-transform: uppercase;
-            letter-spacing: 1px; color: var(--primary-dark);
-        }
-        #nav-menu a:hover { color: var(--accent); }
-        .nav-btn { padding: 8px 20px; border: 1px solid var(--primary-dark); border-radius: 4px; }
-        .nav-btn:hover { background: var(--primary-dark); color: var(--white) !important; }
-        .menu-toggle { display: none; cursor: pointer; padding: 10px; } /* 增加點擊範圍 */
-        .menu-toggle span { display: block; width: 25px; height: 3px; background: var(--primary-dark); margin: 5px 0; }
-
-        /* --- About Intro --- */
-        .about-intro { padding: 80px 0; display: flex; align-items: center; justify-content: space-between; gap: 50px; }
-        .about-text { flex: 1; }
-        .about-text h2 { font-family: 'Playfair Display', serif; font-size: 42px; color: var(--primary-dark); margin-bottom: 20px; line-height: 1.2; }
-        .about-img-placeholder { flex: 1; }
-        .about-img-placeholder img { border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-
-        /* --- Team Section (手機修復重點) --- */
-        .section { padding: 80px 0; }
-        .team-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px; margin-top: 50px; text-align: center;
-        }
-        .team-member {
-            cursor: pointer; 
-            transition: transform 0.3s;
-            /* 讓手機瀏覽器知道這是可點擊區域 */
-            position: relative;
-            z-index: 1;
-        }
-        .team-member:active { transform: scale(0.98); } /* 手機點擊回饋 */
-        .team-member:hover { transform: translateY(-10px); }
-        
-        .member-photo {
-            width: 200px; height: 200px; border-radius: 50%; overflow: hidden;
-            margin: 0 auto 20px; border: 3px solid var(--grey-light);
-            pointer-events: none; /* 讓點擊穿透圖片直接觸發 div */
-        }
-        .member-photo img { width: 100%; height: 100%; object-fit: cover; }
-        
-        .team-member h3 { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--primary-dark); margin-bottom: 5px; }
-        .team-member p.role-title {
-            color: var(--accent); font-weight: 700; font-size: 13px;       
-            text-transform: uppercase; letter-spacing: 2px; margin-top: 10px;      
-        }
-
-        /* --- Modal (手機修復重點) --- */
-        .modal {
-            display: none; 
-            position: fixed; 
-            z-index: 9999; /* 確保蓋過一切 */
-            left: 0; top: 0;
-            width: 100%; height: 100%; 
-            background-color: rgba(15, 35, 50, 0.95);
-            align-items: center; justify-content: center;
-            overflow-y: auto; /* 允許垂直滾動 */
-            -webkit-overflow-scrolling: touch; /* iOS 滑動順暢 */
-            padding: 20px; /* 手機版邊距 */
-        }
-        .modal-content {
-            background-color: var(--white); 
-            padding: 40px 30px; 
-            border-radius: 8px;
-            width: 100%; max-width: 650px; 
-            position: relative; 
-            text-align: center;
-            animation: fadeIn 0.3s;
-            margin: auto; /* 確保在 flex 中置中 */
-        }
-        .close {
-            position: absolute; top: 15px; right: 20px; font-size: 40px;
-            cursor: pointer; color: #aaa; padding: 10px; /* 增加手指點擊範圍 */
-            line-height: 20px;
-        }
-        .close:hover { color: var(--primary-dark); }
-        .modal-content p { text-align: left; margin-bottom: 15px; font-size: 15px; color: #555; }
-
-        .linkedin-btn {
-            display: inline-flex; align-items: center; gap: 8px;
-            color: var(--accent); font-weight: 700; text-decoration: none;
-            margin-top: 15px; border-bottom: 2px solid var(--accent); padding-bottom: 2px;
-        }
-        .linkedin-btn:hover { color: var(--primary-dark); border-color: var(--primary-dark); }
-
-        @keyframes fadeIn { from {opacity: 0; transform: translateY(20px);} to {opacity: 1; transform: translateY(0);} }
-
-        /* --- Footer --- */
-        .footer { padding: 50px 0; background: var(--primary-dark); color: var(--white); text-align: center; }
-        .footer-logo img { height: 30px; margin: 0 auto 20px; filter: brightness(0) invert(1); }
-
-        /* RWD */
-        @media (max-width: 768px) {
-            .menu-toggle { display: block; }
-            #nav-menu { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: var(--white); padding: 20px 0; box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
-            #nav-menu.active { display: block; }
-            #nav-menu ul { flex-direction: column; }
-            .about-intro { flex-direction: column; }
-            .modal-content { padding: 30px 20px; } /* 手機版內距縮小 */
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header class="navbar">
     <div class="container nav-inner">
-        <div class="logo"><a href="index.html"><img src="assets/images/DoubleU-logotype-24.png" alt="DoubleU Tech Logo"></a></div>
-        <div class="menu-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+        <div class="logo"><a href="./"><img src="assets/images/DoubleU-logotype-24.png" alt="DoubleU Tech Logo"></a></div>
+        <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-controls="nav-menu" aria-expanded="false"><span></span><span></span><span></span></button>
         <nav id="nav-menu">
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="./">Home</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="insights.html">Insights</a></li>
-                <li><a href="about.html" style="color:var(--accent)">About US</a></li>
-                <li><a href="index.html#contact" class="nav-btn" onclick="toggleMenu()">Connect</a></li>
+                <li><a href="about.html" class="active">About US</a></li>
+                <li><a href="./#contact" class="nav-btn-highlight">Connect</a></li>
             </ul>
         </nav>
     </div>
@@ -191,79 +70,84 @@
 <section class="section">
     <div class="container about-intro">
         <div class="about-text">
-            <p style="color:var(--accent); font-weight:700; letter-spacing:3px; margin-bottom:10px;">WHO WE ARE</p>
+            <span class="sub-title">Who We Are</span>
             <h1>Bridging Technology & Business</h1>
-            <p style="margin-bottom:20px; color:#555;">
+            <p>
                 DoubleU-Tech Advisory was established with a mission to bridge the gap between complex technological innovations and practical business applications.
             </p>
-            <p style="color:#555;">
+            <p>
                 With decades of experience in the semiconductor supply chain and IoT sectors, we provide the strategic insight needed to navigate the ever-changing tech landscape.
             </p>
         </div>
-        <div class="about-img-placeholder">
-            <img src="assets/images/About.png" alt="DoubleU Tech Office">
+        <div class="about-img">
+            <img src="assets/images/About.png" alt="DoubleU Tech Office" width="1376" height="768">
         </div>
     </div>
 </section>
 
 <section class="section" style="background:var(--grey-light);">
     <div class="container">
-        <p style="color:var(--accent); text-align:center; font-weight:700; letter-spacing:3px;">THE CORE TEAM</p>
-        <h2 style="text-align:center; font-family:'Playfair Display'; font-size:42px; margin-top:20px; color:var(--primary-dark);">The Leadership Behind DoubleU</h2>
-        
+        <div class="section-header" style="margin-bottom: 0;">
+            <span class="sub-title">The Core Team</span>
+            <h2 class="main-title">The Leadership Behind DoubleU</h2>
+        </div>
+
         <div class="team-grid">
-            <div class="team-member" role="button" tabindex="0" onclick="openModal('modal-bert')">
-                <div class="member-photo"><img src="assets/images/Bert_Sie.png" alt="Bert Sie - Managing Director DoubleU-Tech"></div>
+            <div class="team-member" role="button" tabindex="0" data-modal="modal-bert" aria-haspopup="dialog">
+                <div class="member-photo headroom"><img src="assets/images/Bert_Sie.png" alt="Bert Sie - Managing Director DoubleU-Tech"></div>
                 <h3>Bert Sie</h3>
                 <p class="role-title">Managing Director</p>
+                <p class="team-hint">View profile &rarr;</p>
             </div>
-            <div class="team-member" role="button" tabindex="0" onclick="openModal('modal-teresa')">
+            <div class="team-member" role="button" tabindex="0" data-modal="modal-teresa" aria-haspopup="dialog">
                 <div class="member-photo"><img src="assets/images/Teresa.JPG" alt="Teresa Jhan - Principal DoubleU-Tech"></div>
                 <h3>Teresa Jhan</h3>
                 <p class="role-title">Principal</p>
+                <p class="team-hint">View profile &rarr;</p>
             </div>
-            <div class="team-member" role="button" tabindex="0" onclick="openModal('modal-fred')">
-                <div class="member-photo"><img src="assets/images/FRED_3_0.png" alt="Fred Chen - VP Channel"></div>
+            <div class="team-member" role="button" tabindex="0" data-modal="modal-fred" aria-haspopup="dialog">
+                <div class="member-photo headroom"><img src="assets/images/FRED_3_0.png" alt="Fred Chen - VP Channel"></div>
                 <h3>Fred Chen</h3>
                 <p class="role-title">VP Channel & Distribution</p>
+                <p class="team-hint">View profile &rarr;</p>
             </div>
         </div>
     </div>
 </section>
 
-<div id="modal-bert" class="modal">
+<div id="modal-bert" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-bert-title" aria-hidden="true">
     <div class="modal-content">
-        <span class="close" onclick="closeModal('modal-bert')">&times;</span>
-        <h3 style="font-family:'Playfair Display'; font-size:28px; color:var(--primary-dark);">Bert Sie</h3>
-        <p style="color:var(--accent); font-weight:700; margin-bottom:20px; text-align:center;">Managing Director</p>
-        
+        <button type="button" class="close" aria-label="Close">&times;</button>
+        <h3 id="modal-bert-title">Bert Sie</h3>
+        <p class="modal-role">Managing Director</p>
+
         <p>Bert co-developed the “Double U” concept with Teresa in early 2022, focusing on go-to-market and growth strategies for technology-driven companies. He currently serves as Head of Sales & Business Development for Beammwave and AlixLabs in Taiwan.</p>
         <p>Bert began his career as a Sales Engineer at EDOM, a top-7 global IC distributor, and later advanced into senior leadership roles, founding the company’s first mass-market business group and leading sales and marketing initiatives. Earlier in his career, he managed product teams across multiple applications and supported five startups from 0 to 1.</p>
         <p>He holds an MBA from National Central University, Taiwan.</p>
-        
-        <a href="https://tw.linkedin.com/in/bert-sie-891a9350" target="_blank" class="linkedin-btn">Connect on LinkedIn</a>
+
+        <a href="https://tw.linkedin.com/in/bert-sie-891a9350" target="_blank" rel="noopener noreferrer" class="linkedin-btn">Connect on LinkedIn</a>
     </div>
 </div>
 
-<div id="modal-teresa" class="modal">
+<div id="modal-teresa" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-teresa-title" aria-hidden="true">
     <div class="modal-content">
-        <span class="close" onclick="closeModal('modal-teresa')">&times;</span>
-        <h3 style="font-family:'Playfair Display'; font-size:28px; color:var(--primary-dark);">Teresa Jhan</h3>
-        <p style="color:var(--accent); font-weight:700; margin-bottom:20px; text-align:center;">Principal</p>
-        
+        <button type="button" class="close" aria-label="Close">&times;</button>
+        <h3 id="modal-teresa-title">Teresa Jhan</h3>
+        <p class="modal-role">Principal</p>
+
         <p>Teresa is a seasoned professional with over 15 years of experience in the IoT industry, possessing deep expertise in end-to-end solutions spanning cloud platforms, devices, and key components. She has worked extensively with international corporations, excelling at bridging communication across diverse technical and business stakeholders.</p>
         <p>With a strong sensitivity to technology trends and sharp market insights, Teresa adopts a consultative sales approach, delivering tailored product demonstrations and solution-driven recommendations. Her ability to align technology with real business needs makes her a key contributor to the Double U team.</p>
-        
-        <a href="https://tw.linkedin.com/in/teresa-jhan-%E8%A9%B9%E6%83%A0%E6%8D%B7-31bb5910b" target="_blank" class="linkedin-btn">Connect on LinkedIn</a>
+
+        <a href="https://tw.linkedin.com/in/teresa-jhan-%E8%A9%B9%E6%83%A0%E6%8D%B7-31bb5910b" target="_blank" rel="noopener noreferrer" class="linkedin-btn">Connect on LinkedIn</a>
     </div>
 </div>
 
-<div id="modal-fred" class="modal">
+<div id="modal-fred" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-fred-title" aria-hidden="true">
     <div class="modal-content">
-        <span class="close" onclick="closeModal('modal-fred')">&times;</span>
-        <h3 style="font-family:'Playfair Display'; font-size:28px; color:var(--primary-dark);">Fred Chen</h3>
-        <p style="color:var(--accent); font-weight:700; margin-bottom:20px; text-align:center;">VP Channel & Distribution</p>
-        
+        <button type="button" class="close" aria-label="Close">&times;</button>
+        <h3 id="modal-fred-title">Fred Chen</h3>
+        <p class="modal-role">VP Channel & Distribution</p>
+
         <p>Fred Chen, with over two decades of expertise in the IC supply chain. Previously, Fred led Realtek's engagements with the largest PC/NB brand in China.</p>
         <p>Prior to his tenure at Realtek, he held a pivotal role in channel sales for the Taiwan district at Micron. Fred began his illustrious career at Avent, where he honed his skills in product management. He received a BS degree in Electric Engineering from the National Taipei University of Technology in Taiwan.</p>
     </div>
@@ -271,33 +155,36 @@
 
 <footer class="footer">
     <div class="container">
-        <div class="footer-logo"><img src="assets/images/DoubleU-logotype-27.png" alt="DoubleU Footer Logo"></div>
-        <p>&copy; 2026 DoubleU-Tech Advisory. All Rights Reserved.</p>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo"><img src="assets/images/DoubleU-logotype-27.png" alt="DoubleU Footer Logo"></div>
+                <p>Go-to-market and business development partner for technology companies expanding across Taiwan, the US and global markets.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="insights.html">Insights</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <ul>
+                    <!-- TODO: 加上公司 Email，例如 <li><a href="mailto:you@doubleu-tech.com">you@doubleu-tech.com</a></li> -->
+                    <li><a href="./#contact">Send Us a Message</a></li>
+                    <li><a href="https://tw.linkedin.com/in/bert-sie-891a9350" target="_blank" rel="noopener noreferrer">Bert Sie on LinkedIn</a></li>
+                    <li><a href="https://tw.linkedin.com/in/teresa-jhan-%E8%A9%B9%E6%83%A0%E6%8D%B7-31bb5910b" target="_blank" rel="noopener noreferrer">Teresa Jhan on LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 DoubleU-Tech Advisory. All Rights Reserved.</p>
+            <a href="privacy.html">Privacy Policy</a>
+        </div>
     </div>
 </footer>
 
-<script>
-    function toggleMenu() { document.getElementById('nav-menu').classList.toggle('active'); }
-    
-    function openModal(id) {
-        var modal = document.getElementById(id);
-        modal.style.display = 'flex';
-        document.body.style.overflow = "hidden"; // 禁止背景滾動
-    }
-    
-    function closeModal(id) {
-        var modal = document.getElementById(id);
-        modal.style.display = 'none';
-        document.body.style.overflow = "auto"; // 恢復背景滾動
-    }
-    
-    // 點擊外部關閉
-    window.onclick = function(event) {
-        if (event.target.classList.contains('modal')) {
-            event.target.style.display = 'none';
-            document.body.style.overflow = "auto";
-        }
-    }
-</script>
+<script src="site.js"></script>
 </body>
 </html>

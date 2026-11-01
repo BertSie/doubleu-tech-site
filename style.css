@@ -6,6 +6,7 @@
    3. 移除 Services 內頁圖標，改為側邊橘條精品排版
    4. 恢復深色 Footer 與 Logo 反白過濾器
    5. 安全驗證區塊 (Turnstile) 與 Honeypot 佈局優化
+   6. 全站共用：頁首標題、About 團隊/彈窗、多欄 Footer、隱私權與 404 頁
    ========================================= */
 
 /* --- 1. 全域變數與重設 --- */
@@ -36,6 +37,12 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 ul { list-style: none; }
 img { max-width: 100%; height: auto; display: block; }
 
+/* 鍵盤操作時的焦點框 */
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
 .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px; }
 
 h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary-dark); }
@@ -46,6 +53,7 @@ h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary-da
     padding: 14px 35px;
     font-weight: 700;
     font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
     border-radius: var(--radius);
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -58,6 +66,7 @@ h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary-da
 .btn-primary { background: var(--primary-dark); color: var(--white); border-color: var(--primary-dark); }
 .btn-primary:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
 .btn-primary:active { transform: scale(0.96); }
+.btn:disabled { opacity: 0.6; cursor: wait; transform: none; }
 
 .btn-outline { background: transparent; color: var(--primary-dark); border-color: var(--primary-dark); }
 .btn-outline:hover { background: var(--accent); border-color: var(--accent); color: var(--white); transform: translateY(-2px); }
@@ -71,14 +80,18 @@ h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary-da
 /* --- 3. 導覽列 --- */
 .navbar { background: var(--white); box-shadow: 0 2px 15px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; padding: 15px 0; }
 .nav-inner { display: flex; justify-content: space-between; align-items: center; }
-.logo img { height: 75px; } 
+.logo img { height: 75px; width: auto; }
 
 #nav-menu ul { display: flex; gap: 30px; align-items: center; }
 #nav-menu a { font-weight: 600; font-size: 14px; text-transform: uppercase; color: var(--primary-dark); }
 #nav-menu a:hover, #nav-menu a.active { color: var(--accent); }
 
 .nav-btn-highlight { padding: 8px 24px !important; border: 1px solid var(--primary-dark) !important; border-radius: var(--radius) !important; }
-.nav-btn-highlight:hover { background: var(--accent); border-color: var(--accent); color: var(--white) !important; }
+.nav-btn-highlight:hover { background: var(--accent); border-color: var(--accent) !important; color: var(--white) !important; }
+
+/* 手機漢堡選單按鈕 (桌機隱藏) */
+.menu-toggle { display: none; background: none; border: none; cursor: pointer; padding: 10px; }
+.menu-toggle span { display: block; width: 25px; height: 3px; background: var(--primary-dark); }
 
 /* --- 4. Hero Section (漸層與張力) --- */
 .hero {
@@ -108,6 +121,15 @@ h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary-da
 .sub-title { color: var(--accent); font-weight: 700; letter-spacing: 3px; text-transform: uppercase; font-size: 12px; margin-bottom: 15px; display: block; }
 .main-title { font-size: 38px; line-height: 1.2; }
 
+/* 內頁頁首 (Services / Insights / Privacy 共用) */
+.page-header {
+    padding: 100px 0 60px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    text-align: center;
+}
+.page-header h1 { font-size: 48px; line-height: 1.2; margin-bottom: 15px; }
+.page-header p { color: var(--text-light); font-size: 18px; letter-spacing: 1px; max-width: 750px; margin: 0 auto; }
+
 /* --- 5. 首頁服務預覽卡片 --- */
 .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
 .service-preview-card {
@@ -133,7 +155,7 @@ h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary-da
     box-shadow: 0 10px 40px rgba(0,0,0,0.04);
     display: flex;
     overflow: hidden;
-    border-left: 6px solid var(--accent); 
+    border-left: 6px solid var(--accent);
     transition: all 0.3s ease;
 }
 .service-detailed-card:hover { transform: translateX(10px); box-shadow: 0 20px 50px rgba(0,0,0,0.08); }
@@ -153,10 +175,10 @@ h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary-da
 .card-icon-col { display: none !important; }
 
 /* --- 7. Insights/新聞：精品方塊字卡優化 (首頁與內頁同步) --- */
-.insights-grid-wrap { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
-    gap: 30px; 
+.insights-grid-wrap {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
 }
 
 .insights-scroller { display: flex; gap: 30px; overflow-x: auto; padding: 20px 5px; scrollbar-width: none; }
@@ -177,34 +199,34 @@ h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary-da
     color: inherit;
 }
 
-.insight-card:hover { 
-    transform: translateY(-8px); 
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
+.insight-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
 }
 
-.insight-img { 
-    height: 160px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    color: #fff !important; 
-    padding: 30px; 
-    text-align: center; 
+.insight-img {
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff !important;
+    padding: 30px;
+    text-align: center;
 }
 
 .insight-img span {
     font-weight: 700;
-    font-size: 18px; 
+    font-size: 18px;
     line-height: 1.3;
     letter-spacing: 0.5px;
     text-transform: uppercase;
 }
 
-.insight-body { 
-    padding: 30px; 
-    flex: 1; 
-    display: flex; 
-    flex-direction: column; 
+.insight-body {
+    padding: 30px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .insight-date {
@@ -216,19 +238,19 @@ h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary-da
     display: block;
 }
 
-.insight-title { 
-    font-size: 20px; 
-    margin-bottom: 15px; 
-    line-height: 1.4; 
+.insight-title {
+    font-size: 20px;
+    margin-bottom: 15px;
+    line-height: 1.4;
     color: var(--primary-dark);
-    font-family: 'Playfair Display', serif; 
+    font-family: 'Playfair Display', serif;
 }
 
-.insight-desc { 
-    font-size: 14px; 
-    color: var(--text-light); 
-    margin-bottom: 25px; 
-    flex-grow: 1; 
+.insight-desc {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 25px;
+    flex-grow: 1;
     line-height: 1.6;
 }
 
@@ -236,20 +258,23 @@ h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary-da
 .contact-form-styled { max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
 .form-full { grid-column: span 2; }
 
-.form-group input, 
-.form-group textarea { 
-    width: 100%; 
-    border: none; 
-    border-bottom: 1px solid #ddd; 
-    padding: 12px 0; 
-    font-size: 16px; 
+.form-group label { font-size: 13px; font-weight: 600; color: var(--primary-dark); }
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    padding: 12px 0;
+    font-size: 16px;
     font-family: 'Montserrat', sans-serif; /* 強制繼承主體字體 */
-    background: transparent; 
-    transition: 0.3s; 
+    background: transparent;
+    transition: 0.3s;
     color: var(--text-main);
 }
+.form-group textarea { min-height: 120px; resize: vertical; }
 
-.form-group input:focus, 
+.form-group input:focus,
 .form-group textarea:focus { outline: none; border-bottom: 2px solid var(--accent); }
 
 /* 統一 Placeholder 樣式 (關鍵修正) */
@@ -267,33 +292,150 @@ textarea::placeholder { font-family: 'Montserrat', sans-serif !important; }
 .hp-field { position: absolute; left: -5000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
 .turnstile-wrapper { margin: 20px 0; min-height: 65px; }
 
-/* --- 9. RWD 響應式佈局 --- */
+/* 表單送出結果訊息 */
+.form-status { font-size: 15px; padding: 0; border-radius: var(--radius); }
+.form-status:empty { display: none; }
+.form-status.success { padding: 14px 18px; background: #e8f5ee; color: #1d6b3f; border-left: 4px solid #2e9b5d; }
+.form-status.error { padding: 14px 18px; background: #fdeee6; color: #9a3a0c; border-left: 4px solid var(--accent); }
+
+/* --- 9. About 頁：介紹、團隊與彈窗 --- */
+.section { padding: 80px 0; }
+.about-intro { display: flex; align-items: center; justify-content: space-between; gap: 50px; }
+.about-text { flex: 1; }
+.about-text h1 { font-size: 42px; line-height: 1.2; margin-bottom: 20px; }
+.about-text p { color: #555; margin-bottom: 20px; }
+.about-img { flex: 1; }
+.about-img img { border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+
+.team-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px; margin-top: 50px; text-align: center;
+}
+.team-member { cursor: pointer; transition: transform 0.3s; position: relative; z-index: 1; border-radius: 8px; }
+.team-member:active { transform: scale(0.98); }
+.team-member:hover { transform: translateY(-10px); }
+
+.member-photo {
+    width: 200px; height: 200px; border-radius: 50%; overflow: hidden;
+    margin: 0 auto 20px; border: 3px solid var(--grey-light);
+    background: var(--white);
+    pointer-events: none; /* 讓點擊穿透圖片直接觸發 div */
+}
+/* 從照片上緣開始裁切，避免頭頂被切掉 */
+.member-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+/* 頭頂貼齊原圖上緣的照片：上方留白，讓頭部完整置中 */
+.member-photo.headroom img { padding-top: 18px; }
+
+.team-member h3 { font-size: 24px; margin-bottom: 5px; }
+.team-member .role-title {
+    color: var(--accent); font-weight: 700; font-size: 13px;
+    text-transform: uppercase; letter-spacing: 2px; margin-top: 10px;
+}
+.team-hint { font-size: 12px; color: var(--text-light); margin-top: 8px; }
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    background-color: rgba(15, 35, 50, 0.95);
+    align-items: center; justify-content: center;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 20px;
+}
+.modal.open { display: flex; }
+.modal-content {
+    background-color: var(--white);
+    padding: 40px 30px;
+    border-radius: 8px;
+    width: 100%; max-width: 650px;
+    position: relative;
+    text-align: center;
+    animation: fadeIn 0.3s;
+    margin: auto;
+}
+.modal-content h3 { font-size: 28px; }
+.modal-role { color: var(--accent); font-weight: 700; margin-bottom: 20px; }
+.modal-content p:not(.modal-role) { text-align: left; margin-bottom: 15px; font-size: 15px; color: #555; }
+.close {
+    position: absolute; top: 10px; right: 15px; font-size: 40px; line-height: 1;
+    background: none; border: none; cursor: pointer; color: #aaa; padding: 5px 10px;
+}
+.close:hover { color: var(--primary-dark); }
+
+.linkedin-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--accent); font-weight: 700;
+    margin-top: 15px; border-bottom: 2px solid var(--accent); padding-bottom: 2px;
+}
+.linkedin-btn:hover { color: var(--primary-dark); border-color: var(--primary-dark); }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* --- 10. 文字內容頁 (隱私權政策) 與 404 --- */
+.legal-content { max-width: 800px; margin: 0 auto; }
+.legal-content h2 { font-size: 26px; margin: 40px 0 15px; }
+.legal-content p, .legal-content li { color: #555; margin-bottom: 12px; }
+.legal-content ul { list-style: disc; padding-left: 22px; }
+.legal-content a { color: var(--accent); text-decoration: underline; }
+
+.not-found { padding: 140px 0; text-align: center; }
+.not-found .code { font-family: 'Playfair Display', serif; font-size: 96px; color: var(--accent); line-height: 1; }
+.not-found h1 { font-size: 36px; margin: 20px 0 15px; }
+.not-found p { color: var(--text-light); margin-bottom: 35px; }
+
+/* --- 11. Footer 質感恢復 (多欄版) --- */
+.footer { background: var(--primary-dark); color: rgba(255, 255, 255, 0.6); padding: 70px 0 30px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; margin-bottom: 50px; }
+.footer-logo img {
+    height: 60px;
+    width: auto;
+    filter: brightness(0) invert(1); /* 轉為純白 Logo */
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+.footer-brand p { font-size: 14px; max-width: 360px; }
+.footer h4 { font-family: 'Montserrat', sans-serif; color: var(--white); font-size: 13px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 18px; }
+.footer-col li { margin-bottom: 10px; font-size: 14px; }
+.footer-col a:hover, .footer-bottom a:hover { color: var(--accent); }
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 25px;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+    font-size: 13px; letter-spacing: 0.5px;
+}
+
+/* --- 12. RWD 響應式佈局 --- */
 @media (max-width: 900px) {
     .services-grid { grid-template-columns: 1fr; }
     .service-list { grid-template-columns: 1fr; }
     .hero h1 { font-size: 38px; }
     .card-content { padding: 50px 40px; }
     .insight-img { height: 140px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .footer-brand { grid-column: span 2; }
 }
 
 @media (max-width: 768px) {
+    .logo img { height: 56px; }
     .menu-toggle { display: flex; flex-direction: column; gap: 5px; }
-    .menu-toggle span { width: 25px; height: 3px; background: var(--primary-dark); }
     #nav-menu { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: var(--white); padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
     #nav-menu.active { display: block; }
     #nav-menu ul { flex-direction: column; }
+    .hero { padding: 100px 0 80px; }
     .hero-btns { flex-direction: column; }
+    .page-header { padding: 70px 0 45px; }
+    .page-header h1 { font-size: 34px; }
+    .main-title { font-size: 30px; }
     .insights-scroller { display: flex !important; overflow-x: auto !important; scroll-snap-type: x mandatory; padding-left: 20px; margin-left: -20px; margin-right: -20px; }
     .insight-card { min-width: 85% !important; scroll-snap-align: center; }
+    .contact-form-styled { grid-template-columns: 1fr; }
+    .form-full { grid-column: auto; }
+    .card-content { padding: 40px 25px; }
+    .about-intro { flex-direction: column; }
+    .about-text h1 { font-size: 34px; }
+    .modal-content { padding: 30px 20px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 35px; }
+    .footer-brand { grid-column: auto; }
+    .footer-bottom { flex-direction: column; }
 }
-
-/* --- 10. Footer 質感恢復 --- */
-.footer { background: var(--primary-dark); color: rgba(255, 255, 255, 0.6); padding: 80px 0 40px; text-align: center; }
-.footer-logo img { 
-    height: 40px; 
-    width: auto; 
-    filter: brightness(0) invert(1); /* 轉為純白 Logo */
-    margin: 0 auto 30px; 
-    opacity: 0.9; 
-}
-.footer p { font-size: 14px; letter-spacing: 0.5px; }
