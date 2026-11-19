@@ -6,6 +6,10 @@
 // 必須在 Cloudflare 設定 Secret：GOOGLE_FORM_URL — Google Form 的網址 (填寫頁或預先填入連結皆可)
 //   表單網址只存在 Cloudflare，不寫在公開程式碼裡，機器人就無法繞過網站直接灌 Google Form
 
+// 暫用：尚未設定 GOOGLE_FORM_URL 時，先送到舊表單，避免聯絡表單中斷。
+// 新表單網址設進 Cloudflare 後，刪掉這個常數和下方的 fallback。
+const LEGACY_GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSffelARBEmcZqGrMwYvy4R2h3z-vUEoq-bb9_Pmozz7n_GLGg/formResponse';
+
 // 把任何 Google Form 網址 (viewform / 預先填入連結 / formResponse) 轉成送出用的 formResponse 網址
 function toFormResponseUrl(url) {
     const match = String(url || '').match(/\/forms\/(?:u\/\d+\/)?d\/e\/([A-Za-z0-9_-]+)/);
@@ -54,7 +58,7 @@ export async function handleContact(request, env) {
     }
 
     // --- 伺服器設定檢查 ---
-    const formResponseUrl = toFormResponseUrl(env.GOOGLE_FORM_URL);
+    const formResponseUrl = toFormResponseUrl(env.GOOGLE_FORM_URL || LEGACY_GOOGLE_FORM_URL);
     if (!env.TURNSTILE_SECRET_KEY || !formResponseUrl) {
         console.error('TURNSTILE_SECRET_KEY or GOOGLE_FORM_URL is missing or invalid');
         return json({ ok: false, error: 'The contact form is temporarily unavailable. Please try again later.' }, 500);
