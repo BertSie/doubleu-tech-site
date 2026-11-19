@@ -3,9 +3,14 @@
 // 表單流程：瀏覽器 → /api/contact → 伺服器端驗證 Turnstile → 轉送 Google Form
 // 必須在 Cloudflare 設定 Secret：TURNSTILE_SECRET_KEY
 //   (Cloudflare Dashboard → Workers & Pages → 此專案 → Settings → Variables and Secrets，設定後要重新部署)
-// 選用 Secret：GOOGLE_FORM_URL — 換成新的 Google Form 時填入，就不必把表單網址寫在公開程式碼裡
+// 必須在 Cloudflare 設定 Secret：GOOGLE_FORM_URL — Google Form 的網址 (填寫頁或預先填入連結皆可)
+//   表單網址只存在 Cloudflare，不寫在公開程式碼裡，機器人就無法繞過網站直接灌 Google Form
 
-const DEFAULT_GOOGLE_FORM_URL = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSffelARBEmcZqGrMwYvy4R2h3z-vUEoq-bb9_Pmozz7n_GLGg/formResponse';
+// 把任何 Google Form 網址 (viewform / 預先填入連結 / formResponse) 轉成送出用的 formResponse 網址
+function toFormResponseUrl(url) {
+    const match = String(url || '').match(/\/forms\/(?:u\/\d+\/)?d\/e\/([A-Za-z0-9_-]+)/);
+    return match ? `https://docs.google.com/forms/d/e/${match[1]}/formResponse` : null;
+}
 
 // 網站欄位 → Google Form 欄位 ID
 const FORM_FIELDS = {
@@ -48,11 +53,14 @@ export async function handleContact(request, env) {
         return json({ ok: false, error: 'Please enter a valid email address.' }, 400);
     }
 
-    // --- Turnstile 伺服器端驗證 ---
-    if (!env.TURNSTILE_SECRET_KEY) {
-        console.error('TURNSTILE_SECRET_KEY is not set');
+    // --- 伺服器設定檢查 ---
+    const formResponseUrl = toFormResponseUrl(env.GOOGLE_FORM_URL);
+    if (!env.TURNSTILE_SECRET_KEY || !formResponseUrl) {
+        console.error('TURNSTILE_SECRET_KEY or GOOGLE_FORM_URL is missing or invalid');
         return json({ ok: false, error: 'The contact form is temporarily unavailable. Please try again later.' }, 500);
     }
+
+    // --- Turnstile 伺服器端驗證 ---
 
     const token = String(form.get('cf-turnstile-response') || '');
     const verifyRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
@@ -76,7 +84,7 @@ export async function handleContact(request, env) {
     }
 
     try {
-        const googleRes = await fetch(env.GOOGLE_FORM_URL || DEFAULT_GOOGLE_FORM_URL, { method: 'POST', body, redirect: 'manual' });
+        const googleRes = await fetch(formResponseUrl, { method: 'POST', body, redirect: 'manual' });
         if (googleRes.status >= 400) {
             console.error('Google Form responded with', googleRes.status);
             return json({ ok: false, error: 'Sorry, your message could not be sent. Please try again later.' }, 502);
