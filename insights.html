@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insights | DoubleU-Tech Advisory</title>
-    <meta name="description" content="Latest news and impact stories from DoubleU-Tech.">
+    <title>Insights | Case Studies, Perspectives & News | DoubleU-Tech</title>
+    <meta name="description" content="Case studies, perspectives and news from Double U — helping deep-tech innovators enter Taiwan's tech supply chain.">
     <link rel="canonical" href="https://www.doubleu-tech.com/insights" />
 
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
@@ -14,13 +14,13 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="DoubleU-Tech Advisory">
     <meta property="og:title" content="Insights | DoubleU-Tech Advisory">
-    <meta property="og:description" content="Our footprints and success stories across semiconductor and IoT value chains.">
+    <meta property="og:description" content="Case studies, perspectives and news on entering Taiwan's tech supply chain.">
     <meta property="og:url" content="https://www.doubleu-tech.com/insights">
     <meta property="og:image" content="https://www.doubleu-tech.com/assets/images/og-image.png">
     <meta name="twitter:card" content="summary_large_image">
 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20261120">
+    <link rel="stylesheet" href="style.css?v=20261120b">
 </head>
 <body>
 
@@ -47,12 +47,69 @@
 <section class="page-header">
     <div class="container">
         <h1>Making Impact, Making Headlines</h1>
-        <p>Our Footprints & Success Stories</p>
+        <p>Case studies, perspectives and news from the Taiwan tech ecosystem</p>
     </div>
 </section>
 
-<section style="padding: 100px 0; background: var(--white);">
+<nav class="insights-tabs" aria-label="Insights sections">
+    <ul>
+        <li><a href="#case-studies">Case Studies</a></li>
+        <li><a href="#perspectives">Perspectives</a></li>
+        <li><a href="#news">News</a></li>
+    </ul>
+</nav>
+
+<!-- 1. 案例 -->
+<section class="insights-block" id="case-studies">
     <div class="container">
+        <div class="block-head">
+            <div>
+                <span class="sub-title">Case Studies</span>
+                <h2 class="main-title">How we've helped tech innovators win in Taiwan</h2>
+                <p>Challenge, approach and result — in our clients' journeys from zero to one.</p>
+            </div>
+        </div>
+
+        <div class="case-tiles">
+            <a href="case-beammwave.html" class="case-tile">
+                <div class="case-tile-head"><span class="case-tag">CASE 01 · BEAMMWAVE · SWEDEN</span><h3>Joint next-gen FWA pre-study with Alpha Networks</h3></div>
+                <div class="case-tile-body"><p>Opening Taiwan's networking ODM ecosystem for a Swedish mmWave beamforming chip company.</p><span class="read-more-btn">Read case study &rarr;</span></div>
+            </a>
+            <a href="case-alixlabs.html" class="case-tile">
+                <div class="case-tile-head"><span class="case-tag">CASE 02 · ALIXLABS · SWEDEN</span><h3>APS™ demonstrated on UMC 300 mm wafers</h3></div>
+                <div class="case-tile-body"><p>Engaging Taiwan's foundries and semiconductor supply chain for a Swedish start-up.</p><span class="read-more-btn">Read case study &rarr;</span></div>
+            </a>
+            <a href="case-fabric8labs.html" class="case-tile">
+                <div class="case-tile-head"><span class="case-tag">CASE 03 · FABRIC8LABS · USA</span><h3>ECAM liquid cooling in mass production in 2026</h3></div>
+                <div class="case-tile-body"><p>Connecting a US cooling innovator with Taiwan's AI server ODM ecosystem.</p><span class="read-more-btn">Read case study &rarr;</span></div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- 2. 觀點文章 (內容在 perspectives-data.js) -->
+<section class="insights-block alt" id="perspectives">
+    <div class="container">
+        <div class="block-head">
+            <div>
+                <span class="sub-title">Perspectives</span>
+                <h2 class="main-title">Notes from the Taiwan tech ecosystem</h2>
+                <p>Practical guidance on market entry, customer engagement and the supply chain — published monthly.</p>
+            </div>
+        </div>
+        <div id="perspectives-container"></div>
+    </div>
+</section>
+
+<!-- 3. 新聞 (內容在 news-data.js) -->
+<section class="insights-block" id="news">
+    <div class="container">
+        <div class="block-head">
+            <div>
+                <span class="sub-title">News</span>
+                <h2 class="main-title">In the headlines</h2>
+            </div>
+        </div>
         <div class="insights-grid-wrap" id="page-news-container"></div>
     </div>
 </section>
@@ -62,7 +119,7 @@
         <div class="footer-grid">
             <div class="footer-brand">
                 <div class="footer-logo"><img src="assets/images/DoubleU-logotype-27.png" alt="DoubleU Footer Logo"></div>
-                <p>Go-to-market and business development partner for technology companies expanding across Taiwan, the US and global markets.</p>
+                <p>Go-to-market and business development partner for tech innovators entering Taiwan and APAC.</p>
             </div>
             <div class="footer-col">
                 <h4>Explore</h4>
@@ -89,12 +146,9 @@
     </div>
 </footer>
 
-<script src="news-data.js?v=20261120"></script>
-<script src="site.js?v=20261120"></script>
-<script>
-    // 不傳入 limit，渲染全部新聞
-    renderNews('page-news-container');
-</script>
+<script src="news-data.js?v=20261120b"></script>
+<script src="perspectives-data.js?v=20261120b"></script>
+<script src="site.js?v=20261120b"></script>
 
 </body>
 </html>

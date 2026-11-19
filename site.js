@@ -1,6 +1,19 @@
 // site.js — 全站共用：手機選單、團隊彈窗、聯絡表單
 
 (function () {
+    // --- 動態內容：新聞 (news-data.js) 與觀點文章 (perspectives-data.js) ---
+    // 放在這裡而不是寫在 HTML 裡，讓 Content-Security-Policy 可以禁止所有行內腳本
+    if (typeof renderNews === 'function') {
+        renderNews('home-news-container', 3);
+        renderNews('page-news-container');
+    }
+    if (typeof renderPerspectives === 'function') {
+        renderPerspectives('perspectives-container');
+    }
+    if (typeof renderArticle === 'function' && document.getElementById('article-body')) {
+        renderArticle();
+    }
+
     // --- 手機選單 ---
     const toggle = document.querySelector('.menu-toggle');
     const navMenu = document.getElementById('nav-menu');

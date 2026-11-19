@@ -30,8 +30,7 @@ export async function onRequestPost(context) {
     return handleContact(context.request, context.env);
 }
 
-// worker.js 也共用這個函式
-export async function handleContact(request, env) {
+async function handleContact(request, env) {
     let form;
     try {
         form = await request.formData();

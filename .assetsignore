@@ -1,5 +1,0 @@
-# 不要當成網站檔案公開的內容
-worker.js
-wrangler.jsonc
-.assetsignore
-.git

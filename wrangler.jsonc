@@ -1,12 +1,7 @@
 {
   "name": "doubleu-tech-site-pages",
   "compatibility_date": "2025-12-25",
-  // 聯絡表單 API (/api/contact)；其餘請求交給靜態檔案
-  "main": "worker.js",
   "assets": {
-    "directory": "./",
-    "binding": "ASSETS",
-    // 找不到頁面時顯示 404.html
-    "not_found_handling": "404-page"
+    "directory": "./" 
   }
 }
