@@ -31,6 +31,19 @@ export async function onRequestPost(context) {
 }
 
 async function handleContact(request, env) {
+    // --- 只接受從本網站送出的表單 (擋掉其他網站代送) ---
+    const origin = request.headers.get('Origin');
+    if (origin) {
+        let sameSite = false;
+        try { sameSite = new URL(origin).host === new URL(request.url).host; } catch { /* 格式錯誤視為不同網站 */ }
+        if (!sameSite) return json({ ok: false, error: 'Invalid request.' }, 403);
+    }
+
+    // --- 內容過大直接拒絕 ---
+    if (Number(request.headers.get('Content-Length') || 0) > 20000) {
+        return json({ ok: false, error: 'Message is too long.' }, 413);
+    }
+
     let form;
     try {
         form = await request.formData();

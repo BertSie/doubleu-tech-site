@@ -28,6 +28,16 @@
         navMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => setMenuOpen(false));
         });
+        // 點選單外面或按 Esc 也收起
+        document.addEventListener('click', (e) => {
+            if (navMenu.classList.contains('active') && !navMenu.contains(e.target) && !toggle.contains(e.target)) setMenuOpen(false);
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                setMenuOpen(false);
+                toggle.focus();
+            }
+        });
     }
 
     // --- 團隊彈窗 (About 頁) ---
@@ -68,15 +78,30 @@
         });
     });
 
-    // Esc 關閉
+    // Esc 關閉；Tab 鍵只在彈窗內循環
     document.addEventListener('keydown', (e) => {
-        if (e.key !== 'Escape') return;
         const openOne = document.querySelector('.modal.open');
-        if (openOne) closeModal(openOne);
+        if (!openOne) return;
+        if (e.key === 'Escape') {
+            closeModal(openOne);
+            return;
+        }
+        if (e.key === 'Tab') {
+            const focusables = openOne.querySelectorAll('button, a[href]');
+            const first = focusables[0];
+            const last = focusables[focusables.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }
+        }
     });
 
     // --- 聯絡表單 (首頁) ---
-    // 送到 /api/contact，由 worker.js 在伺服器端驗證 Turnstile 後再轉送 Google Form
+    // 送到 /api/contact，由 functions/api/contact.js 在伺服器端驗證 Turnstile 後再轉送 Google Form
     const form = document.getElementById('contactForm');
     if (!form) return;
 

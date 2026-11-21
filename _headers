@@ -7,3 +7,8 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
   Strict-Transport-Security: max-age=31536000
+  Cross-Origin-Opener-Policy: same-origin
+
+# 圖片快取 7 天 (換同檔名的圖片時，最多 7 天後訪客會看到新圖)
+/assets/*
+  Cache-Control: public, max-age=604800
