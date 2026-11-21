@@ -165,7 +165,7 @@ function renderArticle() {
     const body = document.getElementById('article-body');
 
     if (!item) {
-        document.title = 'Article not found | DoubleU-Tech';
+        document.title = 'Article not found | Double U';
         hero.innerHTML = `
             <span class="sub-title">Perspectives</span>
             <h1>Article not found</h1>
@@ -174,7 +174,7 @@ function renderArticle() {
         return;
     }
 
-    document.title = `${item.title} | DoubleU-Tech Perspectives`;
+    document.title = `${item.title} | Double U Perspectives`;
     const desc = document.querySelector('meta[name="description"]');
     if (desc) desc.setAttribute('content', item.summary);
 
@@ -183,6 +183,6 @@ function renderArticle() {
         <div class="persp-meta" style="margin-top: 25px;">${escapeHtml(item.category)} <span>· ${formatPerspectiveDate(item.date)}</span></div>
         <h1>${escapeHtml(item.title)}</h1>
         <p class="summary">${escapeHtml(item.summary)}</p>
-        <p class="article-byline">By <strong>${escapeHtml(item.author || 'DoubleU-Tech')}</strong> · ${readingMinutes(item.body)} min read</p>`;
+        <p class="article-byline">By <strong>${escapeHtml(item.author || 'Double U')}</strong> · ${readingMinutes(item.body)} min read</p>`;
     body.innerHTML = markdownToHtml(item.body);
 }

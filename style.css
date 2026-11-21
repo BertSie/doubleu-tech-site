@@ -385,6 +385,7 @@ textarea::placeholder { font-family: 'Montserrat', sans-serif !important; }
     margin: auto;
 }
 .modal-content h3 { font-size: 28px; }
+.modal-photo { width: 130px; height: 130px; margin: 0 auto 18px; border-color: var(--grey-bg); box-shadow: 0 8px 20px rgba(15,35,50,0.12); }
 .modal-role { color: var(--accent-text); font-weight: 700; margin-bottom: 20px; }
 .modal-content p:not(.modal-role) { text-align: left; margin-bottom: 15px; font-size: 15px; color: #555; }
 .close {
