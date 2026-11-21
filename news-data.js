@@ -82,7 +82,7 @@ function newsVisual(item) {
     if (item.image) {
         return `<div class="insight-img has-photo"><img src="${newsEsc(item.image)}" alt="${newsEsc(item.imageAlt || item.title)}" loading="lazy"></div>`;
     }
-    return `<div class="insight-img" style="${item.imgStyle || ''}"><span>${item.imgText || ''}</span></div>`;
+    return `<div class="insight-img" style="${newsEsc(item.imgStyle)}"><span>${newsEsc(item.imgText)}</span></div>`;
 }
 
 function renderNews(containerId, limit = null) {
@@ -97,7 +97,9 @@ function renderNews(containerId, limit = null) {
     displayData.forEach(item => {
         // 有站內全文 (slug + body) 就連到站內頁面，否則連到原始新聞稿
         const onSite = item.slug && item.body;
-        const href = onSite ? `perspective.html?n=${encodeURIComponent(item.slug)}` : item.link;
+        // 外部連結只接受 http(s)，避免 javascript: 之類的網址
+        const href = onSite ? `perspective.html?n=${encodeURIComponent(item.slug)}`
+            : (/^https?:\/\//i.test(item.link || '') ? item.link : '#');
         const isExternal = !onSite && item.isExternal ? 'target="_blank" rel="noopener noreferrer"' : '';
 
         // 判斷是否為不可點擊狀態
@@ -106,9 +108,9 @@ function renderNews(containerId, limit = null) {
                 <div class="insight-card" style="cursor: default; opacity: 0.8;">
                     ${newsVisual(item)}
                     <div class="insight-body">
-                        <span class="insight-date">${item.date}</span>
-                        <h3 class="insight-title">${item.title}</h3>
-                        <p class="insight-desc">${item.desc}</p>
+                        <span class="insight-date">${newsEsc(item.date)}</span>
+                        <h3 class="insight-title">${newsEsc(item.title)}</h3>
+                        <p class="insight-desc">${newsEsc(item.desc)}</p>
                     </div>
                 </div>
             `;
@@ -117,9 +119,9 @@ function renderNews(containerId, limit = null) {
                 <a href="${newsEsc(href)}" ${isExternal} class="insight-card">
                     ${newsVisual(item)}
                     <div class="insight-body">
-                        <span class="insight-date">${item.date}</span>
-                        <h3 class="insight-title">${item.title}</h3>
-                        <p class="insight-desc">${item.desc}</p>
+                        <span class="insight-date">${newsEsc(item.date)}</span>
+                        <h3 class="insight-title">${newsEsc(item.title)}</h3>
+                        <p class="insight-desc">${newsEsc(item.desc)}</p>
                         <span class="read-more-btn">Read Article &rarr;</span>
                     </div>
                 </a>

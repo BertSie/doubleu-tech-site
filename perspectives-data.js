@@ -173,6 +173,17 @@ function renderPerspectives(containerId, limit = null) {
         </a>`).join('') + '</div>';
 }
 
+// 在 <head> 裡新增或更新一個標籤，例如 <link rel="canonical" href="...">
+function setHeadTag(tag, keyAttr, keyValue, valueAttr, value) {
+    let el = document.head.querySelector(`${tag}[${keyAttr}="${keyValue}"]`);
+    if (!el) {
+        el = document.createElement(tag);
+        el.setAttribute(keyAttr, keyValue);
+        document.head.appendChild(el);
+    }
+    el.setAttribute(valueAttr, value);
+}
+
 // 文章頁：?a=slug 顯示觀點文章；?n=slug 顯示站內新聞稿 (news-data.js 裡有 body 的那幾則)
 function renderArticle() {
     const params = new URLSearchParams(location.search);
@@ -190,6 +201,7 @@ function renderArticle() {
 
     if (!item) {
         document.title = 'Article not found | Double U';
+        setHeadTag('meta', 'name', 'robots', 'content', 'noindex');
         hero.innerHTML = `
             <span class="sub-title">${isNews ? 'News' : 'Perspectives'}</span>
             <h1>Article not found</h1>
@@ -202,6 +214,11 @@ function renderArticle() {
     document.title = `${item.title} | Double U ${isNews ? 'News' : 'Perspectives'}`;
     const desc = document.querySelector('meta[name="description"]');
     if (desc) desc.setAttribute('content', summary);
+
+    // 正式網址 (canonical)：讓 Google 知道 www.doubleu-tech.com 才是正本，不要收錄 pages.dev 等重複網址
+    const canonical = `https://www.doubleu-tech.com/perspective?${isNews ? 'n' : 'a'}=${encodeURIComponent(item.slug)}`;
+    setHeadTag('link', 'rel', 'canonical', 'href', canonical);
+    setHeadTag('meta', 'property', 'og:url', 'content', canonical);
 
     const meta = isNews
         ? `Press Release <span>· ${escapeHtml(item.date)}</span>`
