@@ -11,12 +11,15 @@
 //    author     作者
 //    summary    一到兩句摘要 (會顯示在列表卡片和 Google 搜尋結果)
 //    published  true = 公開；false = 草稿，網站上看不到
+//    cover      (選填) 封面圖，例如 'assets/images/perspectives/文章代號/cover.jpg' (建議 1200×630)
+//               會顯示在文章卡片上方和文章開頭
 //    body       內文，用簡單的 Markdown 寫：
 //                 ## 大標題        ### 小標題
 //                 - 項目符號       1. 編號清單
 //                 **粗體**         *斜體*
 //                 [連結文字](https://網址)
-//                 ![圖片說明](assets/images/perspectives/圖片檔名.jpg)
+//                 ![圖片說明](assets/images/perspectives/文章代號/圖片檔名.jpg)
+//                   ↑ 圖片要獨立一行；「圖片說明」會顯示在圖片下方
 //                 > 引言
 //               段落之間空一行。內文前後的 ` 符號不要刪掉，內文裡也不要用 ` 這個符號。
 // 3. 存檔後上傳到 GitHub，網站就會自動更新
@@ -71,6 +74,11 @@ function safeUrl(url) {
     return /^(https?:\/\/|mailto:|\/|\.\/|assets\/|[a-z0-9-]+\.html)/i.test(url) ? url : '#';
 }
 
+function figureHtml(src, caption) {
+    const alt = escapeHtml(caption || '');
+    return `<figure><img src="${escapeHtml(safeUrl(src))}" alt="${alt}" loading="lazy">${caption ? `<figcaption>${alt}</figcaption>` : ''}</figure>`;
+}
+
 // 簡易 Markdown → HTML
 function markdownToHtml(md) {
     const inline = (s) => escapeHtml(s)
@@ -99,6 +107,13 @@ function markdownToHtml(md) {
         let m;
 
         if (!line) { flushPara(); closeList(); continue; }
+
+        // 獨立一行的圖片 → 圖片 + 圖說
+        if ((m = line.match(/^!\[([^\]]*)\]\(([^)\s]+)\)$/))) {
+            flushPara(); closeList();
+            html += figureHtml(m[2], m[1]);
+            continue;
+        }
 
         if ((m = line.match(/^(#{2,3})\s+(.*)/))) {
             flushPara(); closeList();
@@ -150,6 +165,7 @@ function renderPerspectives(containerId, limit = null) {
 
     container.innerHTML = '<div class="persp-grid">' + items.map(item => `
         <a href="perspective.html?a=${encodeURIComponent(item.slug)}" class="persp-card">
+            ${item.cover ? `<img class="persp-cover" src="${escapeHtml(safeUrl(item.cover))}" alt="" loading="lazy">` : ''}
             <div class="persp-meta">${escapeHtml(item.category)} <span>· ${formatPerspectiveDate(item.date)}</span></div>
             <h3>${escapeHtml(item.title)}</h3>
             <p>${escapeHtml(item.summary)}</p>
@@ -157,32 +173,56 @@ function renderPerspectives(containerId, limit = null) {
         </a>`).join('') + '</div>';
 }
 
-// 文章頁：依網址 ?a=slug 顯示文章
+// 文章頁：?a=slug 顯示觀點文章；?n=slug 顯示站內新聞稿 (news-data.js 裡有 body 的那幾則)
 function renderArticle() {
-    const slug = new URLSearchParams(location.search).get('a');
-    const item = getPublishedPerspectives().find(p => p.slug === slug);
+    const params = new URLSearchParams(location.search);
+    const isNews = params.has('n');
     const hero = document.getElementById('article-hero');
     const body = document.getElementById('article-body');
+
+    const item = isNews
+        ? (typeof newsData !== 'undefined' ? newsData.find(n => n.slug && n.body && n.slug === params.get('n')) : null)
+        : getPublishedPerspectives().find(p => p.slug === params.get('a'));
+
+    const back = isNews
+        ? '<a href="insights.html#news" class="read-more-btn">&larr; All news</a>'
+        : '<a href="insights.html#perspectives" class="read-more-btn">&larr; All perspectives</a>';
 
     if (!item) {
         document.title = 'Article not found | Double U';
         hero.innerHTML = `
-            <span class="sub-title">Perspectives</span>
+            <span class="sub-title">${isNews ? 'News' : 'Perspectives'}</span>
             <h1>Article not found</h1>
-            <p class="summary">This article may have moved. <a href="insights.html#perspectives" class="read-more-btn">See all perspectives &rarr;</a></p>`;
+            <p class="summary">This article may have moved. ${back}</p>`;
         body.innerHTML = '';
         return;
     }
 
-    document.title = `${item.title} | Double U Perspectives`;
+    const summary = isNews ? item.desc : item.summary;
+    document.title = `${item.title} | Double U ${isNews ? 'News' : 'Perspectives'}`;
     const desc = document.querySelector('meta[name="description"]');
-    if (desc) desc.setAttribute('content', item.summary);
+    if (desc) desc.setAttribute('content', summary);
+
+    const meta = isNews
+        ? `Press Release <span>· ${escapeHtml(item.date)}</span>`
+        : `${escapeHtml(item.category)} <span>· ${formatPerspectiveDate(item.date)}</span>`;
+    const byline = isNews
+        ? ''
+        : `<p class="article-byline">By <strong>${escapeHtml(item.author || 'Double U')}</strong> · ${readingMinutes(item.body)} min read</p>`;
 
     hero.innerHTML = `
-        <a href="insights.html#perspectives" class="read-more-btn">&larr; All perspectives</a>
-        <div class="persp-meta" style="margin-top: 25px;">${escapeHtml(item.category)} <span>· ${formatPerspectiveDate(item.date)}</span></div>
+        ${back}
+        <div class="persp-meta" style="margin-top: 25px;">${meta}</div>
         <h1>${escapeHtml(item.title)}</h1>
-        <p class="summary">${escapeHtml(item.summary)}</p>
-        <p class="article-byline">By <strong>${escapeHtml(item.author || 'Double U')}</strong> · ${readingMinutes(item.body)} min read</p>`;
-    body.innerHTML = markdownToHtml(item.body);
+        <p class="summary">${escapeHtml(summary)}</p>
+        ${byline}`;
+
+    const cover = isNews ? item.image : item.cover;
+    const coverAlt = isNews ? (item.imageAlt || '') : '';
+    let html = cover ? figureHtml(cover, coverAlt).replace('<figure>', '<figure class="article-cover">') : '';
+    html += markdownToHtml(item.body);
+    if (isNews && item.link && item.link !== '#') {
+        html += `<p class="article-source">Original release: <a href="${escapeHtml(safeUrl(item.link))}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.link)}</a></p>`;
+    }
+    body.innerHTML = html;
 }
