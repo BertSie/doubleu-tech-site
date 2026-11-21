@@ -64,7 +64,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20261121c">
+    <link rel="stylesheet" href="style.css?v=20261121d">
 
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
@@ -98,13 +98,35 @@
 
 <!-- 1. 主標題：給誰、做什麼 -->
 <section id="main" class="hero home-hero">
-    <div class="container">
-        <span class="sub-title">Think Globally, Act Locally</span>
-        <h1>Your Business Development Team in Taiwan.</h1>
-        <p>Double U helps deep-tech startups and global innovators enter Taiwan and APAC — from strategy to deal closing. We don't just advise; we execute growth alongside our partners.</p>
-        <div class="hero-btns">
-            <a href="#contact" class="btn btn-primary">Book a Discovery Call</a>
-            <a href="services.html" class="btn btn-outline">Our Services</a>
+    <div class="container hero-split">
+        <div class="hero-copy">
+            <span class="sub-title">Think Globally, Act Locally</span>
+            <h1>Your Business Development Team in Taiwan.</h1>
+            <p>Double U helps deep-tech startups and global innovators enter Taiwan and APAC — from strategy to deal closing. We don't just advise; we execute growth alongside our partners.</p>
+            <div class="hero-btns">
+                <a href="#contact" class="btn btn-primary">Book a Discovery Call</a>
+                <a href="services.html" class="btn btn-outline">Our Services</a>
+            </div>
+        </div>
+
+        <!-- 首屏圖像：你的技術 → Double U → 台灣科技生態系 -->
+        <div class="hero-visual" role="group" aria-label="How Double U bridges the gap">
+            <span class="hv-label">How we bridge the gap</span>
+            <div class="hv-node">
+                <span class="hv-icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg></span>
+                <div><strong>Your technology</strong><span>Deep-tech startups &amp; global innovators</span></div>
+            </div>
+            <div class="hv-link" aria-hidden="true"></div>
+            <div class="hv-node hv-us">
+                <span class="hv-icon"><img src="assets/images/logo-nav.png" alt="" width="34" height="34"></span>
+                <div><strong>Double U</strong><span>Strategy · Promotion · Business development</span></div>
+            </div>
+            <div class="hv-link" aria-hidden="true"></div>
+            <div class="hv-node">
+                <span class="hv-icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></span>
+                <div><strong>Taiwan's tech ecosystem</strong><span>Brands · ODMs · Foundries · Solution providers</span></div>
+            </div>
+            <div class="hv-foot">Where much of the world's AI servers, AI PCs, networking gear and chips are designed and built.</div>
         </div>
     </div>
 </section>
@@ -127,35 +149,29 @@
             <p class="svc-lead">Great technology doesn't guarantee revenue. We are your local representative — connecting your innovation to Taiwan's brands, ODMs and solution providers.</p>
         </div>
 
-        <div class="bridge">
-            <div class="bridge-col">
-                <span class="sub-title">You</span>
-                <h3>Tech Innovators</h3>
-                <ul>
-                    <li>Focus on product and solution innovation</li>
-                    <li>Get first-hand local market feedback</li>
-                    <li>Grow with the right local partners</li>
+        <div class="gap-bridge">
+            <div class="gb-side">
+                <span class="gb-icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg></span>
+                <span class="gb-kicker">You have</span>
+                <h3>Great technology</h3>
+                <p>A proven innovation, samples ready for evaluation, or a product ready to sell.</p>
+            </div>
+
+            <div class="gb-span">
+                <svg class="gb-arch" aria-hidden="true" viewBox="0 0 300 70" fill="none" stroke="currentColor" stroke-linecap="round"><path d="M40 70V8M260 70V8" stroke-width="4"/><path d="M0 52Q22 30 40 10Q150 70 260 10Q278 30 300 52" stroke-width="2.5"/><path d="M70 24V66M100 34V66M130 39V66M160 40V66M190 36V66M220 28V66" stroke-width="1.2" opacity=".6"/><path d="M0 66H300" stroke-width="4"/></svg>
+                <span class="gb-brand">Double U bridges the gap</span>
+                <ul class="gb-frictions">
+                    <li><span class="gb-ficon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"/></svg></span><div><strong>Customer engagement</strong><span>Knowing who to talk to, and getting the meeting</span></div></li>
+                    <li><span class="gb-ficon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="2.5"/><circle cx="19" cy="5" r="2.5"/><circle cx="19" cy="19" r="2.5"/><path d="M7.3 10.9l9.4-4.8M7.3 13.1l9.4 4.8"/></svg></span><div><strong>Strategic connections</strong><span>Direct access to key decision-makers</span></div></li>
+                    <li><span class="gb-ficon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/><path d="M8.5 9h7M8.5 12h4.5"/></svg></span><div><strong>Local language &amp; culture</strong><span>Speaking the market's language, in every sense</span></div></li>
                 </ul>
             </div>
-            <div class="bridge-arrow" aria-hidden="true">⇄</div>
-            <div class="bridge-col center">
-                <span class="sub-title">Double U</span>
-                <h3>Your Local Team</h3>
-                <ul>
-                    <li>Deep vertical-industry expertise</li>
-                    <li>Access to key decision-makers</li>
-                    <li>First-hand market intelligence</li>
-                </ul>
-            </div>
-            <div class="bridge-arrow" aria-hidden="true">⇄</div>
-            <div class="bridge-col">
-                <span class="sub-title">Customers</span>
-                <h3>Brands · ODMs · Solution Providers</h3>
-                <ul>
-                    <li>Discover new technologies</li>
-                    <li>Win design-in projects</li>
-                    <li>Direct support from a local team</li>
-                </ul>
+
+            <div class="gb-side">
+                <span class="gb-icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></span>
+                <span class="gb-kicker">You need</span>
+                <h3>Customers &amp; revenue</h3>
+                <p>Taiwan is where the world designs and builds AI servers, AI PCs, networking gear and chips. A design-win here can scale globally.</p>
             </div>
         </div>
 
@@ -167,13 +183,17 @@
 <!-- 4. 三大服務 -->
 <section class="home-section alt">
     <div class="container">
-        <div class="section-header">
-            <span class="sub-title">Our Expertise</span>
-            <h2 class="main-title">From strategy to deal closing</h2>
+        <div class="section-header split">
+            <div>
+                <span class="sub-title">Our Expertise</span>
+                <h2 class="main-title">From strategy to deal closing</h2>
+            </div>
+            <p class="svc-lead">Three services that work as one team: we shape the plan, put you in front of buyers, and stay with you until the deal is signed.</p>
         </div>
 
         <div class="svc-cards">
             <article class="svc-card">
+                <span class="svc-icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></span>
                 <span class="svc-num">01</span>
                 <span class="sub-title">Strategy</span>
                 <h3>Strategy & Positioning</h3>
@@ -182,6 +202,7 @@
                 <a href="services.html#strategy" class="read-more-btn">Explore &rarr;</a>
             </article>
             <article class="svc-card">
+                <span class="svc-icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg></span>
                 <span class="svc-num">02</span>
                 <span class="sub-title">Promotion</span>
                 <h3>Marketing & Promotion</h3>
@@ -190,6 +211,7 @@
                 <a href="services.html#promotion" class="read-more-btn">Explore &rarr;</a>
             </article>
             <article class="svc-card">
+                <span class="svc-icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></span>
                 <span class="svc-num">03</span>
                 <span class="sub-title">Growth</span>
                 <h3>Business Development</h3>
@@ -204,9 +226,12 @@
 <!-- 5. 成果：案例 -->
 <section class="home-section">
     <div class="container">
-        <div class="section-header">
-            <span class="sub-title">Track Record</span>
-            <h2 class="main-title">Results we've delivered with our partners</h2>
+        <div class="section-header split">
+            <div>
+                <span class="sub-title">Track Record</span>
+                <h2 class="main-title">Results we've delivered with our partners</h2>
+            </div>
+            <a href="insights.html#case-studies" class="read-more-btn">All case studies &rarr;</a>
         </div>
 
         <div class="case-tiles">
@@ -249,9 +274,12 @@
 <!-- 7. 團隊 -->
 <section class="home-section">
     <div class="container">
-        <div class="section-header">
-            <span class="sub-title">The Team</span>
-            <h2 class="main-title">Decades of experience across semiconductors, IoT and channels</h2>
+        <div class="section-header split">
+            <div>
+                <span class="sub-title">The Team</span>
+                <h2 class="main-title">Decades of experience across semiconductors, IoT and channels</h2>
+            </div>
+            <a href="about.html" class="read-more-btn">Meet the team &rarr;</a>
         </div>
 
         <div class="team-strip">
@@ -270,10 +298,6 @@
                 <h3>Fred Chen</h3>
                 <p class="role-title">VP Channel & Distribution</p>
             </a>
-        </div>
-
-        <div class="section-cta">
-            <a href="about.html" class="btn btn-outline">Meet The Team</a>
         </div>
     </div>
 </section>
@@ -378,8 +402,8 @@
     </div>
 </footer>
 
-<script src="news-data.js?v=20261121c"></script>
-<script src="site.js?v=20261121c"></script>
+<script src="news-data.js?v=20261121d"></script>
+<script src="site.js?v=20261121d"></script>
 
 </body>
 </html>
