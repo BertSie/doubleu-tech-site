@@ -16,7 +16,7 @@
 //             內文插圖：獨立一行寫 ![圖片說明](assets/images/news/資料夾/圖檔.jpg)
 //   有 body 時卡片會連到站內頁面，頁尾自動附上 link 原文連結。
 //
-// 草稿與範本放在 Google 雲端硬碟「網站投稿」資料夾，詳見裡面的「使用說明.md」。
+// 草稿與範本放在 DOUBLEU 共用雲端硬碟「Company info／網站投稿」，詳見裡面的「使用說明.docx」。
 
 const newsData = [
 
