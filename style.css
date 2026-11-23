@@ -138,7 +138,7 @@ h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary-da
 .hero-btns { display: flex; justify-content: center; gap: 20px; position: relative; z-index: 1; }
 
 .section-header { text-align: center; margin-bottom: 60px; }
-.sub-title { color: var(--accent-text); font-weight: 700; letter-spacing: 3px; text-transform: uppercase; font-size: 12px; margin-bottom: 15px; display: block; }
+.sub-title { color: var(--accent-text); font-weight: 700; letter-spacing: 3px; text-transform: uppercase; font-size: 14px; margin-bottom: 15px; display: block; }
 .main-title { font-size: 38px; line-height: 1.2; }
 
 /* 內頁頁首 (Services / Insights / Privacy 共用) */
