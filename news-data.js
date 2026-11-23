@@ -21,6 +21,15 @@
 const newsData = [
 
     {
+        title: "GIGABYTE and Fabric8Labs Deepen Liquid Cooling Collaboration",
+        date: "JULY 2026",
+        desc: "ECAM cold plates debut in Giga Computing's AMD Instinct™ MI355X GPU servers.",
+        link: "https://www.gigacomputing.com/en/news-detail/085/",
+        imgText: "GIGABYTE & FABRIC8LABS",
+        imgStyle: "background: linear-gradient(135deg, #0b2545, #e8772e);",
+        isExternal: true
+    },
+    {
         title: "AOI Awarded $20.9M Texas Semiconductor Innovation Fund Grant",
         date: "APRIL 2026",
         desc: "Grant to advance semiconductor manufacturing in Sugar Land, Texas.",
